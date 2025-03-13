@@ -52,6 +52,8 @@ export const Footer = () => {
             </div>
 
           <p className="flex justify-center mt-4 text-white">© 2025 All rights reserved. </p>
+          <p className="flex justify-center mt-4 text-white">© 2025 All rights reserved. </p>
+
 
           </div>
         </div>
