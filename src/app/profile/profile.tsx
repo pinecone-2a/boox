@@ -1,20 +1,20 @@
 import { Card } from "@/components/ui/card";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Home, ShoppingBag, Music, Search, MoreHorizontal } from "lucide-react";
 
 export default function Profile() {
   return (
-    <div className="w-full max-w-md mx-auto p-4">
-     
+    <div className="w-full max-w-md mx-auto p-4 pb-16">
+      
       <div className="flex items-center space-x-2 mb-4">
         <ArrowLeft className="w-5 h-5 text-gray-500" />
         <span className="text-gray-500">Home</span>
       </div>
+
       
-     
       <Card className="p-6 text-center">
         <div className="flex justify-center">
           <div className="w-24 h-24 rounded-full bg-blue-500 flex items-center justify-center">
-            <span className="text-white text-4xl "><img className="rounded-full" src="/profile.jpg" /></span>
+            <img className="rounded-full w-full h-full object-cover" src="/profile.jpg" alt="Profile" />
           </div>
         </div>
         <h2 className="text-xl font-bold mt-4">Micheal Scofield</h2>
@@ -24,49 +24,52 @@ export default function Profile() {
           Toronto Raptors Die Hard Fan
         </p>
       </Card>
-      
+
      
       <div className="mt-6">
         <h3 className="text-lg font-semibold">Your Books</h3>
-        
         <div className="mt-4 space-y-4">
-         
-          <Card className="flex items-center p-4 space-x-4">
-            <img src="/book1.jpg" alt="This is Marketing" className="w-16 h-24 rounded" />
-            <div>
-              <h4 className="font-bold">This is Marketing</h4>
-              <p className="text-sm text-gray-500">Seth Godin</p>
-              <p className="text-xs text-gray-600">Making Smarter Decisions When you Don’t Have All The Facts</p>
-              <div className="w-full bg-gray-200 rounded-full h-2.5 mt-2">
-                <div className="bg-orange-500 h-2.5 rounded-full" style={{ width: "38%" }}></div>
+          {[
+            { title: "This is Marketing", author: "Seth Godin", progress: 38, image: "/book1.jpg" },
+            { title: "The Icarus Deception", author: "Seth Godin", progress: 63, image: "/book2.jpg" },
+            { title: "Tribe of Mentors", author: "Tim Ferriss", progress: 72, image: "/book3.jpg" },
+          ].map((book, index) => (
+            <Card key={index} className="flex items-center p-4 space-x-4">
+              <img src={book.image} alt={book.title} className="w-16 h-24 rounded" />
+              <div>
+                <h4 className="font-bold">{book.title}</h4>
+                <p className="text-sm text-gray-500">{book.author}</p>
+                <p className="text-xs text-gray-600">Making Smarter Decisions When you Don’t Have All The Facts</p>
+                <div className="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                  <div className="bg-orange-500 h-2.5 rounded-full" style={{ width: `${book.progress}%` }}></div>
+                </div>
               </div>
-            </div>
-          </Card>
-          
-        
-          <Card className="flex items-center p-4 space-x-4">
-            <img src="/book2.jpg" alt="The Icarus Deception" className="w-16 h-24 rounded" />
-            <div>
-              <h4 className="font-bold">The Icarus Deception</h4>
-              <p className="text-sm text-gray-500">Seth Godin</p>
-              <p className="text-xs text-gray-600">Making Smarter Decisions When you Don’t Have All The Facts</p>
-              <div className="w-full bg-gray-200 rounded-full h-2.5 mt-2">
-                <div className="bg-orange-500 h-2.5 rounded-full" style={{ width: "63%" }}></div>
-              </div>
-            </div>
-          </Card>
+            </Card>
+          ))}
+        </div>
+      </div>
 
-          <Card className="flex items-center p-4 space-x-4">
-            <img src="/book3.jpg" alt="The Icarus Deception" className="w-16 h-24 rounded" />
-            <div>
-              <h4 className="font-bold">The Icarus Deception</h4>
-              <p className="text-sm text-gray-500">Seth Godin</p>
-              <p className="text-xs text-gray-600">Making Smarter Decisions When you Don’t Have All The Facts</p>
-              <div className="w-full bg-gray-200 rounded-full h-2.5 mt-2">
-                <div className="bg-orange-500 h-2.5 rounded-full" style={{ width: "63%" }}></div>
-              </div>
-            </div>
-          </Card>
+     
+      <div className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 py-3 flex justify-around shadow-md">
+        <div className="flex flex-col items-center text-gray-400">
+          <MoreHorizontal className="w-6 h-6" />
+          <span className="text-xs mt-1">More</span>
+        </div>
+        <div className="flex flex-col items-center text-gray-400">
+          <ShoppingBag className="w-6 h-6" />
+          <span className="text-xs mt-1">Shop</span>
+        </div>
+        <div className="flex flex-col items-center text-gray-900">
+          <Home className="w-6 h-6" />
+          <span className="text-xs mt-1 font-semibold">Home</span>
+        </div>
+        <div className="flex flex-col items-center text-gray-400">
+          <Music className="w-6 h-6" />
+          <span className="text-xs mt-1">Audio Books</span>
+        </div>
+        <div className="flex flex-col items-center text-gray-400">
+          <Search className="w-6 h-6" />
+          <span className="text-xs mt-1">Search</span>
         </div>
       </div>
     </div>
