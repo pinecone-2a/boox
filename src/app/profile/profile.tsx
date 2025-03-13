@@ -14,7 +14,7 @@ export default function Profile() {
       <Card className="p-6 text-center">
         <div className="flex justify-center">
           <div className="w-24 h-24 rounded-full bg-blue-500 flex items-center justify-center">
-            <span className="text-white text-4xl">🧑‍💻</span>
+            <span className="text-white text-4xl "><img className="rounded-full" src="/profile.jpg" /></span>
           </div>
         </div>
         <h2 className="text-xl font-bold mt-4">Micheal Scofield</h2>
@@ -46,6 +46,18 @@ export default function Profile() {
         
           <Card className="flex items-center p-4 space-x-4">
             <img src="/book2.jpg" alt="The Icarus Deception" className="w-16 h-24 rounded" />
+            <div>
+              <h4 className="font-bold">The Icarus Deception</h4>
+              <p className="text-sm text-gray-500">Seth Godin</p>
+              <p className="text-xs text-gray-600">Making Smarter Decisions When you Don’t Have All The Facts</p>
+              <div className="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                <div className="bg-orange-500 h-2.5 rounded-full" style={{ width: "63%" }}></div>
+              </div>
+            </div>
+          </Card>
+
+          <Card className="flex items-center p-4 space-x-4">
+            <img src="/book3.jpg" alt="The Icarus Deception" className="w-16 h-24 rounded" />
             <div>
               <h4 className="font-bold">The Icarus Deception</h4>
               <p className="text-sm text-gray-500">Seth Godin</p>
