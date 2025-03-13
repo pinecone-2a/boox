@@ -6,3 +6,25 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id        String   @id @default(nanoid())
+  name      String
+  email     String   @unique
+  password  String
+  location  String
+  bio       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+  book      Book[]
+}
+
+model Book {
+  id        String @id @default(nanoid())
+  title     String
+  author    String
+  genre     String
+  condition String
+  ownerId   String
+  owner     User   @relation(fields: [ownerId], references: [id])
+}
