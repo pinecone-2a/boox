@@ -24,6 +24,7 @@ model User {
 model Book {
   id        String @id @default(nanoid())
   title     String
+  cover     String
   author    String
   genre     Genre 
   condition Condition
