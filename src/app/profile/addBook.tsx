@@ -1,37 +1,51 @@
-import { Image, Plus } from "lucide-react";
-import { Button } from "./ui/button";
-import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
-import { Label } from "./label";
-import { Input } from "./ui/input";
+import {
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Plus, Image } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useState } from "react";
 
+export const AddNewBook = () => {
+    const [book, setBook] = useState({
+        name: "",
+        explanation: "",
+        image: "",
+    });
 
+    const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setBook((prevBook) => ({ ...prevBook, image: reader.result as string }));
+            };
+            reader.readAsDataURL(file);
+        }
+    };
 
-interface AddBookProps {
-    categoryName: string;
-    setBoox: React.Dispatch<React.SetStateAction<any>>;
-    Book: any;
-    handleUpload: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    onChange: (
+    const onChange = (
         event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => void;
+    ) => {
+        const { name, value } = event.target;
+        setBook((prevBook) => ({ ...prevBook, [name]: value }));
+    };
 
-}
-
-export const AddBook = ({
-    categoryName,
-    setBoox,
-    Book,
-    handleUpload,
-    onChange,
-}: AddBookProps) => {
-    const addBook = async () => {
-        const data = await fetch("http://localhost:7000/boox/", {
+    const addNewBook = async () => {
+        const data = await fetch("http://localhost:7000/book/", {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
             },
             method: "POST",
-            body: JSON.stringify(Book),
+            body: JSON.stringify(book),
         });
         const newItem: any = await data.json();
         window.location.reload();
@@ -39,66 +53,58 @@ export const AddBook = ({
 
     return (
         <Dialog>
-            <DialogTitle className=" text-center ">
-                <DialogTrigger asChild>
-                    <Button variant="destructive" className="rounded-full p-[10px]">
-                        <Plus />
-                    </Button>
-                </DialogTrigger>
-
-                <div className="text-center text-sm font-medium mt-6 ">
-                    <h4>Add new Dish to </h4>
-                    <h4>{categoryName}</h4>
-                </div>
-            </DialogTitle>
+            <DialogTrigger asChild>
+                <Button variant="destructive" className="rounded-full p-[10px]">
+                    <Plus />
+                </Button>
+            </DialogTrigger>
             <DialogContent className="flex flex-col gap-6 p-6">
                 <DialogHeader className="pb-4 grid gap-4">
-                    <DialogTitle>Add new dish to {categoryName}</DialogTitle>
+                    <DialogTitle>Add new Book</DialogTitle>
                 </DialogHeader>
 
                 <div className="flex gap-6">
                     <div className="grid w-full max-w-sm items-center gap-1.5">
-                        <Label htmlFor="BookName">Book name</Label>
+                        <Label htmlFor="bookName">Book name</Label>
                         <Input
-                            id="BookName"
+                            id="bookName"
                             name="name"
                             type="text"
-                            placeholder="Type Book name..."
+                            placeholder="Book name"
                             onChange={onChange}
                         />
                     </div>
-
                     <div className="grid w-full max-w-sm items-center gap-1.5">
-                        <Label htmlFor="BookPrice">Book price</Label>
+                        <Label htmlFor="bookName">Writer</Label>
                         <Input
-                            id="BookPrice"
-                            name="price"
-                            type="number"
-                            placeholder="Enter price..."
+                            id="bookName"
+                            name="name"
+                            type="text"
+                            placeholder="Writer"
                             onChange={onChange}
                         />
                     </div>
                 </div>
 
                 <div className="flex flex-col w-full  gap-1.5">
-                    <Label htmlFor="ingredients">Ingredients</Label>
+                    <Label htmlFor="explanation">Explanation</Label>
                     <textarea
-                        id="ingredients"
-                        name="ingredients"
+                        id="explanation"
+                        name="explanation"
                         rows={4}
                         cols={50}
                         className="border rounded-md py-2 px-4  text-sm font-normal "
-                        placeholder="List ingredients..."
+                        placeholder="Explanation"
                         onChange={onChange}
                     ></textarea>
                 </div>
 
                 <div className="grid w-full items-center gap-1.5">
                     <h1 className="text-sm">Book image</h1>
-                    {Book?.image !== "" ? (
+                    {book?.image !== "" ? (
                         <div
                             className={`bg-cover bg-center rounded-md h-[138px] `}
-                            style={{ backgroundImage: `url(${Book?.image})` }}
+                            style={{ backgroundImage: `url(${book?.image})` }}
                         ></div>
                     ) : (
                         <Label
@@ -127,10 +133,10 @@ export const AddBook = ({
                     <DialogClose asChild>
                         <Button
                             onClick={() => {
-                                addBook();
+                                addNewBook();
                             }}
                         >
-                            Add book
+                            Add Book
                         </Button>
                     </DialogClose>
                 </DialogFooter>
