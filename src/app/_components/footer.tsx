@@ -1,14 +1,14 @@
 export const Footer = () => {
     return (
       <div>
-        <div className="bg-amber-400">
+        <div className="bg-pink-400">
           <div className="text-2xl font-extrabold bg-amber-100 flex justify-center pt-5">
             <h1>Boox</h1>
           </div>
   
-          <div className=" flex-wrap gap-7 mt-7 mx-auto max-w-screen-lg w-[25%] ">
+          <div className="  gap-7 mt-7 mx-auto max-w-screen-lg w-[15%] ">
             <div className="w-full sm:w-1/2 md:w-1/4 ">
-              <p className="text-xl font-bold mt-9">About   </p>
+              <p className="text-xl font-bold mt-9 w-[140px] h-[60px]">About</p>
               <div className="text-[15px] opacity-60">
                 <p>About us</p>
                 <p>Contact us</p>
@@ -38,24 +38,29 @@ export const Footer = () => {
   
           </div>
 
-          <div className="bg-amber-900 pt-9 ">
-            <div className="flex justify-center  gap-5">
-            <div className="w-[40px] h-[40px] bg-blue-600 rounded-full ">
-              <link rel="" href="https://www.facebook.com/" />
-            </div>
-            <div className="w-[40px] h-[40px] bg-pink-600 rounded-full ">
-              <link rel="stylesheet" href="https://www.instagram.com/" />
-            </div>
-            <div className="w-[40px] h-[40px] bg-blue-400 rounded-full ">
-              <link rel="stylesheet" href="https://www.twitter.com/" />
-            </div>
-            </div>
+<div className="bg-amber-900 pt-9 pb-5">
+<div className="flex justify-center gap-5">
+  <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+    <div className="w-[40px] h-[40px] bg-blue-600 rounded-full flex justify-center items-center hover:scale-110 transition duration-200">
+      <i className="fab fa-facebook-f text-white"></i>
+    </div>
+  </a>
+  <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+    <div className="w-[40px] h-[40px] bg-pink-600 rounded-full flex justify-center items-center hover:scale-110 transition duration-200">
+      <i className="fab fa-instagram text-white"></i>
+    </div>
+  </a>
+  <a href="https://www.twitter.com/" target="_blank" rel="noopener noreferrer">
+    <div className="w-[40px] h-[40px] bg-blue-400 rounded-full flex justify-center items-center hover:scale-110 transition duration-200">
+      <i className="fab fa-twitter text-white"></i>
+    </div>
+  </a>
+</div>
 
-          <p className="flex justify-center mt-4 text-white">© 2025 All rights reserved. </p>
-          <p className="flex justify-center mt-4 text-white">© 2025 All rights reserved. </p>
+           <p className="flex justify-center mt-4 text-white">© 2025 All rights reserved. </p>
 
 
-          </div>
+           </div>
         </div>
       </div>
     );
