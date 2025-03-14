@@ -41,7 +41,7 @@ export default function Profile() {
                 <p className="text-sm text-gray-500">{book.author}</p>
                 <p className="text-xs text-gray-600">Making Smarter Decisions When you Don’t Have All The Facts</p>
                 <div className="w-full bg-gray-200 rounded-full h-2.5 mt-2">
-                  <div className="bg-orange-500 h-2.5 rounded-full" style={{ width: `${book.progress}%` }}></div>
+                  <div className="bg-orange-600 h-2.5 rounded-full" style={{ width: `${book.progress}%` }}></div>
                 </div>
               </div>
             </Card>
