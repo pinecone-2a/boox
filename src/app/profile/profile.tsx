@@ -4,11 +4,13 @@
 
 import { Card } from "@/components/ui/card";
 import { ArrowLeft, Home, ShoppingBag, Music, Search, MoreHorizontal } from "lucide-react";
+import { useEffect, useState } from "react";
+import { bookType } from "../type";
 import { AddNewBook } from "./addBook";
 
 export default function Profile() {
   // const [Bookbook, setBookbook] = useState<bookType[]>();
-  // const [newbook, setNewbook] = useState<string>();
+  const [newbook, setNewbook] = useState<string>();
 
   // useEffect(() => {
   //   const fetchbook = async () => {
@@ -20,18 +22,18 @@ export default function Profile() {
   //   fetchbook();
   // }, []);
 
-  // const addbook = () => {
-  //   fetch("http://localhost:7000/book/", {
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //     },
-  //     method: "POST",
-  //     body: JSON.stringify({ bookName: newbook }),
-  //   });
-  //   setNewbook("");
-  //   window.location.reload();
-  // };
+  const addbook = () => {
+    fetch("http://localhost:7000/book/", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({ bookName: newbook }),
+    });
+    setNewbook("");
+    window.location.reload();
+  };
 
   return (
     <div className="w-full max-w-md mx-auto p-4 pb-16">
