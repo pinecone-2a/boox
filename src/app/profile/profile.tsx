@@ -36,7 +36,7 @@ export default function Profile() {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto p-4 pb-16">
+    <div className="w-full max-w-md mx-auto p-4 pb-18">
 
       <div className="flex items-center space-x-2 mb-4">
         <ArrowLeft className="w-5 h-5 text-gray-500" />
@@ -80,13 +80,13 @@ export default function Profile() {
               </div>
             </Card>
           ))}
+          <div className="bg-card text-card-foreground flex-col gap-6 rounded-xl border shadow-sm flex items-center p-4 space-x-4">
+            <AddNewBook />
+          </div>
         </div>
       </div>
 
-      <div className="bg-red-400 flex justify-center ">
 
-        <AddNewBook />
-      </div>
 
 
       <div className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 py-3 flex justify-around shadow-md">
