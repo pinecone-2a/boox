@@ -16,7 +16,7 @@ import { useState } from "react";
 export const AddNewBook = () => {
     const [book, setBook] = useState({
         name: "",
-        explanation: "",
+        description: "",
         image: "",
     });
 
@@ -39,7 +39,7 @@ export const AddNewBook = () => {
     };
 
     const addNewBook = async () => {
-        const data = await fetch("http://localhost:7000/book/", {
+        const data = await fetch("http://localhost:3000/book/", {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
@@ -75,26 +75,26 @@ export const AddNewBook = () => {
                         />
                     </div>
                     <div className="grid w-full max-w-sm items-center gap-1.5">
-                        <Label htmlFor="bookName">Writer</Label>
+                        <Label htmlFor="bookName">Author</Label>
                         <Input
                             id="bookName"
                             name="name"
                             type="text"
-                            placeholder="Writer"
+                            placeholder="Author names"
                             onChange={onChange}
                         />
                     </div>
                 </div>
 
                 <div className="flex flex-col w-full  gap-1.5">
-                    <Label htmlFor="explanation">Explanation</Label>
+                    <Label htmlFor="description">Description</Label>
                     <textarea
-                        id="explanation"
-                        name="explanation"
+                        id="description"
+                        name="description"
                         rows={4}
                         cols={50}
                         className="border rounded-md py-2 px-4  text-sm font-normal "
-                        placeholder="Explanation"
+                        placeholder="Description of the book"
                         onChange={onChange}
                     ></textarea>
                 </div>
