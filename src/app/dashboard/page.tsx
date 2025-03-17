@@ -4,8 +4,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 
 interface Book {
@@ -19,6 +17,11 @@ interface BookSectionProps {
 
 export default function BookLists() {
   const wishlistBooks: Book[] = [
+    { image: "image 8.jpg" },
+    { image: "image 9.png" },
+    { image: "image 10.png" },
+    { image: "image 11.png" },
+    { image: "image 12.png" },
     { image: "image 8.jpg" },
     { image: "image 9.png" },
     { image: "image 10.png" },
@@ -56,7 +59,7 @@ function BookSection({ sectionName, bookList }: BookSectionProps) {
           {bookList.map((book: Book, index: number) => (
             <CarouselItem
               key={index}
-              className="basis-1/3 sm:basis-1/4 md:basis-1/5 bg-yellow-400 p-2"
+              className="basis-1/5 sm:basis-1/4 md:basis-1/5 bg-yellow-400 p-2"
             >
               <img
                 src={book.image}
