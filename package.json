@@ -20,11 +20,7 @@
     "clsx": "^2.1.1",
     "framer-motion": "^12.5.0",
     "gsap": "^3.12.7",
-<<<<<<< HEAD
-    "lottie-react": "^2.4.1",
-=======
     "embla-carousel-react": "^8.5.2",
->>>>>>> 3727086f8617c73a11ff3f3a12df12e73685a5c9
     "lucide-react": "^0.479.0",
     "next": "15.2.1",
     "react": "^19.0.0",
