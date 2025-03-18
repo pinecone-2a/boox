@@ -1,9 +1,4 @@
 "use client";
-<<<<<<< HEAD
-
-export default function Home() {
-  return <div className="bg-cyan-950 flex justify-center items-center"></div>;
-=======
 import {
   ClerkProvider,
   SignIn,
@@ -13,20 +8,18 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
-import SignupHandler from "./_components/signup";
-export default function Home() {
+export default function Login() {
   return (
-    <div>
+    <div className="flex justify-center mt-20">
       <SignedOut>
         <SignIn />
       </SignedOut>
       <SignedIn>
         <UserButton />
         <div>
-          <SignupHandler />
+          <h1>Hello there</h1>
         </div>
       </SignedIn>
     </div>
   );
->>>>>>> 3-dashboard
 }
