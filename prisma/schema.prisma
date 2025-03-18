@@ -9,22 +9,107 @@ datasource db {
 
 model User {
   id        String   @id @default(nanoid())
+  clerkId   String   @unique
   name      String
   email     String   @unique
-  password  String
-  location  String
-  bio       String
   createdAt DateTime @default(now())
-  updatedAt DateTime
+  updatedAt DateTime @updatedAt
   book      Book[]
+  like  Swipe[]
+  reviewsGiven   Review[] @relation("reviewsGiven")
+  reviewsReceived Review[] @relation("reviewsReceived")
+  sentMessages   Message[] @relation("sentMessages")
+  receivedMessages Message[] @relation("receivedMessages")
 }
 
 model Book {
   id        String @id @default(nanoid())
   title     String
+  cover     String
   author    String
-  genre     String
-  condition String
+  genre     Genre 
+  condition Condition
   ownerId   String
   owner     User   @relation(fields: [ownerId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  like  Swipe[]
+}
+
+enum Condition {
+  NEW
+  LIKE_NEW
+  GOOD
+  FAIR
+  POOR
+}
+
+enum Genre {
+  FICTION
+  NON_FICTION
+  MYSTERY
+  THRILLER
+  ROMANCE
+  SCIENCE
+  FANTASY
+  HORROR
+  BIOGRAPHY
+  HISTORY
+  SELF_HELP
+  CHILDREN
+}
+
+model Swipe {
+  id        String @id @default(nanoid())
+  bookId    String
+  book      Book   @relation(fields: [bookId], references: [id])
+  userId    String
+  user      User   @relation(fields: [userId], references: [id])
+  liked     Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  matches1 Match[] @relation("matches1")
+  matches2 Match[] @relation("matches2")
+}
+
+model Match {
+  id        String @id @default(nanoid())
+  like1Id   String
+  like1     Swipe   @relation(name: "matches1", fields: [like1Id], references: [id])
+  like2Id   String
+  like2     Swipe   @relation(name: "matches2", fields: [like2Id], references: [id])
+  status    MatchStatus @default(PENDING)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  messages  Message[]
+  @@unique([like1Id, like2Id])
+}
+
+enum MatchStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
+model Message {
+  id        String   @id @default(nanoid())
+  matchId   String
+  match     Match    @relation(fields: [matchId], references: [id])
+  senderId  String
+  sender    User     @relation(name: "sentMessages", fields: [senderId], references: [id])
+  receiverId String
+  receiver  User     @relation(name: "receivedMessages", fields: [receiverId], references: [id])
+  text      String
+  createdAt DateTime @default(now())
+}
+
+model Review {
+  id         String   @id @default(nanoid())
+  userId     String
+  reviewerId String
+  rating     Int
+  reviewText String?
+  createdAt  DateTime @default(now())
+  user       User @relation(name: "reviewsReceived", fields: [userId], references: [id])
+  reviewer   User @relation(name: "reviewsGiven", fields: [reviewerId], references: [id])
 }
