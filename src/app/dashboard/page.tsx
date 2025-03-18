@@ -17,8 +17,6 @@ interface BookSectionProps {
 
 export default function BookLists() {
   const wishlistBooks: Book[] = [
-    { image: "image 8.jpg" },
-    { image: "image 9.png" },
     { image: "image 10.png" },
     { image: "image 11.png" },
     { image: "image 12.png" },
@@ -27,6 +25,8 @@ export default function BookLists() {
     { image: "image 10.png" },
     { image: "image 11.png" },
     { image: "image 12.png" },
+    { image: "image 8.jpg" },
+    { image: "image 9.png" },
   ];
 
   const matchesBooks: Book[] = [
@@ -43,7 +43,7 @@ export default function BookLists() {
   ];
 
   return (
-    <div className="p-6">
+    <div>
       <BookSection sectionName="Wishlist" bookList={wishlistBooks} />
       <BookSection sectionName="Matches" bookList={matchesBooks} />
     </div>
@@ -54,17 +54,14 @@ function BookSection({ sectionName, bookList }: BookSectionProps) {
   return (
     <div className="mb-6">
       <h2 className="text-2xl font-bold mb-2">{sectionName}</h2>
-      <Carousel className="w-full max-w-lg">
+      <Carousel className="w-full h-[112px] ">
         <CarouselContent>
           {bookList.map((book: Book, index: number) => (
-            <CarouselItem
-              key={index}
-              className="basis-1/5 sm:basis-1/4 md:basis-1/5 bg-yellow-400 p-2"
-            >
+            <CarouselItem key={index} className="basis-1/5 bg-yellow-400 p-2 ">
               <img
                 src={book.image}
                 alt={`${sectionName} book ${index + 1}`}
-                className="w-24 h-32 object-cover rounded-xl shadow-lg"
+                className="w-[64px] h-[99px] object-cover rounded-xl shadow-lg ml-2"
               />
             </CarouselItem>
           ))}
