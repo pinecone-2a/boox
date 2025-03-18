@@ -71,6 +71,7 @@ export const Hero = () => {
           </motion.a>
           <div className="bg-black h-30 flex justify-center items-center opacity-80 pl-3 mt-6">
           <p className=" text-white font-bold "> "Reading gives us someplace to go when we have to stay where we are." </p>   
+            
 
        </div>
           
