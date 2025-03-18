@@ -149,7 +149,7 @@ export const Hero = () => {
   return (
     <div>
       <div className="bg-yellow-50 text-center py-10">
-        <h1 className="hero-title text-3xl font-medium">Boox</h1>
+        <h1 className="hero-title text-5xl font-semibold ">Boox</h1>
         <p className="hero-text text-[15px] mt-3 text-black opacity-45 font-normal">A home without books is a body without soul.</p>
         <motion.a
           href="/app/header"
@@ -165,13 +165,13 @@ export const Hero = () => {
 
  
       {["New Released Books", "Bestselling Books"].map((title, index) => (
-        <div key={index} className="book-section bg-amber-200 py-10 text-center">
-          <h1 className="text-2xl font-medium">{title}</h1>
+        <div key={index} className="book-section bg-amber-200 py-10 text-center ">
+          <h1 className="text-2xl font-medium ">{title}</h1>
           <p className="mt-3">A home without books is a body without soul.</p>
-          <div className="flex justify-center gap-6 mt-5">
+          <div className="flex justify-center gap-6 mt-5 grid grid-cols-2 ">
             {["bookCover1.jpeg", "bookCover2.jpeg", "bookCover3.jpeg", "bookCover4.jpeg"].map((src, i) => (
               <motion.div key={i} whileHover={{ scale: 1.05 }}>
-                <img className="w-30 h-40 rounded-xs " src={src} alt="Book Cover" />
+                <img className="w-30 h-40 rounded-xs ml-9 shadow-xl" src={src} alt="Book Cover" />
                 <p className="text-sm mt-2 font-medium">The Great Gatsby</p>
                 <p className="text-sm font-bold">$31</p>
               </motion.div>

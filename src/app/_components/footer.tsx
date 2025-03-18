@@ -4,7 +4,7 @@ import { FaTwitter } from "react-icons/fa";
 export const Footer = () => {
     return (
       <div>
-        <div className="bg-yellow-400">
+        <div className="bg-yellow-300">
           <div className="text-2xl font-extrabold bg-amber-100 flex justify-center pt-5">
             <h1>Boox</h1>
           </div>
