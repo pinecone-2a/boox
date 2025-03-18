@@ -10,8 +10,7 @@ async function POST(request: Request) {
   try {
     const user = await prisma.user.create({ data: body });
     return new Response(JSON.stringify(user), { status: 201 });
-  }
-  catch (error) {
+  } catch (error) {
     console.error("Error creating user:", error);
     return new Response("Internal Server Error", { status: 500 });
   }
@@ -36,7 +35,7 @@ async function DELETE(request: Request) {
   try {
     const user = await prisma.user.delete({ where: { id: body.id } });
     return new Response(JSON.stringify(user), { status: 200 });
-  }catch (error) {
+  } catch (error) {
     console.error("Error deleting user:", error);
     return new Response("Internal Server Error", { status: 500 });
   }

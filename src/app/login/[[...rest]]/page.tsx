@@ -8,9 +8,9 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
-export default function Home() {
+export default function Login() {
   return (
-    <div>
+    <div className="flex justify-center mt-20">
       <SignedOut>
         <SignIn />
       </SignedOut>
