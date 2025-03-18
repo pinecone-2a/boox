@@ -1,19 +1,10 @@
-<<<<<<< HEAD
-import { SwipeBooks } from "../swipe/swipe";
-
-export default function Page(){
-  return (
-    <SwipeBooks/>
-  );
-};  
-=======
 import * as React from "react";
-
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import { SwipeBooks } from "../swipe/swipe";
 
 interface Book {
   image: string;
@@ -52,8 +43,9 @@ export default function BookLists() {
   ];
 
   return (
-    <div>
-      <BookSection sectionName="Wishlist" bookList={wishlistBooks} />
+    <div className="w-full h-full bg-neutral-200">
+      <SwipeBooks/>
+      <BookSection sectionName="Liked" bookList={wishlistBooks} />
       <BookSection sectionName="Matches" bookList={matchesBooks} />
     </div>
   );
@@ -79,4 +71,3 @@ function BookSection({ sectionName, bookList }: BookSectionProps) {
     </div>
   );
 }
->>>>>>> 3-dashboard

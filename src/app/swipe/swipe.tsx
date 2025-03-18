@@ -8,7 +8,7 @@ export function SwipeBooks(){
   const [books,setBooks] = useState<Book[]>(bookData);
   return (
     <div
-      className="grid h-[500px] w-full place-items-center bg-neutral-100"
+      className="grid h-[500px] w-full place-items-center bg-neutral-200"
     >
       {books.map(book => {return <Book 
         key={book.id}
@@ -87,8 +87,10 @@ const Book = ({
           clearInterval(interval);
           subBook();
         } 
-      },1);
-    }} className="absolute -bottom-7 text-7xl left-15 rounded-full w-15 h-15 bg-white flex justify-center items-center"><X strokeWidth={5} color="#fe4f66" size={32}/></button>
+      },2);
+    }} className="absolute -bottom-7 text-7xl left-15 rounded-full w-15 h-15 bg-white flex justify-center items-center">
+      <X strokeWidth={5} color="#fe4f66" size={32}/>
+    </button>
     <button onClick={()=>{
       const interval = setInterval(()=>{
         x.set(x.get()+1);
@@ -97,8 +99,10 @@ const Book = ({
           clearInterval(interval);
           subBook();
         } 
-      },1);
-    }} className="absolute -bottom-7 right-15 rounded-full w-15 h-15 bg-white flex justify-center items-center"><Heart strokeWidth={4} color="#00ce90" size={32}/></button>
+      },2);
+    }} className="absolute -bottom-7 right-15 rounded-full w-15 h-15 bg-white flex justify-center items-center">
+      <Heart strokeWidth={4} color="#00ce90" size={32}/>
+    </button>
     </motion.div>
 }
 
@@ -106,6 +110,46 @@ const Book = ({
 const bookData: Book[] = [
     {
       id: "1",
+      title: "Book 1",
+      cover: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      author: "Author 1",
+      genre: "Genre 1",
+      condition: "Condition 1",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",   
+      ownerId: "1",
+    },
+    {
+      id: "2",
+      title: "Book 1",
+      cover: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      author: "Author 1",
+      genre: "Genre 1",
+      condition: "Condition 1",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",   
+      ownerId: "1",
+    },
+    {
+      id: "3",
+      title: "Book 1",
+      cover: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      author: "Author 1",
+      genre: "Genre 1",
+      condition: "Condition 1",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",   
+      ownerId: "1",
+    },
+    {
+      id: "4",
+      title: "Book 1",
+      cover: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      author: "Author 1",
+      genre: "Genre 1",
+      condition: "Condition 1",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",   
+      ownerId: "1",
+    },
+    {
+      id: "5",
       title: "Book 1",
       cover: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       author: "Author 1",
