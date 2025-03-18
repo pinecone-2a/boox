@@ -12,6 +12,7 @@ import { Plus, Image } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
+import ImageUploud from "./ImageUploud";
 
 export const AddNewBook = () => {
     const [book, setBook] = useState({
@@ -20,16 +21,16 @@ export const AddNewBook = () => {
         image: "",
     });
 
-    const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setBook((prevBook) => ({ ...prevBook, image: reader.result as string }));
-            };
-            reader.readAsDataURL(file);
-        }
-    };
+    // const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     const file = event.target.files?.[0];
+    //     if (file) {
+    //         const reader = new FileReader();
+    //         reader.onloadend = () => {
+    //             setBook((prevBook) => ({ ...prevBook, image: reader.result as string }));
+    //         };
+    //         reader.readAsDataURL(file);
+    //     }
+    // };
 
     const onChange = (
         event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -126,7 +127,7 @@ export const AddNewBook = () => {
                         type="file"
                         placeholder="Enter image..."
                         className="hidden"
-                        onChange={handleUpload}
+                        onChange={ImageUploud}
                     />
                 </div>
                 <DialogFooter className="pt-6">

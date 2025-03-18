@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpen, Home, MessageCircleHeart } from "lucide-react";
+import { BookOpen, Home, MessageCircleHeart, } from "lucide-react";
 import { useState } from "react";
 
 export function Bar() {
@@ -10,6 +10,7 @@ export function Bar() {
     { id: "home", label: "Home", icon: Home },
     { id: "books", label: "Books", icon: BookOpen },
     { id: "chat", label: "Chat", icon: MessageCircleHeart },
+
   ];
 
   return (
