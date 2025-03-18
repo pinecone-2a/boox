@@ -1,3 +1,7 @@
-export default function Dashboard() {
-  return <div></div>;
-}
+import { SwipeBooks } from "../swipe/swipe";
+
+export default function Page(){
+  return (
+    <SwipeBooks/>
+  );
+};  

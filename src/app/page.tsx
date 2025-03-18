@@ -1,7 +1,5 @@
 "use client";
 
-import { SignIn, UserButton, useUser } from "@clerk/nextjs";
-import { SignedIn, SignedOut } from "@clerk/nextjs";
 export default function Home() {
-  return <div></div>;
+  return <div className="bg-cyan-950 flex justify-center items-center"></div>;
 }
