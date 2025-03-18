@@ -5,11 +5,17 @@ export const Footer = () => {
     return (
       <div>
         <div className="bg-yellow-300">
-          <div className="text-2xl font-extrabold bg-amber-100 flex justify-center pt-5">
-            <h1>Boox</h1>
+          <div className=" bg-amber-100  pt-5">
+            <h1 className="text-2xl font-extrabold flex justify-center">Boox</h1>
+            <div className="">
+            <p className="text-black bg-white flex justify-center w-[410px] h-[160px] ">A company is any entity that engages in business.<br/>
+Companies can be structured in different ways.<br/>
+For example, your company can be a sole proprietorship,<br/>
+a partnership, or a corporation.</p>
+            </div>
+            
           </div>
-  
-          <div className="  gap-7 mt-7 mx-auto max-w-screen-lg w-[15%] ">
+          {/* <div className="  gap-7 mt-7 mx-auto max-w-screen-lg w-[15%] ">
             <div className="w-full sm:w-1/2 md:w-1/4 ">
               <p className="text-xl font-bold ">About</p>
               <div className="text-[15px] opacity-60">
@@ -39,7 +45,7 @@ export const Footer = () => {
               </div>
             </div>
   
-          </div>
+          </div> */}
 
 <div className="bg-amber-900 pt-9 pb-5">
 <div className="flex justify-center gap-5">

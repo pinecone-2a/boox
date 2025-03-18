@@ -53,7 +53,7 @@ export const Hero = () => {
         <div key={index} className="book-section bg-amber-200 py-10 text-center ">
           <h1 className="text-2xl font-medium ">{title}</h1>
           <p className="mt-3">A home without books is a body without soul.</p>
-          <div className="flex justify-center gap-6 mt-5 grid grid-cols-2 ">
+          <div className="flex justify-center gap-6 mt-5  grid grid-cols-2 ">
             {["bookCover1.jpeg", "bookCover2.jpeg", "bookCover3.jpeg", "bookCover4.jpeg"].map((src, i) => (
               <motion.div key={i} whileHover={{ scale: 1.05 }}>
                 <img className="w-30 h-40 rounded-xs ml-9 shadow-xl" src={src} alt="Book Cover" />
@@ -71,6 +71,7 @@ export const Hero = () => {
           </motion.a>
           <div className="bg-black h-30 flex justify-center items-center opacity-80 pl-3 mt-6">
           <p className=" text-white font-bold "> "Reading gives us someplace to go when we have to stay where we are." </p>   
+
        </div>
           
         </div>
