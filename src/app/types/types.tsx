@@ -1,12 +1,12 @@
 export type Book = {
-    id: string;
+    id: string|undefined;
     title: string;
     cover: string;
     author: string;
     genre: string;
     description: string;
     condition: string;
-    ownerId: string;
+    ownerId: string|undefined;
 }
 export type User = {
     id: string;
