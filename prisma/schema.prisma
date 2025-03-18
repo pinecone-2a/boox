@@ -27,6 +27,7 @@ model Book {
   title     String
   cover     String
   author    String
+  description String
   genre     Genre 
   condition Condition
   ownerId   String
