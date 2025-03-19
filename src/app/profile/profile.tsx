@@ -1,11 +1,15 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
+<<<<<<< HEAD
 import { ArrowLeft } from "lucide-react";
+=======
+>>>>>>> main
 import { Bar } from "./bar";
 import { AddNewBook } from "./addBook";
 
 export default function Profile() {
+<<<<<<< HEAD
 
 
   return (
@@ -16,6 +20,10 @@ export default function Profile() {
         <span className="text-gray-500">Home</span>
       </div>
 
+=======
+  return (
+    <div className="w-full max-w-md mx-auto p-4 pb-18">
+>>>>>>> main
       <Card className="p-6 text-center">
         <div className="flex justify-center">
           <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-gray-300">
