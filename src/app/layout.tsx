@@ -8,7 +8,8 @@ import {
   SignedIn,
   SignedOut,
   UserButton,
-} from '@clerk/nextjs'
+} from "@clerk/nextjs";
+import SignupHandler from "./_components/signup";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -48,6 +49,5 @@ export default function RootLayout({
         </body>
       </html>
     </ClerkProvider>
-      
   );
 }
