@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Plus, Image } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import type { Book } from "../types/types";
 
 const Condition = ["NEW", "LIKE_NEW", "GOOD", "FAIR", "POOR"];
 const Genre = [
@@ -32,23 +33,17 @@ const Genre = [
 
 export const AddNewBook = () => {
   const { user } = useUser();
-  const [book, setBook] = useState({
-    name: "",
-    author: "",
-    genre: "",
-    condition: "",
-    description: "",
-    image: "",
+  const [book, setBook] = useState<Book>({
+    id: '',
+    title: '',
+    cover: '',
+    author: '',
+    genre: '',
+    description: '',
+    condition: '',
+    ownerId: '',
   });
-
-  const onChange = (
-    event: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    const { name, value } = event.target;
-    setBook((prevBook) => ({ ...prevBook, [name]: value }));
-  };
+  const [localcover,setLocalCover] = useState<File|null>(null);
 
   const uploadImageToCloudinary = async (file: File) => {
     const formData = new FormData();
@@ -76,9 +71,33 @@ export const AddNewBook = () => {
       setBook((prevBook) => ({ ...prevBook, image: imageUrl }));
     }
   };
-
-  const addNewBook = async () => {
-    const data = await fetch("http://localhost:3000/api/books", {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (file) {
+      setBook((prevBook) => ({ ...prevBook, cover: URL.createObjectURL(file)}));
+      setLocalCover(file);
+    }
+  }
+  const addNewBook = async (formData:FormData) => {
+    const title = formData.get("name") as string || '';
+    const author = formData.get("author") as string || '';
+    const genre = formData.get("genre") as string || '';
+    const description = formData.get("description") as string || '';
+    const condition = formData.get("condition") as string || '';
+    const cover = localcover ? await uploadImageToCloudinary(localcover) : '';
+    setBook({
+      id:'',
+      title,
+      author,
+      genre,
+      description,
+      condition,
+      cover,
+      ownerId: user?.id
+    });
+    
+    
+    const data = await fetch("api/books", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -87,9 +106,8 @@ export const AddNewBook = () => {
       body: JSON.stringify(book),
     });
     const newItem = await data.json();
-    window.location.reload();
+    // window.location.reload();
   };
-  console.log(book);
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -101,7 +119,7 @@ export const AddNewBook = () => {
         <DialogHeader className="pb-4 grid gap-4">
           <DialogTitle>Add new Book</DialogTitle>
         </DialogHeader>
-
+        <form action={addNewBook}>
         <div className="flex gap-6">
           <div className="grid w-full max-w-sm items-center gap-1.5">
             <Label htmlFor="bookName">Book name</Label>
@@ -110,7 +128,6 @@ export const AddNewBook = () => {
               name="name"
               type="text"
               placeholder="Book name"
-              onChange={onChange}
             />
           </div>
           <div className="grid w-full max-w-sm items-center gap-1.5">
@@ -120,7 +137,6 @@ export const AddNewBook = () => {
               name="author"
               type="text"
               placeholder="Author names"
-              onChange={onChange}
             />
           </div>
         </div>
@@ -132,9 +148,8 @@ export const AddNewBook = () => {
               id="genre"
               name="genre"
               className="border rounded-md py-2 px-4"
-              onChange={onChange}
             >
-              <option value="">Select Genre</option>
+              <option value="">Select</option>
               {Genre.map((g) => (
                 <option key={g} value={g}>
                   {g}
@@ -148,9 +163,8 @@ export const AddNewBook = () => {
               id="condition"
               name="condition"
               className="border rounded-md py-2 px-4"
-              onChange={onChange}
             >
-              <option value="">Select Condition</option>
+              <option value="">Select</option>
               {Condition.map((c) => (
                 <option key={c} value={c}>
                   {c}
@@ -168,16 +182,15 @@ export const AddNewBook = () => {
             rows={4}
             className="border rounded-md py-2 px-4 text-sm font-normal"
             placeholder="Description of the book"
-            onChange={onChange}
           ></textarea>
         </div>
 
         <div className="grid w-full items-center gap-1.5">
           <h1 className="text-sm">Book image</h1>
-          {book.image ? (
+          {book.cover ? (
             <div
               className="bg-cover bg-center rounded-md h-[138px]"
-              style={{ backgroundImage: `url(${book.image})` }}
+              style={{ backgroundImage: `url(${book.cover})` }}
             ></div>
           ) : (
             <Label
@@ -198,15 +211,16 @@ export const AddNewBook = () => {
             name="image"
             type="file"
             className="hidden"
-            onChange={handleFileUpload}
+            onChange={handleChange}
           />
         </div>
 
         <DialogFooter className="pt-6">
           <DialogClose asChild>
-            <Button onClick={addNewBook}>Add Book</Button>
+            <Button type="submit">Add Book</Button>
           </DialogClose>
         </DialogFooter>
+        </form>
       </DialogContent>
     </Dialog>
   );

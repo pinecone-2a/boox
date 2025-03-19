@@ -1,0 +1,161 @@
+"use client";
+import {motion, useMotionValue, useTransform} from "framer-motion";
+import {useState,Dispatch,SetStateAction} from "react";
+import { X, Heart } from "lucide-react";
+import type { Book } from "../types/types";
+
+export function SwipeBooks(){
+  const [books,setBooks] = useState<Book[]>(bookData);
+  return (
+    <div
+      className="grid h-[500px] w-full place-items-center bg-neutral-200"
+    >
+      {books.map(book => {return <Book 
+        key={book.id}
+        book={book} 
+        books={books}
+        setBooks={setBooks}
+        />})}
+    </div>
+  );
+};
+
+const Book = ({
+  book,
+  books,
+  setBooks
+}:{
+  book:Book,
+  books:Book[],
+  setBooks:Dispatch<SetStateAction<Book[]>>
+}) => {
+  const x = useMotionValue(0);
+  const opacity = useTransform(x, [-150, 0, 150], [0, 1, 0]);
+  const opacityLike = useTransform(x, [0, 1], [0, 1]);
+  const opacityNope = useTransform(x, [0, -1], [0, 1]);
+  const rotate = useTransform(x, [-150, 150], [-18, 18]);
+  const handleDragEnd = () => {
+    if (x.get() > 20) {
+      console.log("Swiped Right");
+      subBook();
+    } else if (x.get() < -20) {
+      console.log("Swiped Left");
+      subBook();
+    }
+  }
+
+  const subBook = () =>{
+    setBooks(pv => pv.filter((v)=>v.id != book.id));
+  }
+
+  return <motion.div
+    className="h-96 w-72 hover:cursor-grab active:cursor-grabbing absolute flex items-center justify-center"
+    style={{
+      gridRow:1,
+      gridColumn:1,
+      x,
+      rotate
+    }}
+    drag = "x"
+    dragConstraints = {{left:0,right:0}}
+    onDragEnd={handleDragEnd}>
+      <motion.div
+        className="absolute top-5 left-5 z-10 text-[#00ce90] p-2 text-5xl font-extrabold rounded-lg border-5 border-[#00ce90]"
+        style={{opacity:opacityLike}}>
+        Like
+      </motion.div>
+      <motion.div
+        className="absolute top-5 right-5 z-10 text-[#fe4f66] p-2 text-5xl font-extrabold rounded-lg border-5 border-[#fe4f66]"
+        style={{opacity:opacityNope}}>
+        Nope
+      </motion.div>
+    <motion.img
+      className="h-96 w-72 object-cover rounded-lg"
+      style={{opacity}}
+      src={book.cover}/>
+    <div className="p-5 pb-10 absolute w-full h-full flex flex-col justify-end items-start bg-gradient-to-b from-tranperand to-zinc-900 to-90% text-white rounded-lg">
+      <h1 className="text-2xl font-bold">{book.title}</h1>
+      <p className="text-lg">Description</p>
+      <p className="text-sm">{book.description}</p>
+    </div>
+    <button onClick={()=>{
+      
+      const interval = setInterval(()=>{
+        x.set(x.get()-1);
+        if(x.get() < -100){
+          console.log("Swiped Left");
+          clearInterval(interval);
+          subBook();
+        } 
+      },2);
+    }} className="absolute -bottom-7 text-7xl left-15 rounded-full w-15 h-15 bg-white flex justify-center items-center">
+      <X strokeWidth={5} color="#fe4f66" size={32}/>
+    </button>
+    <button onClick={()=>{
+      const interval = setInterval(()=>{
+        x.set(x.get()+1);
+        if(x.get() > 100){
+          console.log("Swiped Right");
+          clearInterval(interval);
+          subBook();
+        } 
+      },2);
+    }} className="absolute -bottom-7 right-15 rounded-full w-15 h-15 bg-white flex justify-center items-center">
+      <Heart strokeWidth={4} color="#00ce90" size={32}/>
+    </button>
+    </motion.div>
+}
+
+
+const bookData: Book[] = [
+    {
+      id: "1",
+      title: "Book 1",
+      cover: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      author: "Author 1",
+      genre: "Genre 1",
+      condition: "Condition 1",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",   
+      ownerId: "1",
+    },
+    {
+      id: "2",
+      title: "Book 1",
+      cover: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      author: "Author 1",
+      genre: "Genre 1",
+      condition: "Condition 1",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",   
+      ownerId: "1",
+    },
+    {
+      id: "3",
+      title: "Book 1",
+      cover: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      author: "Author 1",
+      genre: "Genre 1",
+      condition: "Condition 1",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",   
+      ownerId: "1",
+    },
+    {
+      id: "4",
+      title: "Book 1",
+      cover: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      author: "Author 1",
+      genre: "Genre 1",
+      condition: "Condition 1",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",   
+      ownerId: "1",
+    },
+    {
+      id: "5",
+      title: "Book 1",
+      cover: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      author: "Author 1",
+      genre: "Genre 1",
+      condition: "Condition 1",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",   
+      ownerId: "1",
+    },
+  ];

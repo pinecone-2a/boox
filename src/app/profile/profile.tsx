@@ -1,21 +1,12 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import { ArrowLeft } from "lucide-react";
 import { Bar } from "./bar";
 import { AddNewBook } from "./addBook";
 
 export default function Profile() {
-
-
   return (
     <div className="w-full max-w-md mx-auto p-4 pb-18">
-
-      <div className="flex items-center space-x-2 mb-4">
-        <ArrowLeft className="w-5 h-5 text-gray-500" />
-        <span className="text-gray-500">Home</span>
-      </div>
-
       <Card className="p-6 text-center">
         <div className="flex justify-center">
           <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-gray-300">

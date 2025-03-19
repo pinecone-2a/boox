@@ -1,26 +1,27 @@
 export type Book = {
-    id: String;
-    title: String;
-    cover: String;
-    author: String;
-    genre: String;
-    condition: String;
-    ownerId: String;
+    id: string|undefined;
+    title: string;
+    cover: string;
+    author: string;
+    genre: string;
+    description: string;
+    condition: string;
+    ownerId: string|undefined;
 }
 export type User = {
-    id: String;
-    name: String;
-    email: String;
+    id: string;
+    name: string;
+    email: string;
 }
 export type Swipe = {
-    id: String;
-    bookId: String;
-    userId: String;
+    id: string;
+    bookId: string;
+    userId: string;
     liked: Boolean;
 }
 export type Match = {
-    id: String;
-    like1Id: String;
-    like2Id: String;
-    status: String;
+    id: string;
+    like1Id: string;
+    like2Id: string;
+    status: string;
 }
