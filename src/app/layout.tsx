@@ -8,7 +8,12 @@ import {
   SignedIn,
   SignedOut,
   UserButton,
+<<<<<<< HEAD
 } from '@clerk/nextjs'
+=======
+} from "@clerk/nextjs";
+import SignupHandler from "./_components/signup";
+>>>>>>> main
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
