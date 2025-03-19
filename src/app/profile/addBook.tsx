@@ -85,7 +85,7 @@ export const AddNewBook = () => {
     const description = formData.get("description") as string || '';
     const condition = formData.get("condition") as string || '';
     const cover = localcover ? await uploadImageToCloudinary(localcover) : '';
-    setBook({
+    const bookData:Book ={
       id:'',
       title,
       author,
@@ -94,7 +94,7 @@ export const AddNewBook = () => {
       condition,
       cover,
       ownerId: user?.id
-    });
+    };
     
     
     const data = await fetch("api/books", {
@@ -103,10 +103,10 @@ export const AddNewBook = () => {
         "Content-Type": "application/json",
       },
       method: "POST",
-      body: JSON.stringify(book),
+      body: JSON.stringify(bookData),
     });
     const newItem = await data.json();
-    // window.location.reload();
+    window.location.reload();
   };
   return (
     <Dialog>
