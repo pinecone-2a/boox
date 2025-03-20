@@ -11,7 +11,6 @@ export async function GET(req: NextRequest) {
   if (!userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-
   const user = await prisma.user.findUnique({
     where: {
       clerkId: userId,
@@ -28,7 +27,6 @@ export async function GET(req: NextRequest) {
     console.log(e);
   }
 }
-
 export async function POST(req: NextRequest) {
   const { userId } = getAuth(req);
   if (!userId) {
