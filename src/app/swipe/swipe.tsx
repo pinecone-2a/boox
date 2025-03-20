@@ -29,7 +29,7 @@ export function SwipeBooks(){
         book={book} 
         books={books}
         setBooks={setBooks}
-        />})}
+        />}).reverse()}
     </div>
   );
 };
