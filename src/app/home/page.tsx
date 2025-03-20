@@ -1,5 +1,5 @@
 import { Footer } from "../_components/footer";
-// import { Header } from "../_components/header";
+import { Header } from "../_components/header";
 import { Hero } from "../_components/hero";
 
 
