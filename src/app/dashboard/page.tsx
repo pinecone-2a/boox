@@ -5,6 +5,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { SwipeBooks } from "../swipe/swipe";
+import { Bar } from "../profile/bar";
 
 interface Book {
   image: string;
@@ -44,7 +45,7 @@ export default function BookLists() {
 
   return (
     <div className="w-full h-full bg-neutral-200">
-      <SwipeBooks/>
+      <SwipeBooks />
       <BookSection sectionName="Liked" bookList={wishlistBooks} />
       <BookSection sectionName="Matches" bookList={matchesBooks} />
     </div>
@@ -68,6 +69,7 @@ function BookSection({ sectionName, bookList }: BookSectionProps) {
           ))}
         </CarouselContent>
       </Carousel>
+      <Bar />
     </div>
   );
 }
