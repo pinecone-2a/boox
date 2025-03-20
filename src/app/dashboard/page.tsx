@@ -7,34 +7,40 @@ import {
 } from "@/components/ui/carousel";
 import { SwipeBooks } from "../swipe/swipe";
 import type { Book } from "../types/types";
-import { useState ,useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function BookLists() {
-  const [likedBooks,setLikedBooks] = useState<Book[]>([]);
-  const [matchedBooks,setMatchedBooks] = useState<Book[]>([]);
+  const [likedBooks, setLikedBooks] = useState<Book[]>([]);
+  const [matchedBooks, setMatchedBooks] = useState<Book[]>([]);
   async function fetchLikedBooks() {
     try {
-        const response = await fetch(`/api/liked-books`);
-        const data = await response.json();
-        setLikedBooks(data);
+      const response = await fetch(`/api/liked-books`);
+      const data = await response.json();
+      setLikedBooks(data);
     } catch (err) {
     } finally {
-      console.log("done")
+      console.log("done");
     }
   }
-  useEffect(()=>{
+  useEffect(() => {
     fetchLikedBooks();
-  },[])
+  }, []);
   return (
     <div className="w-full h-full bg-neutral-200">
-      <SwipeBooks/>
+      <SwipeBooks />
       <BookSection sectionName="Liked" bookList={likedBooks} />
       <BookSection sectionName="Matches" bookList={[]} />
     </div>
   );
 }
 
-function BookSection({ sectionName, bookList }: {sectionName:string,bookList:Book[]}) {
+function BookSection({
+  sectionName,
+  bookList,
+}: {
+  sectionName: string;
+  bookList: Book[];
+}) {
   return (
     <div className="mb-6">
       <h2 className="text-2xl font-bold mb-2">{sectionName}</h2>
