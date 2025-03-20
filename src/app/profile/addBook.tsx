@@ -106,10 +106,8 @@ export const AddNewBook = () => {
       },
       method: "POST",
       body: JSON.stringify(bookData),
-      body: JSON.stringify(bookData),
     });
     const newItem = await data.json();
-    window.location.reload();
     window.location.reload();
   };
   return (
