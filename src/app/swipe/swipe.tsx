@@ -1,16 +1,30 @@
 "use client";
 import {motion, useMotionValue, useTransform} from "framer-motion";
-import {useState,Dispatch,SetStateAction} from "react";
+import {useState,Dispatch,SetStateAction, useEffect} from "react";
 import { X, Heart } from "lucide-react";
-import type { Book } from "../types/types";
+import type { Book,Swipe } from "../types/types";
 
 export function SwipeBooks(){
-  const [books,setBooks] = useState<Book[]>(bookData);
+  const [books,setBooks] = useState<Book[]>([]);
+
+  useEffect(()=>{
+    async function fetchBooks() {
+      try {
+          const response = await fetch(`/api/suggestion-books`);
+          const data = await response.json();
+          setBooks(data);
+      } catch (err) {
+      } finally {
+        console.log("done")
+      }
+    }
+    fetchBooks();
+  },[]);
   return (
     <div
       className="grid h-[500px] w-full place-items-center bg-neutral-200"
     >
-      {books.map(book => {return <Book 
+      {books.length > 0 && books.map(book => {return <Book 
         key={book.id}
         book={book} 
         books={books}
@@ -34,12 +48,41 @@ const Book = ({
   const opacityLike = useTransform(x, [0, 1], [0, 1]);
   const opacityNope = useTransform(x, [0, -1], [0, 1]);
   const rotate = useTransform(x, [-150, 150], [-18, 18]);
+  
+  async function Swipe(like:boolean) {
+    try {
+      const swipe:Swipe = {
+        id: '',
+        bookId: book.id || '',
+        userId: '',
+        liked: like
+      }
+      const response = await fetch(`/api/like`,{
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify(swipe),
+    });
+      const data = await response.json();
+    } catch (err) {
+      console.log(err);
+    } finally {
+      if(like){
+        console.log("like");
+      }else{
+        console.log("nope")
+      }
+    }
+  }
+
   const handleDragEnd = () => {
     if (x.get() > 20) {
-      console.log("Swiped Right");
+      Swipe(true);
       subBook();
     } else if (x.get() < -20) {
-      console.log("Swiped Left");
+      Swipe(false);
       subBook();
     }
   }
@@ -79,11 +122,10 @@ const Book = ({
       <p className="text-sm">{book.description}</p>
     </div>
     <button onClick={()=>{
-      
+      Swipe(false);
       const interval = setInterval(()=>{
         x.set(x.get()-1);
         if(x.get() < -100){
-          console.log("Swiped Left");
           clearInterval(interval);
           subBook();
         } 
@@ -92,10 +134,10 @@ const Book = ({
       <X strokeWidth={5} color="#fe4f66" size={32}/>
     </button>
     <button onClick={()=>{
+      Swipe(true);
       const interval = setInterval(()=>{
         x.set(x.get()+1);
         if(x.get() > 100){
-          console.log("Swiped Right");
           clearInterval(interval);
           subBook();
         } 
@@ -105,57 +147,3 @@ const Book = ({
     </button>
     </motion.div>
 }
-
-
-const bookData: Book[] = [
-    {
-      id: "1",
-      title: "Book 1",
-      cover: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      author: "Author 1",
-      genre: "Genre 1",
-      condition: "Condition 1",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",   
-      ownerId: "1",
-    },
-    {
-      id: "2",
-      title: "Book 1",
-      cover: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      author: "Author 1",
-      genre: "Genre 1",
-      condition: "Condition 1",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",   
-      ownerId: "1",
-    },
-    {
-      id: "3",
-      title: "Book 1",
-      cover: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      author: "Author 1",
-      genre: "Genre 1",
-      condition: "Condition 1",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",   
-      ownerId: "1",
-    },
-    {
-      id: "4",
-      title: "Book 1",
-      cover: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      author: "Author 1",
-      genre: "Genre 1",
-      condition: "Condition 1",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",   
-      ownerId: "1",
-    },
-    {
-      id: "5",
-      title: "Book 1",
-      cover: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      author: "Author 1",
-      genre: "Genre 1",
-      condition: "Condition 1",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",   
-      ownerId: "1",
-    },
-  ];
