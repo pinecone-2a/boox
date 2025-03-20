@@ -33,7 +33,7 @@ export const Hero = () => {
  
   return (
     <div>
-      <div className="bg-yellow-50 text-center py-10">
+      <div className=" text-center py-10">
         <h1 className="hero-title text-5xl font-semibold ">Boox</h1>
         <p className="hero-text text-[15px] mt-3 text-black opacity-45 font-normal">A home without books is a body without soul.</p>
         <motion.a
@@ -50,7 +50,7 @@ export const Hero = () => {
 
  
       {["New Released Books", "Bestselling Books"].map((title, index) => (
-        <div key={index} className="book-section bg-amber-200 py-10 text-center ">
+        <div key={index} className="book-section  py-10 text-center ">
           <h1 className="text-2xl font-medium ">{title}</h1>
           <p className="mt-3">A home without books is a body without soul.</p>
           <div className="flex justify-center gap-6 mt-5 grid grid-cols-2 ">

@@ -4,8 +4,8 @@ import { FaTwitter } from "react-icons/fa";
 export const Footer = () => {
     return (
       <div>
-        <div className="bg-yellow-300">
-          <div className="text-2xl font-extrabold bg-amber-100 flex justify-center pt-5">
+        <div className="">
+          <div className="text-2xl font-extrabold  flex justify-center pt-5">
             <h1>Boox</h1>
           </div>
   
@@ -41,7 +41,7 @@ export const Footer = () => {
   
           </div>
 
-<div className="bg-amber-900 pt-9 pb-5">
+<div className=" pt-9 pb-5">
 <div className="flex justify-center gap-5">
   <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
     <div className="w-[40px] h-[40px] bg-blue-600 rounded-full flex justify-center items-center hover:scale-110 transition duration-200"><FaFacebook />
