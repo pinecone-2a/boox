@@ -19,9 +19,3 @@ export type Swipe = {
     userId: string;
     liked: boolean;
 }
-export type Match = {
-    id: string;
-    like1Id: string;
-    like2Id: string;
-    status: string;
-}
