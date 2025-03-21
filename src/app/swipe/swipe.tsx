@@ -66,6 +66,7 @@ const Book = ({
         body: JSON.stringify(swipe),
     });
       const data = await response.json();
+      console.log(data);
     } catch (err) {
       console.log(err);
     } finally {

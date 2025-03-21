@@ -39,7 +39,41 @@ export async function POST(request: NextRequest) {
         liked:swipeData.liked
       }
     });
-    return NextResponse.json(swipe);
+    
+    if (!swipeData.liked) {
+      return NextResponse.json({ message: "Swipe saved, but no match" }, { status: 200 });
+    }
+
+    const book = await prisma.book.findUnique({
+      where: { id: swipeData.bookId },
+    });
+    
+    if (!book) {
+      return NextResponse.json({ error: "Book not found" }, { status: 404 });
+    }
+    const existingSwipe = await prisma.swipe.findFirst({
+      where: {
+          book: {
+            owner: { id: user.id },
+          },
+          userId: {
+              equals: book.ownerId,
+          },
+          liked: true,
+      },
+    });
+    if (existingSwipe !== null) {
+      const match = await prisma.match.create({
+          data: {
+              like1Id: swipe.id,
+              like2Id: existingSwipe.id,
+              status: "PENDING",
+          },
+      });
+      return NextResponse.json({ message: "It's a match!", match }, { status: 201 });
+    }else{
+      return NextResponse.json({ message: "Swipe saved, but no match" }, { status: 200 });
+    }
   }catch(error){
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
