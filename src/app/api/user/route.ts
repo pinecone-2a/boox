@@ -3,7 +3,7 @@ import { prisma } from "@/app/lib/db";
 
 export async function POST(req: NextRequest) {
   try {
-    const { clerkId, email, firstName} = await req.json();
+    const { clerkId, email, firstName } = await req.json();
 
     await prisma.user.upsert({
       where: { clerkId },
