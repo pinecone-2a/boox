@@ -15,7 +15,7 @@ export function SwipeBooks() {
         setBooks(data);
       } catch (err) {
       } finally {
-        console.log("done");
+        // console.log("done");
       }
     }
     fetchBooks();
@@ -71,14 +71,14 @@ const Book = ({
         body: JSON.stringify(swipe),
       });
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     } finally {
       if (like) {
-        console.log("like");
+        // console.log("like");
       } else {
-        console.log("nope");
+        // console.log("nope");
       }
     }
   }

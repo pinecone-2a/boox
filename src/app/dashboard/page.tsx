@@ -34,7 +34,6 @@ export default function BookLists() {
       setMatchedBooks(extractedBooks);
     } catch (err) {
     } finally {
-      console.log("done");
     }
   }
 
@@ -45,7 +44,6 @@ export default function BookLists() {
       setLikedBooks(data);
     } catch (err) {
     } finally {
-      console.log("done");
     }
   }
   useEffect(() => {
