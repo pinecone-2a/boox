@@ -6,7 +6,7 @@ import { AddNewBook } from "./addBook";
 import { useEffect, useState } from "react";
 
 export default function Profile() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any>([]);
   async function getFetchData() {
     fetch("/api/books")
       .then((res) => res.json())
@@ -39,7 +39,7 @@ export default function Profile() {
       <div className="mt-6">
         <h3 className="text-lg font-semibold">Your Books</h3>
         <div className="mt-4 space-y-4">
-          {data.map((book, index) => (
+          {data.map((book: any, index: any) => (
             <Card key={index} className="flex items-center p-4">
               <div className="flex items-center space-x-4 w-full">
                 <img

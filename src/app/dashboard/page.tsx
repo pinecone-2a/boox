@@ -9,7 +9,9 @@ import { SwipeBooks } from "../swipe/swipe";
 import type { Book } from "../types/types";
 import { useState, useEffect } from "react";
 import { Match, Swipe, User } from "@prisma/client";
-
+import { Bar } from "../profile/bar";
+import { SignedIn } from "@clerk/nextjs";
+import SignupHandler from "../_components/signup";
 type MatchWithDetails = Match & {
   like1: Swipe & { book: Book; user: User };
   like2: Swipe & { book: Book; user: User };
@@ -68,6 +70,9 @@ function BookSection({
 }) {
   return (
     <div className="mb-6">
+      <SignedIn>
+        <SignupHandler />
+      </SignedIn>
       <h2 className="text-2xl font-bold mb-2">{sectionName}</h2>
       <Carousel className="w-full h-[112px] ">
         <CarouselContent>
@@ -82,6 +87,9 @@ function BookSection({
           ))}
         </CarouselContent>
       </Carousel>
+      <div>
+        <Bar />
+      </div>
     </div>
   );
 }
