@@ -8,6 +8,7 @@ import {
 import { SwipeBooks } from "../swipe/swipe";
 import type { Book } from "../types/types";
 import { useState, useEffect } from "react";
+<<<<<<< HEAD
 import {Match,Swipe,User } from "@prisma/client";
 
 type MatchWithDetails = Match & {
@@ -36,6 +37,12 @@ export default function BookLists() {
     }
   }
 
+=======
+
+export default function BookLists() {
+  const [likedBooks, setLikedBooks] = useState<Book[]>([]);
+  const [matchedBooks, setMatchedBooks] = useState<Book[]>([]);
+>>>>>>> main
   async function fetchLikedBooks() {
     try {
       const response = await fetch(`/api/liked-books`);
@@ -48,13 +55,20 @@ export default function BookLists() {
   }
   useEffect(() => {
     fetchLikedBooks();
+<<<<<<< HEAD
     fetchMatches();
+=======
+>>>>>>> main
   }, []);
   return (
     <div className="w-full h-full bg-neutral-200">
       <SwipeBooks />
       <BookSection sectionName="Liked" bookList={likedBooks} />
+<<<<<<< HEAD
       <BookSection sectionName="Matches" bookList={matchedBooks} />
+=======
+      <BookSection sectionName="Matches" bookList={[]} />
+>>>>>>> main
     </div>
   );
 }
