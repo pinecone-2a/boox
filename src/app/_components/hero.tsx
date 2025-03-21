@@ -33,7 +33,7 @@ export const Hero = () => {
  
   return (
     <div>
-      <div className=" text-center  ">
+      <div className=" text-center bg-amber-50 py-10 ">
         <h1 className="hero-title text-5xl font-semibold ">Boox</h1>
         <p className="hero-text text-[15px] mt-3 text-black opacity-45 font-normal">A home without books is a body without soul.</p>
         <motion.a
@@ -52,7 +52,7 @@ export const Hero = () => {
       {["New Released Books", "Bestselling Books"].map((title, index) => (
         <div key={index} className="book-section  text-center ">
           <h1 className="text-2xl font-medium pt-7">{title}</h1>
-          <p className="mt-3">A home without books is a body without soul.</p>
+          <p className="mt-3 text-black opacity-70">A home without books is a body without soul.</p>
           <div className="flex justify-center gap-6 mt-5 grid grid-cols-2 ">
             {["bookCover1.jpeg", "bookCover2.jpeg", "bookCover3.jpeg", "bookCover4.jpeg"].map((src, i) => (
               <motion.div key={i} whileHover={{ scale: 1.05 }}>

@@ -5,24 +5,24 @@ export const Footer = () => {
     return (
       <div className="bg-gray-100">
         <div>
-            <h1 className="text-2xl font-extrabold  flex justify-center pt-10">Boox</h1>
+            <h1 className="text-4xl font-extrabold  flex justify-center pt-10">Boox</h1>
           <div className="bg-gray-100">
           <div>
             <p className="font-bold text-lg mt-[30px] flex justify-center">About</p>
-            <div className="flex justify-center text-black opacity-60">
-              About us <br/> AJKNJKJdefNJJ <br/> sadas
+            <div className="flex justify-center text-black opacity-60 ">
+              About us <br/> Contact us <br/> Blog
             </div>
            </div>
            <div>
-            <p className="font-bold text-lg mt-[30px] flex justify-center">Menu</p>
+            <p className="font-bold text-lg mt-[30px] flex justify-center">Support</p>
             <div className="flex justify-center text-black opacity-60">
-              About usdwdada <br/> AJKN <br/> sadassa
+              FAQs <br/> Privacy Policy <br/> Request a Book <br /> Terms & Conditions
             </div>
            </div>
            <div>
-            <p className="font-bold text-lg mt-[30px] flex justify-center">Support  </p>
+            <p className="font-bold text-lg mt-[30px] flex justify-center">Menu  </p>
             <div className="flex justify-center text-black opacity-60">
-              About us <br/> AJKNJKJNJJ <br/> sadassa
+              Home <br/> Books <br/> sCategories
             </div>
            </div>
           </div>
