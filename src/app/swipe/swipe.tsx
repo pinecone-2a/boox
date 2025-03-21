@@ -99,7 +99,7 @@ const Book = ({
 
   return (
     <motion.div
-      className="h-96 w-72 hover:cursor-grab active:cursor-grabbing absolute flex items-center justify-center"
+      className="h-96 w-72 hover:cursor-grab active:cursor-grabbing absolute flex items-center justify-center bg-background rounded-lg"
       style={{
         gridRow: 1,
         gridColumn: 1,
