@@ -34,7 +34,7 @@ export const Hero = () => {
   return (
     <div>
       <div className=" text-center bg-amber-50 py-10 ">
-        <h1 className="hero-title text-5xl font-semibold ">Boox</h1>
+        <h1 className="hero-title text-5xl font-semibold  ">Boox</h1>
         <p className="hero-text text-[15px] mt-3 text-black opacity-45 font-normal">A home without books is a body without soul.</p>
         <motion.a
           href="/app/header"
