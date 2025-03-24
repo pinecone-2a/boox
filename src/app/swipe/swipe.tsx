@@ -3,10 +3,11 @@ import {motion, useMotionValue, useTransform} from "framer-motion";
 import {useState,Dispatch,SetStateAction, useEffect} from "react";
 import { X, Heart } from "lucide-react";
 import type { Book,Swipe } from "../types/types";
+import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export function SwipeBooks(){
   const [books,setBooks] = useState<Book[]>([]);
-
   useEffect(()=>{
     async function fetchBooks() {
       try {
@@ -15,15 +16,17 @@ export function SwipeBooks(){
           setBooks(data);
       } catch (err) {
       } finally {
-        console.log("done")
+        // console.log("done")
       }
     }
     fetchBooks();
+
   },[]);
   return (
     <div
-      className="grid h-[500px] w-full place-items-center bg-neutral-200"
+      className="grid h-[500px] w-full place-items-center bg-background"
     >
+      <Skeleton className="absolute h-96 w-72 bg-zinc-300" />
       {books.length > 0 && books.map(book => {return <Book 
         key={book.id}
         book={book} 
@@ -48,7 +51,30 @@ const Book = ({
   const opacityLike = useTransform(x, [0, 1], [0, 1]);
   const opacityNope = useTransform(x, [0, -1], [0, 1]);
   const rotate = useTransform(x, [-150, 150], [-18, 18]);
+  const [profile,setProfile] = useState('');
   
+  const fetchUserImage = async (userId: string) => {
+    try{
+      const res = await fetch(`/api/user?userId=${userId}`);
+      if (!res.ok) {
+        if (res.status === 500) {
+          throw new Error('Internal Server Error (500)');
+        } else {
+          throw new Error('Something went wrong');
+        }
+      }
+      const data = await res.json();
+      setProfile(data.imageUrl);
+    }catch{
+      setProfile("");
+    }
+    
+  };
+  useEffect(()=>{
+    if (book.owner?.clerkId) {
+      fetchUserImage(book.owner.clerkId);
+    }
+  },[])
   async function Swipe(like:boolean) {
     try {
       const swipe:Swipe = {
@@ -66,14 +92,14 @@ const Book = ({
         body: JSON.stringify(swipe),
     });
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     } finally {
       if(like){
-        console.log("like");
+        // console.log("like");
       }else{
-        console.log("nope")
+        // console.log("nope")
       }
     }
   }
@@ -93,7 +119,7 @@ const Book = ({
   }
 
   return <motion.div
-    className="h-96 w-72 hover:cursor-grab active:cursor-grabbing absolute flex items-center justify-center"
+    className="h-96 w-72 hover:cursor-grab active:cursor-grabbing absolute flex items-center justify-center bg-secondary rounded-lg"
     style={{
       gridRow:1,
       gridColumn:1,
@@ -118,9 +144,22 @@ const Book = ({
       style={{opacity}}
       src={book.cover}/>
     <div className="p-5 pb-10 absolute w-full h-full flex flex-col justify-end items-start bg-gradient-to-b from-tranperand to-zinc-900 to-90% text-white rounded-lg">
+      <Badge className="rounded-full pl-3 pr-3 font-bold text-sm h-fit w-fit absolute top-5 right-5" variant="secondary">{book.condition}</Badge>
       <h1 className="text-2xl font-bold">{book.title}</h1>
       <p className="text-lg">Description</p>
-      <p className="text-sm">{book.description}</p>
+      {profile && profile.trim() !== "" ? (
+        <img
+          className="w-12 h-12 rounded-full absolute top-5 left-5"
+          src={profile}
+          alt="Profile"
+        />
+      ) : (
+        <img
+          className="w-12 h-12 rounded-full absolute top-5 left-5"
+          src="/profile.jpg"
+        />
+      )}
+      <p className="text-sm max-h-20 overflow-x-auto">{book.description}</p>
     </div>
     <button onClick={()=>{
       Swipe(false);

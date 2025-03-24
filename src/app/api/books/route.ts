@@ -3,8 +3,6 @@ import { getAuth } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 import type { Book } from "@/app/types/types";
 import { Genre, Condition } from "@prisma/client";
-import { PrismaClientUnknownRequestError } from "@prisma/client/runtime/library";
-import { printCustomRoutes } from "next/dist/build/utils";
 
 export async function GET(req: NextRequest) {
   const { userId } = getAuth(req);
@@ -16,17 +14,17 @@ export async function GET(req: NextRequest) {
       clerkId: userId,
     },
   });
-  console.log(user?.id);
+  // console.log(user?.id);
   try {
     const myBooks = await prisma.book.findMany({
       where: {
         ownerId: user?.id,
       },
     });
-    console.log({ myBooks });
+    // console.log({ myBooks });
     return NextResponse.json(myBooks);
   } catch (e) {
-    console.log(e);
+    // console.log(e);
   }
 }
 export async function POST(req: NextRequest) {
