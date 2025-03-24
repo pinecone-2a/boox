@@ -6,25 +6,27 @@ import {
   SignIn,
   SignedIn,
   SignedOut,
-  UserButton,
+  useAuth,
 } from "@clerk/nextjs";
 
 export default function Login() {
+  const { isSignedIn } = useAuth();
+
   const router = useRouter();
 
   useEffect(() => {
-    router.prefetch("/dashboard"); // Preload the dashboard for faster navigation
+    router.prefetch("/dashboard");
   }, [router]);
 
+  useEffect(() => {
+    router.push("/dashboard");
+  }, []);
   return (
     <ClerkProvider>
       <div className="flex justify-center mt-20">
         <SignedOut>
           <SignIn forceRedirectUrl={"/dashboard"} />
         </SignedOut>
-        <SignedIn>
-          <UserButton />
-        </SignedIn>
       </div>
     </ClerkProvider>
   );

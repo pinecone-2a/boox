@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
+import { SignedIn } from "@clerk/nextjs";
 gsap.registerPlugin(ScrollTrigger);
 export const Hero = () => {
   useGSAP(() => {
@@ -55,7 +56,7 @@ export const Hero = () => {
           className="inline-block bg-yellow-600 text-white px-4 py-2 mt-5 hover:bg-yellow-100"
           whileHover={{ scale: 1.1 }}
         >
-          Read More
+          Get Started
         </motion.a>
         <div className="hero-img flex justify-center mt-6">
           <img className="w-66 h-46" src="book.jpeg" alt="Books" />
@@ -68,7 +69,7 @@ export const Hero = () => {
           <p className="mt-3 text-black opacity-70">
             A home without books is a body without soul.
           </p>
-          <div className="flex justify-center gap-6 mt-5 grid grid-cols-2 ">
+          <div className=" justify-center gap-6 mt-5 grid grid-cols-2 ">
             {[
               "bookCover1.jpeg",
               "bookCover2.jpeg",
