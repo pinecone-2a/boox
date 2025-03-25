@@ -93,6 +93,9 @@ export default function BookLists() {
       </div>
       <BookSection sectionName="Liked" bookList={likedBooks} loading={loadingLike}/>
       <MachedBooksSection sectionName="Matches" matchList={matches}  loading={loadingMatch}/>
+      <div className="h-20">
+        <Bar />
+      </div>
     </div>
   );
 }
@@ -111,7 +114,7 @@ function BookSection({
       <SignedIn>
         <SignupHandler />
       </SignedIn>
-      <h2 className="text-2xl font-bold mb-2">{sectionName}</h2>
+      <h2 className="text-2xl font-bold mb-2 ml-6">{sectionName}</h2>
       <Carousel className="w-full h-[112px] ">
         <CarouselContent>
           {loading ? (
@@ -130,9 +133,7 @@ function BookSection({
           ))}
         </CarouselContent>
       </Carousel>
-      <div>
-        <Bar />
-      </div>
+      
     </div>
   );
 }
@@ -164,7 +165,11 @@ function MachedBooksSection({
         <CarouselContent>
           {loading ? (
             <CarouselItem className="basis-1/5  p-2 flex justify-center">
-              <Skeleton className="w-[64px] h-[99px] bg-zinc-300" />
+              <div className="relative">
+                <Skeleton className="w-[64px] h-[99px] bg-zinc-300" />
+                <Skeleton className="w-[64px] h-[99px] bg-zinc-300 absolute top-2 left-2" />
+              </div>
+              
             </CarouselItem>
           ) : null}
           {matchList.map((match: Match, index: number) => (
