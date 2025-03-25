@@ -10,6 +10,9 @@ import type { Book } from "../types/types";
 import { useState, useEffect } from "react";
 import { Swipe, User } from "@prisma/client";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Bar } from "../profile/bar";
+import { SignedIn } from "@clerk/nextjs";
+import SignupHandler from "../_components/signup";
 
 type MatchWithDetails = Match & {
   like1: Swipe & { book: Book; user: User };
@@ -116,76 +119,6 @@ function BookSection({
     </div>
   );
 }
-
-function MachedBooksSection({
-  sectionName,
-  matchList,
-  loading,
-}: {
-  sectionName: string;
-  matchList: Match[];
-  loading: boolean;
-}) {
-  const [flippedIndexes, setFlippedIndexes] = useState<boolean[]>([]);
-
-  useEffect(() => {
-    setFlippedIndexes(Array(matchList.length).fill(false));
-  }, [matchList]);
-
-  const handleClick = (index: number) => {
-    setFlippedIndexes((prev) =>
-      prev.map((flipped, i) => (i === index ? !flipped : flipped))
-    );
-  };
-  return (
-    <div className="mb-6">
-      <h2 className="text-2xl font-bold mb-2">{sectionName}</h2>
-      <Carousel className="w-full h-[112px] ">
-        <CarouselContent>
-          {loading ? (
-            <CarouselItem className="basis-1/5  p-2 flex justify-center">
-              <Skeleton className="w-[64px] h-[99px] bg-zinc-300" />
-            </CarouselItem>
-          ) : null}
-          {matchList.map((match: Match, index: number) => (
-            <CarouselItem key={index} className="basis-1/5  p-4">
-              <div onClick={() => handleClick(index)}>
-                {flippedIndexes[index] ? (
-                  <div className="relative">
-                    <img
-                      src={match.book2.cover}
-                      alt={`${sectionName} book ${index + 1}`}
-                      className="w-[64px] h-[99px] object-cover rounded-xl shadow-lg ml-2"
-                    />
-                    <img
-                      src={match.book1.cover}
-                      alt={`${sectionName} book ${index + 1}`}
-                      className="w-[64px] h-[99px] object-cover rounded-xl shadow-lg ml-2 absolute top-3 left-3"
-                    />
-                  </div>
-                ) : (
-                  <div className="relative">
-                    <img
-                      src={match.book1.cover}
-                      alt={`${sectionName} book ${index + 1}`}
-                      className="w-[64px] h-[99px] object-cover rounded-xl shadow-lg ml-2"
-                    />
-                    <img
-                      src={match.book2.cover}
-                      alt={`${sectionName} book ${index + 1}`}
-                      className="w-[64px] h-[99px] object-cover rounded-xl shadow-lg ml-2 absolute top-3 left-3"
-                    />
-                  </div>
-                )}
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-      </Carousel>
-    </div>
-  );
-}
-
 function MachedBooksSection({
   sectionName,
   matchList,
