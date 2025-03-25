@@ -4,48 +4,18 @@ import {useState,Dispatch,SetStateAction, useEffect} from "react";
 import { X, Heart } from "lucide-react";
 import type { Book,Swipe } from "../types/types";
 import { Badge } from "@/components/ui/badge";
-import { Skeleton } from "@/components/ui/skeleton";
 
-export function SwipeBooks(){
-  const [books,setBooks] = useState<Book[]>([]);
-  useEffect(()=>{
-    async function fetchBooks() {
-      try {
-          const response = await fetch(`/api/suggestion-books`);
-          const data = await response.json();
-          setBooks(data);
-      } catch (err) {
-      } finally {
-        // console.log("done")
-      }
-    }
-    fetchBooks();
-
-  },[]);
-  return (
-    <div
-      className="grid h-[500px] w-full place-items-center bg-background"
-    >
-      <Skeleton className="absolute h-96 w-72 bg-zinc-300" />
-      {books.length > 0 && books.map(book => {return <Book 
-        key={book.id}
-        book={book} 
-        books={books}
-        setBooks={setBooks}
-        />}).reverse()}
-    </div>
-  );
-};
-
-const Book = ({
+export function BookCard({
   book,
-  books,
-  setBooks
+  setBooks,
+  fetchLikedBooks,
+  fetchMatches
 }:{
   book:Book,
-  books:Book[],
-  setBooks:Dispatch<SetStateAction<Book[]>>
-}) => {
+  setBooks:Dispatch<SetStateAction<Book[]>>,
+  fetchLikedBooks: () => void,
+  fetchMatches: () => void
+}) {
   const x = useMotionValue(0);
   const opacity = useTransform(x, [-150, 0, 150], [0, 1, 0]);
   const opacityLike = useTransform(x, [0, 1], [0, 1]);
@@ -76,6 +46,7 @@ const Book = ({
     }
   },[])
   async function Swipe(like:boolean) {
+    let status
     try {
       const swipe:Swipe = {
         id: '',
@@ -91,15 +62,16 @@ const Book = ({
         method: "POST",
         body: JSON.stringify(swipe),
     });
-      const data = await response.json();
-      // console.log(data);
+      status = await response.status;
     } catch (err) {
       // console.log(err);
     } finally {
       if(like){
-        // console.log("like");
-      }else{
-        // console.log("nope")
+        if(status === 201){
+          fetchMatches();
+        }else{
+          fetchLikedBooks();
+        }
       }
     }
   }
