@@ -1,6 +1,6 @@
 "use client";
-import {motion, useMotionValue, useTransform} from "framer-motion";
-import {useState,Dispatch,SetStateAction, useEffect} from "react";
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { X, Heart } from "lucide-react";
 import type { Book,Swipe } from "../types/types";
 import { Badge } from "@/components/ui/badge";
@@ -48,13 +48,13 @@ export function BookCard({
   async function Swipe(like:boolean) {
     let status
     try {
-      const swipe:Swipe = {
-        id: '',
-        bookId: book.id || '',
-        userId: '',
-        liked: like
-      }
-      const response = await fetch(`/api/like`,{
+      const swipe: Swipe = {
+        id: "",
+        bookId: book.id || "",
+        userId: "",
+        liked: like,
+      };
+      const response = await fetch(`/api/like`, {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -64,6 +64,7 @@ export function BookCard({
     });
       status = await response.status;
     } catch (err) {
+      // console.log(err);
       // console.log(err);
     } finally {
       if(like){
@@ -84,13 +85,13 @@ export function BookCard({
       Swipe(false);
       subBook();
     }
-  }
+  };
 
-  const subBook = () =>{
-    setBooks(pv => pv.filter((v)=>v.id != book.id));
-  }
+  const subBook = () => {
+    setBooks((pv) => pv.filter((v) => v.id != book.id));
+  };
 
-  return <motion.div
+  return (<motion.div
     className="h-96 w-72 hover:cursor-grab active:cursor-grabbing absolute flex items-center justify-center bg-secondary rounded-lg"
     style={{
       gridRow:1,
@@ -103,12 +104,14 @@ export function BookCard({
     onDragEnd={handleDragEnd}>
       <motion.div
         className="absolute top-5 left-5 z-10 text-[#00ce90] p-2 text-5xl font-extrabold rounded-lg border-5 border-[#00ce90]"
-        style={{opacity:opacityLike}}>
+        style={{ opacity: opacityLike }}
+      >
         Like
       </motion.div>
       <motion.div
         className="absolute top-5 right-5 z-10 text-[#fe4f66] p-2 text-5xl font-extrabold rounded-lg border-5 border-[#fe4f66]"
-        style={{opacity:opacityNope}}>
+        style={{ opacity: opacityNope }}
+      >
         Nope
       </motion.div>
     <motion.img
@@ -158,4 +161,5 @@ export function BookCard({
       <Heart strokeWidth={4} color="#00ce90" size={32}/>
     </button>
     </motion.div>
-}
+  );
+};
