@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Bar } from "./bar";
 import { AddNewBook } from "./addBook";
 import { useEffect, useState } from "react";
+// import { Book } from "lucide-react";
 
 export default function Profile() {
   const [data, setData] = useState([]);
@@ -15,7 +16,8 @@ export default function Profile() {
   useEffect(() => {
     getFetchData();
   }, []);
-  console.log(data);
+
+  // console.log(Book, "book")
   return (
     <div className="w-full max-w-md mx-auto p-4 pb-18">
       <Card className="p-6 text-center">
