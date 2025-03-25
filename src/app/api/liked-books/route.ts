@@ -16,20 +16,21 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
 
-  try {
-    const books = await prisma.book.findMany({
-      where: {
-        like: {
-          some: {
-            userId: user.id,
-            liked: true,
-          },
-        },
-      },
-    });
-    return NextResponse.json(books);
-  } catch (error) {
-    console.error("Error fetching books:", error);
-    return NextResponse.json("Internal Server Error", { status: 500 });
-  }
+    try {
+        const books = await prisma.book.findMany({
+            where: {
+                like: {
+                    some: {
+                        userId: user.id,
+                        liked: true,
+                    },
+                },
+            },
+            orderBy: { createdAt: "desc" }
+        });
+        return NextResponse.json(books);
+    } catch (error) {
+        console.error("Error fetching books:", error);
+        return NextResponse.json("Internal Server Error", { status: 500 });
+    }
 }

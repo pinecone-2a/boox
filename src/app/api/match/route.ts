@@ -28,6 +28,7 @@ export async function GET(request: NextRequest) {
                 like1: { include: { book: true, user: true } },
                 like2: { include: { book: true, user: true } },
             },
+            orderBy: { createdAt: "desc" }
         });
         return NextResponse.json(matches);
     } catch (error) {
