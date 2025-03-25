@@ -19,20 +19,13 @@ export async function GET(request: NextRequest) {
   try {
     const books = await prisma.book.findMany({
       where: {
-        ownerId: { not: user.id },
-        NOT: {
-          like: {
-            some: {
-              userId: user.id,
-              liked: true,
-            },
+        like: {
+          some: {
+            userId: user.id,
+            liked: true,
           },
         },
       },
-      include:  { 
-        owner: true
-      },
-      orderBy: { createdAt: "asc" }
     });
     return NextResponse.json(books);
   } catch (error) {

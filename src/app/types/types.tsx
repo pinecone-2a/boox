@@ -7,21 +7,17 @@ export type Book = {
     description: string;
     condition: string;
     ownerId: string|undefined;
+    owner: User|undefined;
 }
 export type User = {
     id: string;
     name: string;
     email: string;
+    clerkId: string;
 }
 export type Swipe = {
     id: string;
     bookId: string;
     userId: string;
     liked: boolean;
-}
-export type Match = {
-    id: string;
-    like1Id: string;
-    like2Id: string;
-    status: string;
 }
