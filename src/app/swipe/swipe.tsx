@@ -1,6 +1,6 @@
 "use client";
-import {motion, useMotionValue, useTransform} from "framer-motion";
-import {useState,Dispatch,SetStateAction, useEffect} from "react";
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { X, Heart } from "lucide-react";
 import type { Book,Swipe } from "../types/types";
 import { Badge } from "@/components/ui/badge";
@@ -11,9 +11,9 @@ export function SwipeBooks(){
   useEffect(()=>{
     async function fetchBooks() {
       try {
-          const response = await fetch(`/api/suggestion-books`);
-          const data = await response.json();
-          setBooks(data);
+        const response = await fetch(`/api/suggestion-books`);
+        const data = await response.json();
+        setBooks(data);
       } catch (err) {
       } finally {
         // console.log("done")
@@ -35,16 +35,16 @@ export function SwipeBooks(){
         />}).reverse()}
     </div>
   );
-};
+}
 
 const Book = ({
   book,
   books,
-  setBooks
-}:{
-  book:Book,
-  books:Book[],
-  setBooks:Dispatch<SetStateAction<Book[]>>
+  setBooks,
+}: {
+  book: Book;
+  books: Book[];
+  setBooks: Dispatch<SetStateAction<Book[]>>;
 }) => {
   const x = useMotionValue(0);
   const opacity = useTransform(x, [-150, 0, 150], [0, 1, 0]);
@@ -77,23 +77,25 @@ const Book = ({
   },[])
   async function Swipe(like:boolean) {
     try {
-      const swipe:Swipe = {
-        id: '',
-        bookId: book.id || '',
-        userId: '',
-        liked: like
-      }
-      const response = await fetch(`/api/like`,{
+      const swipe: Swipe = {
+        id: "",
+        bookId: book.id || "",
+        userId: "",
+        liked: like,
+      };
+      const response = await fetch(`/api/like`, {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
         method: "POST",
         body: JSON.stringify(swipe),
-    });
+      });
       const data = await response.json();
       // console.log(data);
+      // console.log(data);
     } catch (err) {
+      // console.log(err);
       // console.log(err);
     } finally {
       if(like){
@@ -112,11 +114,11 @@ const Book = ({
       Swipe(false);
       subBook();
     }
-  }
+  };
 
-  const subBook = () =>{
-    setBooks(pv => pv.filter((v)=>v.id != book.id));
-  }
+  const subBook = () => {
+    setBooks((pv) => pv.filter((v) => v.id != book.id));
+  };
 
   return <motion.div
     className="h-96 w-72 hover:cursor-grab active:cursor-grabbing absolute flex items-center justify-center bg-secondary rounded-lg"
@@ -131,12 +133,14 @@ const Book = ({
     onDragEnd={handleDragEnd}>
       <motion.div
         className="absolute top-5 left-5 z-10 text-[#00ce90] p-2 text-5xl font-extrabold rounded-lg border-5 border-[#00ce90]"
-        style={{opacity:opacityLike}}>
+        style={{ opacity: opacityLike }}
+      >
         Like
       </motion.div>
       <motion.div
         className="absolute top-5 right-5 z-10 text-[#fe4f66] p-2 text-5xl font-extrabold rounded-lg border-5 border-[#fe4f66]"
-        style={{opacity:opacityNope}}>
+        style={{ opacity: opacityNope }}
+      >
         Nope
       </motion.div>
     <motion.img
@@ -186,4 +190,5 @@ const Book = ({
       <Heart strokeWidth={4} color="#00ce90" size={32}/>
     </button>
     </motion.div>
-}
+  );
+};
