@@ -132,11 +132,6 @@ function BookSection({
               <Skeleton className="w-[64px] h-[99px] bg-zinc-300" />
             </CarouselItem>
           ) : null}
-          {loading ? (
-            <CarouselItem className="basis-1/5 p-2 flex justify-center">
-              <Skeleton className="w-[64px] h-[99px] bg-zinc-300" />
-            </CarouselItem>
-          ) : null}
           {bookList.map((book: Book, index: number) => (
             <CarouselItem
               key={index}
