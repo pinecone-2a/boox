@@ -42,6 +42,7 @@ export const AddNewBook = () => {
     description: "",
     condition: "",
     ownerId: "",
+    owner: undefined,
   });
   const [localcover, setLocalCover] = useState<File | null>(null);
 
@@ -97,6 +98,7 @@ export const AddNewBook = () => {
       condition,
       cover,
       ownerId: user?.id,
+      owner: undefined,
     };
 
     const data = await fetch("api/books", {
@@ -106,10 +108,8 @@ export const AddNewBook = () => {
       },
       method: "POST",
       body: JSON.stringify(bookData),
-      body: JSON.stringify(bookData),
     });
     const newItem = await data.json();
-    window.location.reload();
     window.location.reload();
   };
   return (
@@ -124,7 +124,7 @@ export const AddNewBook = () => {
           <DialogTitle>Add new Book</DialogTitle>
         </DialogHeader>
         <form action={addNewBook}>
-          <div className="flex gap-6">
+          <div className="flex gap-6 mb-4">
             <div className="grid w-full max-w-sm items-center gap-1.5">
               <Label htmlFor="bookName">Book name</Label>
               <Input
@@ -145,13 +145,13 @@ export const AddNewBook = () => {
             </div>
           </div>
 
-          <div className="flex gap-6">
+          <div className="flex gap-6 mb-4">
             <div className="grid w-full max-w-sm items-center gap-1.5">
               <Label htmlFor="genre">Genre</Label>
               <select
                 id="genre"
                 name="genre"
-                className="border rounded-md py-2 px-4"
+                className="border rounded-md py-2 px-1"
               >
                 <option value="">Select</option>
                 {Genre.map((g) => (
@@ -166,7 +166,7 @@ export const AddNewBook = () => {
               <select
                 id="condition"
                 name="condition"
-                className="border rounded-md py-2 px-4"
+                className="border rounded-md py-2 px-1"
               >
                 <option value="">Select</option>
                 {Condition.map((c) => (
@@ -178,8 +178,10 @@ export const AddNewBook = () => {
             </div>
           </div>
 
-          <div className="flex flex-col w-full gap-1.5">
-            <Label htmlFor="description">Description</Label>
+          <div className="flex flex-col w-full gap-1.5 mb-4">
+            <Label htmlFor="description" className="mb-1">
+              Description
+            </Label>
             <textarea
               id="description"
               name="description"

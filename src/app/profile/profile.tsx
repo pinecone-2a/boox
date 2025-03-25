@@ -6,7 +6,13 @@ import { AddNewBook } from "./addBook";
 import { useEffect, useState } from "react";
 
 export default function Profile() {
-  const [data, setData] = useState([]);
+  interface Book {
+    cover: string;
+    title: string;
+    author: string;
+  }
+
+  const [data, setData] = useState<Book[]>([]);
   async function getFetchData() {
     fetch("/api/books")
       .then((res) => res.json())
@@ -15,7 +21,7 @@ export default function Profile() {
   useEffect(() => {
     getFetchData();
   }, []);
-  console.log(data);
+  // console.log(data);
   return (
     <div className="w-full max-w-md mx-auto p-4 pb-18">
       <Card className="p-6 text-center">
@@ -39,7 +45,7 @@ export default function Profile() {
       <div className="mt-6">
         <h3 className="text-lg font-semibold">Your Books</h3>
         <div className="mt-4 space-y-4">
-          {data.map((book, index) => (
+          {data.map((book: any, index: any) => (
             <Card key={index} className="flex items-center p-4">
               <div className="flex items-center space-x-4 w-full">
                 <img

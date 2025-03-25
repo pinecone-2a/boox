@@ -29,8 +29,10 @@ export async function GET(request: NextRequest) {
           },
         },
       },
-      orderBy: { createdAt: "asc" },
-      take: 10,
+      include:  { 
+        owner: true
+      },
+      orderBy: { createdAt: "asc" }
     });
     return NextResponse.json(books);
   } catch (error) {

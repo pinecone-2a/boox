@@ -1,13 +1,13 @@
 "use client";
+import { Hero } from "./_components/hero";
+import { Footer } from "./_components/footer";
+import RedirectPage from "./_components/redirect";
 
-import { SignedIn } from "@clerk/nextjs";
-import SignupHandler from "./_components/signup";
 export default function Home() {
   return (
-    <div className="bg-cyan-950 flex justify-center items-center">
-      <SignedIn>
-        <SignupHandler />
-      </SignedIn>
+    <div className="">
+      <Hero />
+      <Footer />
     </div>
   );
 }
