@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Nunito_Sans } from "next/font/google";
+import { Nunito } from "next/font/google";
 import "./globals.css";
 import {
   ClerkProvider,
@@ -9,22 +10,14 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const nunitoSans = Nunito_Sans({
+  variable: "--font-nunito-sans",
   subsets: ["latin"],
 });
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
   title: "boox",
   description: "Creaded by team ctrlZ",
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -34,13 +27,10 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${nunitoSans.variable} ${nunitoSans.variable} antialiased`}
         >
           <header className="flex justify-end items-center p-4 gap-4 h-16">
-            <SignedOut>
-              <SignInButton />
-              <SignUpButton />
-            </SignedOut>
+            <SignedOut></SignedOut>
             <SignedIn>
               <UserButton />
             </SignedIn>
