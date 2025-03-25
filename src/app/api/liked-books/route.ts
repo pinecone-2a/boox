@@ -17,21 +17,19 @@ export async function GET(request: NextRequest) {
     };
 
     try {
-        const matches = await prisma.match.findMany({
+        const books = await prisma.book.findMany({
             where: {
-                OR: [
-                    { like1: { userId: user.id } },
-                    { like2: { userId: user.id } },
-                ],
-            },
-            include: {
-                like1: { include: { book: true, user: true } },
-                like2: { include: { book: true, user: true } },
+                like: {
+                    some: {
+                        userId: user.id,
+                        liked: true,
+                    },
+                },
             },
         });
-        return NextResponse.json(matches);
+        return NextResponse.json(books);
     } catch (error) {
-        console.error("Error fetching matches:", error);
+        console.error("Error fetching books:", error);
         return NextResponse.json("Internal Server Error", { status: 500 });
     }
 }

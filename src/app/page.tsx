@@ -1,25 +1,12 @@
 "use client";
-import {
-  ClerkProvider,
-  SignIn,
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
+
+import { SignedIn } from "@clerk/nextjs";
 import SignupHandler from "./_components/signup";
 export default function Home() {
   return (
-    <div>
-      <SignedOut>
-        <SignIn />
-      </SignedOut>
+    <div className="bg-cyan-950 flex justify-center items-center">
       <SignedIn>
-        <UserButton />
-        <div>
-          <SignupHandler />
-        </div>
+        <SignupHandler />
       </SignedIn>
     </div>
   );

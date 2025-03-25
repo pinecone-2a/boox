@@ -1,29 +1,62 @@
 import { prisma } from "@/app/lib/db";
+import { getAuth } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
+import type { Book } from "@/app/types/types";
+import { Genre, Condition } from "@prisma/client";
+import { PrismaClientUnknownRequestError } from "@prisma/client/runtime/library";
+import { printCustomRoutes } from "next/dist/build/utils";
 
-export async function POST(req: NextRequest) {
+export async function GET(req: NextRequest) {
+  const { userId } = getAuth(req);
+  if (!userId) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  const user = await prisma.user.findUnique({
+    where: {
+      clerkId: userId,
+    },
+  });
+  console.log(user?.id);
   try {
-    const id = req.nextUrl.searchParams.get("id");
-    if (!id) {
-      return NextResponse.json({ message: "no query params" });
-    }
-    const { title, cover, author, genre, condition } = await req.json();
-    const newBook = await prisma.book.create({
-      data: {
-        title,
-        cover,
-        author,
-        genre,
-        condition,
-        ownerId: id,
+    const myBooks = await prisma.book.findMany({
+      where: {
+        ownerId: user?.id,
       },
     });
-    return new Response(JSON.stringify(newBook), {
-      status: 201,
-      headers: { "Content-Type": "application/json" },
+    console.log({ myBooks });
+    return NextResponse.json(myBooks);
+  } catch (e) {
+    console.log(e);
+  }
+}
+export async function POST(req: NextRequest) {
+  const { userId } = getAuth(req);
+  if (!userId) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  const user = await prisma.user.findUnique({
+    where: { clerkId: userId },
+  });
+
+  if (!user) {
+    return NextResponse.json({ error: "User not found" }, { status: 404 });
+  }
+  try {
+    const bookData: Book = await req.json();
+
+    const book = await prisma.book.create({
+      data: {
+        title: bookData.title,
+        author: bookData.author,
+        genre: bookData.genre as Genre,
+        description: bookData.description,
+        condition: bookData.condition as Condition,
+        cover: bookData.cover,
+        ownerId: user.id,
+      },
     });
+    return NextResponse.json(book, { status: 201 });
   } catch (error) {
-    console.error("Error creating books:", error);
-    return new Response("Internal Server Error", { status: 500 });
+    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
 }

@@ -5,52 +5,67 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import { SwipeBooks } from "../swipe/swipe";
+import type { Book } from "../types/types";
+import { useState, useEffect } from "react";
+import { Match, Swipe, User } from "@prisma/client";
 
-interface Book {
-  image: string;
-}
-
-interface BookSectionProps {
-  sectionName: string;
-  bookList: Book[];
-}
+type MatchWithDetails = Match & {
+  like1: Swipe & { book: Book; user: User };
+  like2: Swipe & { book: Book; user: User };
+};
 
 export default function BookLists() {
-  const wishlistBooks: Book[] = [
-    { image: "image 10.png" },
-    { image: "image 11.png" },
-    { image: "image 12.png" },
-    { image: "image 8.jpg" },
-    { image: "image 9.png" },
-    { image: "image 10.png" },
-    { image: "image 11.png" },
-    { image: "image 12.png" },
-    { image: "image 8.jpg" },
-    { image: "image 9.png" },
-  ];
+  const [likedBooks, setLikedBooks] = useState<Book[]>([]);
+  const [matches, setMatches] = useState<MatchWithDetails[]>([]);
+  const [matchedBooks, setMatchedBooks] = useState<Book[]>([]);
 
-  const matchesBooks: Book[] = [
-    { image: "image 8.jpg" },
-    { image: "image 9.png" },
-    { image: "image 10.png" },
-    { image: "image 11.png" },
-    { image: "image 12.png" },
-    { image: "image 8.jpg" },
-    { image: "image 9.png" },
-    { image: "image 10.png" },
-    { image: "image 11.png" },
-    { image: "image 12.png" },
-  ];
+  async function fetchMatches() {
+    try {
+      const response = await fetch(`/api/match`);
+      const data = await response.json();
+      setMatches(data);
+      const extractedBooks = data.flatMap((match: MatchWithDetails) => [
+        match.like1.book,
+        match.like2.book,
+      ]);
+      setMatchedBooks(extractedBooks);
+    } catch (err) {
+    } finally {
+      console.log("done");
+    }
+  }
 
+  async function fetchLikedBooks() {
+    try {
+      const response = await fetch(`/api/liked-books`);
+      const data = await response.json();
+      setLikedBooks(data);
+    } catch (err) {
+    } finally {
+      console.log("done");
+    }
+  }
+  useEffect(() => {
+    fetchLikedBooks();
+    fetchMatches();
+  }, []);
   return (
-    <div>
-      <BookSection sectionName="Wishlist" bookList={wishlistBooks} />
-      <BookSection sectionName="Matches" bookList={matchesBooks} />
+    <div className="w-full h-full bg-neutral-200">
+      <SwipeBooks />
+      <BookSection sectionName="Liked" bookList={likedBooks} />
+      <BookSection sectionName="Matches" bookList={matchedBooks} />
     </div>
   );
 }
 
-function BookSection({ sectionName, bookList }: BookSectionProps) {
+function BookSection({
+  sectionName,
+  bookList,
+}: {
+  sectionName: string;
+  bookList: Book[];
+}) {
   return (
     <div className="mb-6">
       <h2 className="text-2xl font-bold mb-2">{sectionName}</h2>
@@ -59,7 +74,7 @@ function BookSection({ sectionName, bookList }: BookSectionProps) {
           {bookList.map((book: Book, index: number) => (
             <CarouselItem key={index} className="basis-1/5 bg-yellow-400 p-2 ">
               <img
-                src={book.image}
+                src={book.cover}
                 alt={`${sectionName} book ${index + 1}`}
                 className="w-[64px] h-[99px] object-cover rounded-xl shadow-lg ml-2"
               />
