@@ -7,11 +7,13 @@ export type Book = {
     description: string;
     condition: string;
     ownerId: string|undefined;
+    owner: User|undefined;
 }
 export type User = {
     id: string;
     name: string;
     email: string;
+    clerkId: string;
 }
 export type Swipe = {
     id: string;

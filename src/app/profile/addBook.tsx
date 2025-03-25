@@ -42,6 +42,7 @@ export const AddNewBook = () => {
     description: "",
     condition: "",
     ownerId: "",
+    owner: undefined,
   });
   const [localcover, setLocalCover] = useState<File | null>(null);
 
@@ -97,6 +98,7 @@ export const AddNewBook = () => {
       condition,
       cover,
       ownerId: user?.id,
+      owner: undefined,
     };
 
     const data = await fetch("api/books", {
