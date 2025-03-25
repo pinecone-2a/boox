@@ -39,7 +39,7 @@ export default function RootLayout({
           <header className="flex justify-between items-center p-4 gap-4 h-16 bg-background fixed top-0 left-0 right-0 z-100 shadow-xl">
             <div className="flex items-end">
               <img src="b-logo.png" alt="b" className="h-10 w-10"/>
-              <h1 className="pl-2 text-4xl font-bold">oox</h1>
+              <h1 className="pl-[2px] text-4xl font-bold">oox</h1>
             </div>
             
             <SignedOut>
