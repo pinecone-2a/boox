@@ -1,17 +1,10 @@
 "use client";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import {
-  ClerkProvider,
-  SignIn,
-  SignedIn,
-  SignedOut,
-  useAuth,
-} from "@clerk/nextjs";
+import { SignIn, SignedOut, useAuth } from "@clerk/nextjs";
 
 export default function Login() {
   const { isSignedIn } = useAuth();
-
   const router = useRouter();
 
   useEffect(() => {
@@ -19,15 +12,16 @@ export default function Login() {
   }, [router]);
 
   useEffect(() => {
-    router.push("/dashboard");
-  }, []);
+    if (isSignedIn) {
+      router.push("/dashboard");
+    }
+  }, [isSignedIn, router]);
+
   return (
-    <ClerkProvider>
-      <div className="flex justify-center mt-20">
-        <SignedOut>
-          <SignIn forceRedirectUrl={"/dashboard"} />
-        </SignedOut>
-      </div>
-    </ClerkProvider>
+    <div className="flex justify-center mt-20">
+      <SignedOut>
+        <SignIn />
+      </SignedOut>
+    </div>
   );
 }

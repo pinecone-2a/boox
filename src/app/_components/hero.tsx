@@ -3,9 +3,30 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
-import { SignedIn } from "@clerk/nextjs";
+import { useEffect, useState } from "react";
+import { Book } from "@prisma/client";
+import { Badge } from "@/components/ui/badge";
+
 gsap.registerPlugin(ScrollTrigger);
+
 export const Hero = () => {
+  const [data, setData] = useState<Book[]>([]);
+
+  async function getFetchData() {
+    try {
+      const res = await fetch("/api/books/allBooks");
+      if (!res.ok) throw new Error("Failed to fetch books");
+      const books = await res.json();
+      setData(books);
+    } catch (error) {
+      console.error("Error fetching books:", error);
+    }
+  }
+
+  useEffect(() => {
+    getFetchData();
+  }, []);
+
   useGSAP(() => {
     gsap.from(".hero-title", {
       opacity: 0,
@@ -22,87 +43,98 @@ export const Hero = () => {
     });
     gsap.from(".hero-img", {
       opacity: 0,
-      scale: 0.8,
-      duration: 1.2,
+      scale: 0.9,
+      duration: 1,
       delay: 0.6,
       ease: "back.out(1.7)",
     });
 
-    gsap.utils.toArray(".book-section").forEach((section) => {
-      if (section instanceof HTMLElement) {
-        gsap.from(section, {
-          opacity: 0,
-          y: 50,
-          duration: 1,
-          scrollTrigger: {
-            trigger: section,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
-          },
-        });
-      }
+    gsap.utils.toArray<HTMLElement>(".book-section").forEach((section, i) => {
+      gsap.from(section, {
+        opacity: 0,
+        y: 50,
+        duration: 0.8,
+        delay: i * 0.1,
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+      });
     });
-  }, []);
+  });
 
   return (
-    <div>
-      <div className=" text-center bg-amber-50 py-10 ">
-        <h1 className="hero-title text-5xl font-semibold ">Boox</h1>
-        <p className="hero-text text-[15px] mt-3 text-black opacity-45 font-normal">
-          A home without books is a body without soul.
+    <div className="min-h-screen bg-gray-50">
+      <div className="text-center py-16 bg-gradient-to-b from-amber-50 to-white">
+        <h1 className="hero-title text-6xl font-extrabold text-yellow-700">
+          Boox
+        </h1>
+        <p className="hero-text text-lg mt-3 text-gray-600 font-medium">
+          "A home without books is a body without soul."
         </p>
         <motion.a
           href="/login"
-          className="inline-block bg-yellow-600 text-white px-4 py-2 mt-5 hover:bg-yellow-100"
-          whileHover={{ scale: 1.1 }}
+          className="inline-block bg-yellow-600 text-white px-6 py-3 mt-6 rounded-md text-lg font-semibold transition hover:bg-yellow-500 hover:shadow-md"
+          whileHover={{ scale: 1.05 }}
         >
           Get Started
         </motion.a>
-        <div className="hero-img flex justify-center mt-6">
-          <img className="w-66 h-46" src="book.jpeg" alt="Books" />
+        <div className="hero-img flex justify-center mt-8">
+          <img
+            className="w-80 h-56 rounded-lg shadow-lg"
+            src="book.jpeg"
+            alt="Stack of books"
+          />
         </div>
       </div>
 
-      {["New Released Books", "Bestselling Books"].map((title, index) => (
-        <div key={index} className="book-section  text-center ">
-          <h1 className="text-2xl font-medium pt-7">{title}</h1>
-          <p className="mt-3 text-black opacity-70">
-            A home without books is a body without soul.
-          </p>
-          <div className=" justify-center gap-6 mt-5 grid grid-cols-2 ">
-            {[
-              "bookCover1.jpeg",
-              "bookCover2.jpeg",
-              "bookCover3.jpeg",
-              "bookCover4.jpeg",
-            ].map((src, i) => (
-              <motion.div key={i} whileHover={{ scale: 1.05 }}>
-                <img
-                  className="w-30 h-40 rounded-xs ml-9 shadow-xl"
-                  src={src}
-                  alt="Book Cover"
-                />
-                <p className="text-sm mt-2 font-medium">The Great Gatsby</p>
-                <p className="text-sm font-bold">$31</p>
-              </motion.div>
-            ))}
-          </div>
-          <motion.a
-            href="/header"
-            className="inline-block bg-yellow-600 text-white px-4 py-2 mt-5 underline hover:bg-yellow-200"
-            whileHover={{ scale: 1.1 }}
+      <div className="text-center mt-2">
+        <h1 className="hero-title text-6xl font-extrabold text-yellow-700 mb-2">
+          Boox
+        </h1>
+        <h2 className="text-3xl font-medium text-gray-800">
+          Available for Exchange
+        </h2>
+      </div>
+      <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6 px-6 md:px-12">
+        {data.map((book, index) => (
+          <motion.div
+            key={index}
+            whileHover={{ scale: 1.05 }}
+            className="relative bg-white rounded-lg shadow-md p-4 book-section transition"
           >
-            View All
-          </motion.a>
-          <div className="bg-black h-30 flex justify-center items-center opacity-80 pl-3 mt-6">
-            <p className=" text-white font-bold ">
-              {" "}
-              "Reading gives us someplace to go when we have to stay where we
-              are."{" "}
-            </p>
-          </div>
+            <img
+              className="w-full h-48 object-cover rounded-lg"
+              src={book.cover}
+              alt={book.title}
+            />
+            <div className="absolute top-2 left-2">
+              <Badge>{book.condition}</Badge>
+            </div>
+            <div className="mt-3 text-center">
+              <p className="text-gray-800 font-semibold">{book.title}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+      <div className="flex justify-center mt-12">
+        <motion.a
+          href="/header"
+          className="inline-block bg-yellow-600 text-white px-6 py-3 rounded-md text-lg font-semibold transition hover:bg-yellow-500 hover:shadow-md"
+          whileHover={{ scale: 1.05 }}
+        >
+          View All
+        </motion.a>
+      </div>
+      <div className="bg-gray-900 text-white py-12 mt-12">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-lg font-medium italic">
+            "Reading gives us someplace to go when we have to stay where we
+            are."
+          </p>
         </div>
-      ))}
+      </div>
     </div>
   );
 };
