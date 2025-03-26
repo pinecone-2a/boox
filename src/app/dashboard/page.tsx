@@ -120,33 +120,30 @@ function BookSection({
   loading: boolean;
 }) {
   return (
-    <div className="mb-6">
+    <div className="mb-6 lg:h-[300px]">
       <SignedIn>
         <SignupHandler />
       </SignedIn>
       <h2 className="text-2xl font-bold mb-2 ml-6">{sectionName}</h2>
-      <Carousel className="w-full h-[112px] ">
+      <Carousel className="w-full h-full bg-yellow-400">
         <CarouselContent>
           {loading ? (
             <CarouselItem className="basis-1/5 p-2 flex justify-center">
-              <Skeleton className="w-[64px] h-[99px] bg-zinc-300" />
-            </CarouselItem>
-          ) : null}
-          {loading ? (
-            <CarouselItem className="basis-1/5 p-2 flex justify-center">
-              <Skeleton className="w-[64px] h-[99px] bg-zinc-300" />
+              <Skeleton className="w-full h-full bg-zinc-300" />
             </CarouselItem>
           ) : null}
           {bookList.map((book: Book, index: number) => (
             <CarouselItem
               key={index}
-              className="basis-1/5 p-2 flex justify-center"
+              className="basis-1/5 p-2 flex-grow-0 flex-shrink-0 min-w-[50px] sm:min-w-[60px] lg:min-size-20"
             >
-              <img
-                src={book.cover}
-                alt={`${sectionName} book ${index + 1}`}
-                className="w-[64px] h-[99px] object-cover rounded-xl shadow-lg ml-2"
-              />
+              <div className="relative  w-full aspect-[3/4] rounded-lg ">
+                <img
+                  src={book.cover}
+                  alt={`${sectionName} book ${index + 1}`}
+                  className="w-full h-full object-cover rounded-xl shadow-lg ml-2"
+                />
+              </div>
             </CarouselItem>
           ))}
         </CarouselContent>
@@ -178,46 +175,46 @@ function MachedBooksSection({
   return (
     <div className="mb-6">
       <h2 className="text-2xl font-bold mb-2 ml-6">{sectionName}</h2>
-      <Carousel className="w-full h-[112px] ">
+      <Carousel className="w-full h-full bg-yellow-400">
         <CarouselContent>
           {loading ? (
             <CarouselItem className="basis-1/5  p-2 flex justify-center">
               <div className="relative">
-                <Skeleton className="w-[64px] h-[99px] bg-zinc-300" />
-                <Skeleton className="w-[64px] h-[99px] bg-zinc-300 absolute top-2 left-2" />
+                <Skeleton className="w-full h-full bg-zinc-300" />
+                <Skeleton className="w-full h-full bg-zinc-300 absolute top-2 left-2" />
               </div>
             </CarouselItem>
           ) : null}
           {matchList.map((match: Match, index: number) => (
             <CarouselItem
               key={index}
-              className="basis-1/5  p-2 flex justify-center"
+              className="basis-1/5  p-2 flex-grow-0 flex-shrink-0 min-w-[50px] sm:min-w-[60px] md:min-w-[70px] lg:min-w-[80px]"
             >
               <div onClick={() => handleClick(index)}>
                 {flippedIndexes[index] ? (
-                  <div className="relative">
+                  <div className="relative aspect-[4/4] rounded-lg">
                     <img
                       src={match.book2.cover}
                       alt={`${sectionName} book ${index + 1}`}
-                      className="w-[64px] h-[99px] object-cover rounded-xl shadow-lg ml-2"
+                      className="w-full object-fill rounded-xl shadow-lg"
                     />
                     <img
                       src={match.book1.cover}
                       alt={`${sectionName} book ${index + 1}`}
-                      className="w-[64px] h-[99px] object-cover rounded-xl shadow-lg ml-2 absolute top-3 left-3"
+                      className="w-full object-fill rounded-xl shadow-lg absolute top-3 left-3"
                     />
                   </div>
                 ) : (
-                  <div className="relative">
+                  <div className="relative aspect-[3/4] rounded-lg ">
                     <img
                       src={match.book1.cover}
                       alt={`${sectionName} book ${index + 1}`}
-                      className="w-[64px] h-[99px] object-cover rounded-xl shadow-lg ml-2"
+                      className="w-full object-fill rounded-xl shadow-lg aspect-[3/4] "
                     />
                     <img
                       src={match.book2.cover}
                       alt={`${sectionName} book ${index + 1}`}
-                      className="w-[64px] h-[99px] object-cover rounded-xl shadow-lg ml-2 absolute top-3 left-3"
+                      className="w-58 object-fill rounded-xl shadow-lg absolute top-3 left-3 aspect-[3/4] overflow-hidden"
                     />
                   </div>
                 )}
