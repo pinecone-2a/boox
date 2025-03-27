@@ -2,11 +2,6 @@
 import { Dispatch, useEffect, useState } from "react";
 import { Match as PrismaMatch, Book, User } from "@prisma/client";
 import { useUser } from "@clerk/nextjs";
-
-interface Match extends PrismaMatch {
-  like1: { book: Book; user: User };
-  like2: { book: Book; user: User };
-}
 import { Bar } from "../profile/bar";
 import {
     Carousel,
@@ -15,6 +10,16 @@ import {
   } from "@/components/ui/carousel";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Chat } from "./chat";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable";
+
+interface Match extends PrismaMatch {
+  like1: { book: Book; user: User };
+  like2: { book: Book; user: User };
+}
 
 export default function ChatPage(){
     const [matches, setMatches] = useState<Match[]>([]);
@@ -22,7 +27,6 @@ export default function ChatPage(){
     const [selectedMatch, setSelectedMatch] = useState<Match>();
     const [users,setUsers]= useState<User[]>();
     const { user } = useUser();
-    
 
     async function fetchMatches() {
         try {
@@ -37,22 +41,28 @@ export default function ChatPage(){
     useEffect(() => {
       fetchMatches();
     }, []);
-
     useEffect(()=>{
-      console.log(selectedMatch,user?.id);
-      if(selectedMatch?.like1.user.clerkId === user?.id){
-        setUsers([selectedMatch?.like1.user, selectedMatch?.like2.user].filter((user): user is User => user !== undefined));
-      }else{
-        setUsers([selectedMatch?.like2.user, selectedMatch?.like1.user].filter((user): user is User => user !== undefined));
+      if(selectedMatch !== undefined){
+        console.log(selectedMatch,user?.id); 
+        if(selectedMatch?.like1.user.clerkId === user?.id){
+          setUsers([selectedMatch?.like1.user, selectedMatch?.like2.user].filter((user): user is User => user !== undefined));
+        }else{
+          setUsers([selectedMatch?.like2.user, selectedMatch?.like1.user].filter((user): user is User => user !== undefined));
+        }
       }
+      
     },[selectedMatch]);
     return (
-        <div className="flex justify-between h-full w-full">
-            <MachedBooksSection
+        <ResizablePanelGroup direction="horizontal" className="flex justify-between h-full w-full">
+            <ResizablePanel defaultSize={25}>
+              <MachedBooksSection
               matchList={matches}
               loading={loadingMatch}
               setSelectedMatch={setSelectedMatch}/>
-            {
+            </ResizablePanel>
+            <ResizableHandle withHandle />
+            <ResizablePanel defaultSize={75}>
+              {
               selectedMatch === undefined || !users ?
               null
               :<Chat
@@ -60,11 +70,11 @@ export default function ChatPage(){
               sender={users?.[0]}
               receiver={users?.[1]}
               senderProfile={user?.imageUrl || ""}
-            />
-            }
-            
+              />
+              }
+            </ResizablePanel>
             <Bar/>
-        </div>
+        </ResizablePanelGroup>
     );
 };
 function MachedBooksSection({
@@ -88,11 +98,11 @@ function MachedBooksSection({
       );
     };
     return (
-      <div className="h-full w-1/2 sm:w-1/4 md:w-1/5 lg:w-1/6 xl:w-1/7 2xl:w-1/8">
+      <div className="h-full w-full">
         <Carousel orientation="vertical" className="h-full pt-4 bg-secondary shadow-md w-full ">
           <CarouselContent>
             {loading ? (
-              <CarouselItem className="basis-1/5  p-2 flex justify-center w-full">
+              <CarouselItem className="basis-1/5  p-2 flex justify-start w-full">
                 <div className="relative">
                   <Skeleton className="w-[64px] h-[99px] bg-zinc-300" />
                   <Skeleton className="w-[64px] h-[99px] bg-zinc-300 absolute top-2 left-2" />
@@ -102,7 +112,7 @@ function MachedBooksSection({
             {matchList.map((match: Match, index: number) => (
               <CarouselItem
                 key={index}
-                className="basis-1/5  p-4 flex justify-center items-center w-full"
+                className="basis-1/5  p-4 flex justify-start items-center w-full"
                 onClick={()=>setSelectedMatch(match)}
               >
                 <div onClick={() => handleClick(index)}>

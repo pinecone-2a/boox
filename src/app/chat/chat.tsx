@@ -44,12 +44,12 @@ export function Chat({ matchId, sender, receiver, senderProfile }:
         if (receiver?.clerkId) {
             fetchReceiverProfile(receiver?.clerkId);
         }
-    }, []);
+    }, [receiver]);
     return (
         <div className="w-full h-full p-2 pb-22">
-            <div className="w-full h-5/6 p-4 flex flex-col justify-end">
+            <div className="w-full h-5/6 p-4 flex flex-col gap-2 overflow-y-scroll">
                 {messages.map((msg) => (
-                    <div key={msg.id} className={msg.senderId === sender.id ? "flex self-end flex-row-reverse " : "flex items-center self-start"}>
+                    <div key={msg.id} className={msg.senderId === sender.id ? "flex self-end flex-row-reverse gap-2" : "flex items-center self-start gap-2"}>
                         <Avatar>
                             <AvatarImage src={msg.senderId === sender.id ?senderProfile:receiverProfile} alt="@shadcn" />
                             <AvatarFallback>{sender.name.slice(1)}</AvatarFallback>
