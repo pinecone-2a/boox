@@ -14,11 +14,11 @@ import { SignedIn } from "@clerk/nextjs";
 import SignupHandler from "../_components/signup";
 import { Bar } from "../profile/bar";
 
-type MatchWithDetails = Match & {
+export type MatchWithDetails = Match & {
   like1: Swipe & { book: Book; user: User };
   like2: Swipe & { book: Book; user: User };
 };
-type Match = {
+export type Match = {
   book1: Book;
   book2: Book;
 };
@@ -55,8 +55,7 @@ export default function BookLists() {
       setMatches([...matches, ...extractedBooks]);
     } catch (err) {
     } finally {
-      setLoadingLike(false);
-      setLoadingLike(false);
+      setLoadingMatch(false);
     }
   }
 
@@ -67,7 +66,7 @@ export default function BookLists() {
       setLikedBooks(data);
     } catch (err) {
     } finally {
-      setLoadingMatch(false);
+      setLoadingLike(false);
     }
   }
   useEffect(() => {
@@ -135,7 +134,7 @@ function BookSection({
           {bookList.map((book: Book, index: number) => (
             <CarouselItem
               key={index}
-              className="basis-1/5 p-2 flex justify-center"
+              className="basis-1/5 p-2 flex justify-center  hover:cursor-grab active:cursor-grabbing "
             >
               <img
                 src={book.cover}
@@ -186,7 +185,7 @@ function MachedBooksSection({
           {matchList.map((match: Match, index: number) => (
             <CarouselItem
               key={index}
-              className="basis-1/5  p-2 flex justify-center"
+              className="basis-1/5  p-2 flex justify-center hover:cursor-grab active:cursor-grabbing "
             >
               <div onClick={() => handleClick(index)}>
                 {flippedIndexes[index] ? (

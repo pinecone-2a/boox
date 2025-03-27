@@ -28,7 +28,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${nunitoSans.variable} ${nunitoSans.variable} antialiased`}
+          className={`${nunitoSans.variable} ${nunitoSans.variable} antialiased h-screen pt-15`}
         >
           <header className="flex justify-between items-center p-4 gap-4 h-16 bg-background fixed top-0 left-0 right-0 z-100 shadow-xl">
             <Link href={"/dashboard"} className="flex items-end">
@@ -65,7 +65,6 @@ export default function RootLayout({
               <UserButton />
             </SignedIn>
           </header>
-          <div className="h-16"></div>
           {children}
         </body>
       </html>
