@@ -109,7 +109,6 @@ export default function BookLists() {
     </div>
   );
 }
-
 function BookSection({
   sectionName,
   bookList,
@@ -135,9 +134,9 @@ function BookSection({
           {bookList.map((book: Book, index: number) => (
             <CarouselItem
               key={index}
-              className="basis-1/5 p-2 flex-grow-0 flex-shrink-0 min-w-[50px] sm:min-w-[60px] lg:min-size-20"
+              className="basis-1/5 p-2 flex-grow-0 flex-shrink-0 min-w-[50px] sm:min-w-[60px] md:min-w-[80px] lg:min-w-[100px] xl:min-w-[120px]"
             >
-              <div className="relative  w-full aspect-[3/4] rounded-lg ">
+              <div className="relative w-full aspect-[3/4] rounded-lg">
                 <img
                   src={book.cover}
                   alt={`${sectionName} book ${index + 1}`}
