@@ -20,7 +20,6 @@ export default function Profile() {
   useEffect(() => {
     getFetchData();
   }, []);
-  console.log(data);
   return (
     <div className="w-full max-w-md mx-auto p-4 pb-18">
       <Card className="p-6 text-center">

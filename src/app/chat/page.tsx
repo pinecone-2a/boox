@@ -43,7 +43,6 @@ export default function ChatPage(){
     }, []);
     useEffect(()=>{
       if(selectedMatch !== undefined){
-        console.log(selectedMatch,user?.id); 
         if(selectedMatch?.like1.user.clerkId === user?.id){
           setUsers([selectedMatch?.like1.user, selectedMatch?.like2.user].filter((user): user is User => user !== undefined));
         }else{
