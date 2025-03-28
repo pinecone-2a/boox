@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "MatchRequest" ALTER COLUMN "status1" SET DEFAULT 'PENDING',
+ALTER COLUMN "status2" SET DEFAULT 'PENDING';
