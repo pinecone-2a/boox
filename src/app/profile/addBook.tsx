@@ -115,7 +115,7 @@ export const AddNewBook = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="destructive" className="rounded-full p-[10px]">
+        <Button variant="default" className="rounded-full p-[10px] w-10 h-10">
           <Plus />
         </Button>
       </DialogTrigger>

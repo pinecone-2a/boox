@@ -112,7 +112,7 @@ function MachedBooksSection({
             {matchList.map((match: Match, index: number) => (
               <CarouselItem
                 key={index}
-                className="basis-1/5  p-4 flex justify-start items-center w-full"
+                className="basis-1/5  p-4 flex justify-start items-center w-full cursor-pointer"
                 onClick={()=>setSelectedMatch(match)}
               >
                 <div onClick={() => handleClick(index)}>
