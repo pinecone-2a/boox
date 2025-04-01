@@ -20,10 +20,10 @@ export function Chat({ matchId, sender, receiver, senderProfile }:
     const { messages, loading } = useChat(matchId);
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
-    const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+    const [isReviewModal, setIsReviewModal] = useState<{visible:boolean,status:string}>({visible:false,status:''});
 
-    const openModal = () => setIsReviewModalOpen(true);
-    const closeModal = () => setIsReviewModalOpen(false);
+    const openModal = (status:string) => setIsReviewModal({visible:true,status});
+    const closeModal = (status:string) => setIsReviewModal({visible:false,status});
   
     const toggleDropdown = () => setIsOpen(!isOpen);
 
@@ -52,13 +52,6 @@ export function Chat({ matchId, sender, receiver, senderProfile }:
           setReceiverProfile("");
         }
     };
-    async function changeMatchStatus({matchId,status}:{matchId:string,status:string}){
-      // await fetch("/api/match", {
-      //     method: "PATCH",
-      //     headers: { "Content-Type": "application/json" },
-      //     body: JSON.stringify({matchId,status}),
-      // });
-    }
     useEffect(() => {
         if (receiver?.clerkId) {
           fetchReceiverProfile(receiver?.clerkId);
@@ -87,11 +80,11 @@ export function Chat({ matchId, sender, receiver, senderProfile }:
                   <Button variant={'outline'}onClick={toggleDropdown} size={'icon'}><EllipsisVertical/></Button>
                   {isOpen && (
                     <ul className="absolute right-0 mt-4 w-40 bg-white shadow-lg border rounded z-100 overflow-hidden">
-                      <li className="p-2 hover:bg-gray-200 cursor-pointer text-green-500  flex gap-2" onClick={()=>{changeMatchStatus({matchId,status:'ACCEPTED'});openModal()}}><Modal isOpen={isReviewModalOpen} onClose={closeModal} userId={receiver.id} reviewerId={sender.id}/><CircleCheck/>ACCEPT</li>
-                      <li className="p-2 hover:bg-gray-200 cursor-pointer text-red-500  flex gap-2" onClick={()=>{changeMatchStatus({matchId,status:'REJECTED'});openModal()}}><Modal isOpen={isReviewModalOpen} onClose={closeModal} userId={receiver.id} reviewerId={sender.id}/><CircleX/>REJECT </li>
+                      <li className="p-2 hover:bg-gray-200 cursor-pointer text-green-500  flex gap-2" onClick={()=>{openModal('ACCEPTED')}}><CircleCheck/>ACCEPT</li>
+                      <li className="p-2 hover:bg-gray-200 cursor-pointer text-red-500  flex gap-2" onClick={()=>{openModal('REJECTED')}}><CircleX/>REJECT </li>
                     </ul>
                   )}
-                  
+                  <Modal isOpen={isReviewModal.visible} onClose={()=>{closeModal(isReviewModal.status)}} userId={receiver.id} reviewerId={sender.id} matchId={matchId} status={isReviewModal.status}/>
                 </div>
             </div>
             <div className="w-full h-5/6 p-4 flex flex-col gap-2 overflow-y-scroll">
@@ -124,9 +117,16 @@ export function Chat({ matchId, sender, receiver, senderProfile }:
 }
 
 
-const Modal = ({ isOpen, onClose,userId, reviewerId }:{isOpen:boolean,onClose:()=>void,userId:string,reviewerId:string}) => {
+const Modal = ({ isOpen, onClose,userId, reviewerId,matchId,status }:{isOpen:boolean,onClose:()=>void,userId:string,reviewerId:string,matchId:string,status:string}) => {
   if (!isOpen) return null;
-
+  const [isAlertOpen, setIsAlertOpen] = useState(true);
+  async function changeMatchStatus({matchId,status}:{matchId:string,status:string}){
+    await fetch("/api/match", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({matchId,status}),
+    });
+  }
   async function submitReview(form: FormData){
     const rating = Number(form.get("rating")) || 0;
     const reviewText = form.get("review");
@@ -140,45 +140,55 @@ const Modal = ({ isOpen, onClose,userId, reviewerId }:{isOpen:boolean,onClose:()
         reviewText,
       }),
     });
-    onClose();
+    window.location.reload();
   }
   return (
     <div className="fixed inset-0 bg-black/50 bg-opacity-50 flex justify-center items-center z-100">
+      {isAlertOpen?
       <div className="bg-white p-6 rounded-lg shadow-lg w-96 text-black">
         <h2 className="text-xl mb-4 font-bold">
-          Review
+          {status}
         </h2>
-        <p>Rate your interaction and provide any feedback you think is helpful.</p>
-        <form action={submitReview} className="grid gap-4 py-4">
-          
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Rating
-            </Label>
-            <Input 
-            className="col-span-3" 
-            type="number"
-            name="rating"
-            min="1"
-            max="5"
-            placeholder="Give a rating from 1 to 5"/>
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Review
-            </Label>
-            <Textarea name="review" className="col-span-3" placeholder="Write your review here..."/>
-          </div>
-          <div className="flex justify-end">
-            <Button
-              type="submit"
-            >
-              submit
-            </Button>
-          </div>
-        </form>
-        
+        <p>Are you sure you want to give this rating?</p>
+        <div className="flex justify-end gap-2">
+          <Button onClick={onClose}>cancel</Button>
+          <Button onClick={()=>{changeMatchStatus({matchId,status});setIsAlertOpen(false)}}>continue</Button>
+        </div>
       </div>
+      :<div className="bg-white p-6 rounded-lg shadow-lg w-96 text-black">
+      <h2 className="text-xl mb-4 font-bold">
+        Review
+      </h2>
+      <p>Rate your interaction and provide any feedback you think is helpful.</p>
+      <form action={submitReview} className="grid gap-4 py-4">
+        
+        <div className="grid grid-cols-4 items-center gap-4">
+          <Label htmlFor="name" className="text-right">
+            Rating
+          </Label>
+          <Input 
+          className="col-span-3" 
+          type="number"
+          name="rating"
+          min="1"
+          max="5"
+          placeholder="Give a rating from 1 to 5"/>
+        </div>
+        <div className="grid grid-cols-4 items-center gap-4">
+          <Label htmlFor="name" className="text-right">
+            Review
+          </Label>
+          <Textarea name="review" className="col-span-3" placeholder="Write your review here..."/>
+        </div>
+        <div className="flex justify-end">
+          <Button
+            type="submit"
+          >
+            submit
+          </Button>
+        </div>
+      </form>
+    </div>}
     </div>
   );
 };
