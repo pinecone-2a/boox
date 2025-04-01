@@ -107,9 +107,9 @@ function MachedBooksSection({
                     <Skeleton className="w-[64px] h-[99px] bg-zinc-300" />
                     <Skeleton className="w-[64px] h-[99px] bg-zinc-300 absolute top-2 left-2" />
                     <div className="p-4 font-bold text-foreground">
-                      <Skeleton className="w-30 h-4"/>
+                      <Skeleton className="w-30 h-4 bg-zinc-300"/>
                       <div className="text-muted-foreground">for</div>
-                      <Skeleton className="w-30 h-4"/>
+                      <Skeleton className="w-30 h-4 bg-zinc-300"/>
                     </div>
                   </div>
                 </div>
