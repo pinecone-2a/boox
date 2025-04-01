@@ -35,8 +35,6 @@ export default function RootLayout({
               <img src="b-logo.png" alt="b" className="h-10 w-10" />
               <h1 className="pl-[2px] text-4xl font-bold">oox</h1>
             </Link>
-            
-
             <SignedOut>
               <SignInButton
                 mode="modal"

@@ -4,6 +4,7 @@ import { Message } from "@prisma/client";
 
 export function useChat(matchId: string) {
     const [messages, setMessages] = useState<Message[]>([]);
+    const [loading, setLoading] = useState<boolean>(true); // New state for loading
 
     useEffect(() => {
         if (!matchId) {
@@ -21,6 +22,8 @@ export function useChat(matchId: string) {
                 setMessages(data);
             } catch (error) {
                 console.error("Error fetching messages:", error);
+            } finally {
+                setLoading(false); // Stop loading once messages are fetched
             }
         }
 
@@ -47,5 +50,5 @@ export function useChat(matchId: string) {
         };
     }, [matchId]);
 
-    return messages;
+    return { messages, loading }; // Return both messages and loading state
 }
