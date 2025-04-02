@@ -30,11 +30,17 @@ model Book {
   description String
   genre     Genre 
   condition Condition
-  ownerId   String
+  ownerId   String 
+  status    Status @default(ACTIVE)
   owner     User   @relation(fields: [ownerId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   like  Swipe[]
+}
+
+enum Status {
+  ACTIVE
+  PASSIVE
 }
 
 enum Condition {
@@ -71,6 +77,7 @@ model Swipe {
   updatedAt DateTime @updatedAt
   matches1 Match[] @relation("matches1")
   matches2 Match[] @relation("matches2")
+  status    Status @default(ACTIVE)
 }
 
 model Match {

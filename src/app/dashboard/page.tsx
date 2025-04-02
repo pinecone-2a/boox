@@ -14,11 +14,11 @@ import { SignedIn } from "@clerk/nextjs";
 import SignupHandler from "../_components/signup";
 import { Bar } from "../profile/bar";
 
-type MatchWithDetails = Match & {
+export type MatchWithDetails = Match & {
   like1: Swipe & { book: Book; user: User };
   like2: Swipe & { book: Book; user: User };
 };
-type Match = {
+export type Match = {
   book1: Book;
   book2: Book;
 };
@@ -55,8 +55,7 @@ export default function BookLists() {
       setMatches([...matches, ...extractedBooks]);
     } catch (err) {
     } finally {
-      setLoadingLike(false);
-      setLoadingLike(false);
+      setLoadingMatch(false);
     }
   }
 
@@ -67,7 +66,7 @@ export default function BookLists() {
       setLikedBooks(data);
     } catch (err) {
     } finally {
-      setLoadingMatch(false);
+      setLoadingLike(false);
     }
   }
   useEffect(() => {
@@ -128,13 +127,21 @@ function BookSection({
         <CarouselContent>
           {loading ? (
             <CarouselItem className="basis-1/5 p-2 flex justify-center">
+<<<<<<< HEAD
               <Skeleton className="w-full h-full bg-zinc-300" />
+=======
+              <Skeleton className="w-[64px] h-[99px] bg-zinc-300" />
+>>>>>>> main
             </CarouselItem>
           ) : null}
           {bookList.map((book: Book, index: number) => (
             <CarouselItem
               key={index}
+<<<<<<< HEAD
               className="basis-1/5 p-2 flex-grow-0 flex-shrink-0 min-w-[50px] sm:min-w-[60px] md:min-w-[80px] lg:min-w-[100px] xl:min-w-[120px]"
+=======
+              className="basis-1/5 p-2 flex justify-center  hover:cursor-grab active:cursor-grabbing "
+>>>>>>> main
             >
               <div className="relative w-full aspect-[3/4] rounded-lg">
                 <img
@@ -187,7 +194,11 @@ function MachedBooksSection({
           {matchList.map((match: Match, index: number) => (
             <CarouselItem
               key={index}
+<<<<<<< HEAD
               className="basis-1/5  p-2 flex-grow-0 flex-shrink-0 min-w-[50px] sm:min-w-[60px] md:min-w-[70px] lg:min-w-[80px]"
+=======
+              className="basis-1/5  p-2 flex justify-center hover:cursor-grab active:cursor-grabbing "
+>>>>>>> main
             >
               <div onClick={() => handleClick(index)}>
                 {flippedIndexes[index] ? (

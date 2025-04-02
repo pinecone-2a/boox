@@ -14,17 +14,15 @@ export async function GET(req: NextRequest) {
       clerkId: userId,
     },
   });
-  // console.log(user?.id);
   try {
     const myBooks = await prisma.book.findMany({
       where: {
+        status: 'ACTIVE',
         ownerId: user?.id,
       },
     });
-    // console.log({ myBooks });
     return NextResponse.json(myBooks);
   } catch (e) {
-    // console.log(e);
   }
 }
 export async function POST(req: NextRequest) {
