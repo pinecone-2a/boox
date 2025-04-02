@@ -14,7 +14,7 @@ export const Hero = () => {
 
   async function getFetchData() {
     try {
-      const res = await fetch("/api/books/allBooks");
+      const res = await fetch("/apiPublic/allBooks");
       if (!res.ok) throw new Error("Failed to fetch books");
       const books = await res.json();
       setData(books);
