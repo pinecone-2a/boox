@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import {
   Dialog,
@@ -10,11 +10,10 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Plus, Image } from "lucide-react";
+import { Image, Edit } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import type { Book } from "../types/types";
-import { Edit } from "lucide-react";
 
 const Condition = ["NEW", "LIKE_NEW", "GOOD", "FAIR", "POOR"];
 const Genre = [
@@ -32,21 +31,20 @@ const Genre = [
   "CHILDREN",
 ];
 
-export const AddNewBook = () => {
+export const EditBook = ({ id }: { id: string }) => {
   const { user } = useUser();
-  const [book, setBook] = useState<Book>({
-    id: "",
-    title: "",
-    cover: "",
-    author: "",
-    genre: "",
-    description: "",
-    condition: "",
-    ownerId: "",
-    owner: undefined,
-  });
-  const [localcover, setLocalCover] = useState<File | null>(null);
+  const [book, setBook] = useState<Book | null>(null);
+  const [localCover, setLocalCover] = useState<File | null>(null);
 
+  useEffect(() => {
+    async function fetchBook() {
+      const res = await fetch(`/api/books/singlebook?id=${id}`);
+      const data = await res.json();
+      setBook(data);
+    }
+    fetchBook();
+  }, [id]);
+  console.log(book);
   const uploadImageToCloudinary = async (file: File) => {
     const formData = new FormData();
     formData.append("file", file);
@@ -54,85 +52,72 @@ export const AddNewBook = () => {
 
     const response = await fetch(
       `https://api.cloudinary.com/v1_1/duyu7drmj/image/upload`,
-      {
-        method: "POST",
-        body: formData,
-      }
+      { method: "POST", body: formData }
     );
 
     const data = await response.json();
     return data.secure_url;
   };
 
-  const handleFileUpload = async (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const imageUrl = await uploadImageToCloudinary(file);
-      setBook((prevBook) => ({ ...prevBook, image: imageUrl }));
-    }
-  };
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setBook((prevBook) => ({
-        ...prevBook,
-        cover: URL.createObjectURL(file),
-      }));
-      setLocalCover(file);
+      setLocalCover(file); // Store file for later upload
+      setBook((prevBook) =>
+        prevBook ? { ...prevBook, cover: URL.createObjectURL(file) } : null
+      );
     }
-  }
-  const addNewBook = async (formData: FormData) => {
-    const title = (formData.get("name") as string) || "";
-    const author = (formData.get("author") as string) || "";
-    const genre = (formData.get("genre") as string) || "";
-    const description = (formData.get("description") as string) || "";
-    const condition = (formData.get("condition") as string) || "";
-    const cover = localcover ? await uploadImageToCloudinary(localcover) : "";
-    const bookData: Book = {
-      id: "",
-      title,
-      author,
-      genre,
-      description,
-      condition,
-      cover,
-      ownerId: user?.id,
-      owner: undefined,
+  };
+
+  const editBook = async (formData: FormData) => {
+    if (!book) return;
+
+    let coverUrl = book.cover;
+    if (localCover) {
+      coverUrl = await uploadImageToCloudinary(localCover);
+    }
+    console.log(coverUrl);
+    console.log(uploadImageToCloudinary);
+    const updatedBook = {
+      id,
+      title: formData.get("title") as string,
+      author: formData.get("author") as string,
+      genre: formData.get("genre") as string,
+      description: formData.get("description") as string,
+      condition: formData.get("condition") as string,
+      cover: coverUrl,
     };
 
-    const data = await fetch("api/books", {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-      body: JSON.stringify(bookData),
+    await fetch("/api/books/singlebook", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedBook),
     });
-    const newItem = await data.json();
     window.location.reload();
   };
+
+  if (!book) return null;
+
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="default" className="rounded-full p-[10px] w-10 h-10">
-          <Plus />
+          <Edit />
         </Button>
       </DialogTrigger>
       <DialogContent className="flex flex-col gap-6 p-6">
         <DialogHeader className="pb-4 grid gap-4">
-          <DialogTitle>Add new Book</DialogTitle>
+          <DialogTitle>Edit Book</DialogTitle>
         </DialogHeader>
-        <form action={addNewBook}>
+        <form action={editBook}>
           <div className="flex gap-6 mb-4">
             <div className="grid w-full max-w-sm items-center gap-1.5">
-              <Label htmlFor="bookName">Book name</Label>
+              <Label htmlFor="title">Book Name</Label>
               <Input
-                id="bookName"
-                name="name"
+                id="title"
+                name="title"
+                defaultValue={book.title}
                 type="text"
-                placeholder="Book name"
               />
             </div>
             <div className="grid w-full max-w-sm items-center gap-1.5">
@@ -140,8 +125,8 @@ export const AddNewBook = () => {
               <Input
                 id="author"
                 name="author"
+                defaultValue={book.author}
                 type="text"
-                placeholder="Author names"
               />
             </div>
           </div>
@@ -153,8 +138,8 @@ export const AddNewBook = () => {
                 id="genre"
                 name="genre"
                 className="border rounded-md py-2 px-1"
+                defaultValue={book.genre}
               >
-                <option value="">Select</option>
                 {Genre.map((g) => (
                   <option key={g} value={g}>
                     {g}
@@ -168,8 +153,8 @@ export const AddNewBook = () => {
                 id="condition"
                 name="condition"
                 className="border rounded-md py-2 px-1"
+                defaultValue={book.condition}
               >
-                <option value="">Select</option>
                 {Condition.map((c) => (
                   <option key={c} value={c}>
                     {c}
@@ -180,20 +165,18 @@ export const AddNewBook = () => {
           </div>
 
           <div className="flex flex-col w-full gap-1.5 mb-4">
-            <Label htmlFor="description" className="mb-1">
-              Description
-            </Label>
+            <Label htmlFor="description">Description</Label>
             <textarea
               id="description"
               name="description"
               rows={4}
               className="border rounded-md py-2 px-4 text-sm font-normal"
-              placeholder="Description of the book"
+              defaultValue={book.description}
             ></textarea>
           </div>
 
           <div className="grid w-full items-center gap-1.5">
-            <h1 className="text-sm">Book image</h1>
+            <h1 className="text-sm">Book Image</h1>
             {book.cover ? (
               <div
                 className="bg-contain bg-no-repeat bg-center rounded-md h-[138px]"
@@ -217,14 +200,14 @@ export const AddNewBook = () => {
               id="image"
               name="image"
               type="file"
-              className="hidden"
+              className=""
               onChange={handleChange}
             />
           </div>
 
           <DialogFooter className="pt-6">
             <DialogClose asChild>
-              <Button type="submit">Add Book</Button>
+              <Button type="submit">Save Changes</Button>
             </DialogClose>
           </DialogFooter>
         </form>
