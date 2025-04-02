@@ -543,7 +543,7 @@
     "@tailwindcss/oxide-win32-arm64-msvc" "4.0.17"
     "@tailwindcss/oxide-win32-x64-msvc" "4.0.17"
 
-"@tailwindcss/postcss@^4":
+"@tailwindcss/postcss@^4.0.17":
   version "4.0.17"
 >>>>>>> main
   dependencies:
@@ -650,6 +650,30 @@
 =======
 >>>>>>> main
 
+"@types/express-serve-static-core@^5.0.0":
+  version "5.0.6"
+  resolved "https://registry.npmjs.org/@types/express-serve-static-core/-/express-serve-static-core-5.0.6.tgz"
+  integrity sha512-3xhRnjJPkULekpSzgtoNYYcTWgEZkp4myc+Saevii5JPnHNvHMRlBSHDbs7Bh1iPPoVTERHEZXyhyLbMEsExsA==
+  dependencies:
+    "@types/node" "*"
+    "@types/qs" "*"
+    "@types/range-parser" "*"
+    "@types/send" "*"
+
+"@types/express@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.npmjs.org/@types/express/-/express-5.0.1.tgz"
+  integrity sha512-UZUw8vjpWFXuDnjFTh7/5c2TWDlQqeXHi6hcN7F2XSVT5P+WmUnnbFS3KA6Jnc6IsEqI2qCVu2bK0R0J4A8ZQQ==
+  dependencies:
+    "@types/body-parser" "*"
+    "@types/express-serve-static-core" "^5.0.0"
+    "@types/serve-static" "*"
+
+"@types/http-errors@*":
+  version "2.0.4"
+  resolved "https://registry.npmjs.org/@types/http-errors/-/http-errors-2.0.4.tgz"
+  integrity sha512-D0CFMMtydbJAegzOyHjtiKPLlvnm3iTZyZRSZoLq2mRhDdmLfIWOCYPfQJ4cu2erKghU++QvjcUjp/5h7hESpA==
+
 "@types/json-schema@^7.0.15":
   version "7.0.15"
 
@@ -668,12 +692,16 @@
     form-data "^4.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 "@types/node@*", "@types/node@^20.17.28", "@types/node@>=10.0.0":
   version "20.17.28"
   resolved "https://registry.npmjs.org/@types/node/-/node-20.17.28.tgz"
   integrity sha512-DHlH/fNL6Mho38jTy7/JT7sn2wnXI+wULR6PV4gy4VHLVvnrV/d3pHAMQHhc4gjdLmK2ZiPoMxzp6B3yRajLSQ==
 =======
 "@types/node@*", "@types/node@^20", "@types/node@>=10.0.0":
+=======
+"@types/node@*", "@types/node@^20.17.28", "@types/node@>=10.0.0":
+>>>>>>> main
   version "20.17.29"
 >>>>>>> main
   dependencies:
@@ -1306,8 +1334,11 @@ cookie-signature@1.0.6:
 
 cookie@^1.0.2, cookie@1.0.2:
   version "1.0.2"
+<<<<<<< HEAD
   resolved "https://registry.npmjs.org/cookie/-/cookie-1.0.2.tgz"
   integrity sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==
+=======
+>>>>>>> main
 
 cookie@~0.7.2:
   version "0.7.2"
@@ -1316,10 +1347,13 @@ cookie@0.7.1:
   version "0.7.1"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 cookie@1.0.2:
   version "1.0.2"
 
+>>>>>>> main
+=======
 >>>>>>> main
 cors@~2.8.5:
   version "2.8.5"
@@ -2719,12 +2753,16 @@ negotiator@0.6.3:
   version "0.6.3"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 "next@^13.5.4 || ^14.0.3 || ^15.0.0", next@^15.2.1:
   version "15.2.4"
   resolved "https://registry.npmjs.org/next/-/next-15.2.4.tgz"
   integrity sha512-VwL+LAaPSxEkd3lU2xWbgEOtrM8oedmyhBqaVNmgKB+GvZlCy9rgaEc+y2on0wv+l0oSFqLtYD6dcC1eAedUaQ==
 =======
 "next@^13.5.4 || ^14.0.3 || ^15.0.0", next@15.2.1:
+=======
+"next@^13.5.4 || ^14.0.3 || ^15.0.0", next@^15.2.1:
+>>>>>>> main
   version "15.2.1"
 >>>>>>> main
   dependencies:
@@ -3591,12 +3629,16 @@ tailwindcss-animate@^1.0.7:
   version "1.0.7"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 tailwindcss@^4.0.17, "tailwindcss@>=3.0.0 || insiders", tailwindcss@4.0.17:
   version "4.0.17"
   resolved "https://registry.npmjs.org/tailwindcss/-/tailwindcss-4.0.17.tgz"
   integrity sha512-OErSiGzRa6rLiOvaipsDZvLMSpsBZ4ysB4f0VKGXUrjw2jfkJRd6kjRKV2+ZmTCNvwtvgdDam5D7w6WXsdLJZw==
 =======
 tailwindcss@^4.0.14, "tailwindcss@>=3.0.0 || insiders", tailwindcss@4.0.17:
+=======
+tailwindcss@^4.0.17, "tailwindcss@>=3.0.0 || insiders", tailwindcss@4.0.17:
+>>>>>>> main
   version "4.0.17"
 >>>>>>> main
 

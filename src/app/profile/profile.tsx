@@ -25,7 +25,7 @@ export default function Profile() {
   console.log(data);
   const deleteBook = async (id: string) => {
     await fetch(`/api/books/singlebook?id=${id}`, {
-      method: "DELETE",
+      method: "PATCH",
       headers: { "Content-Type": "application/json" },
     });
   };
@@ -60,13 +60,10 @@ export default function Profile() {
                   <p className="text-sm text-gray-500 mb-1">{book.author}</p>
                   <Badge className="">{book.condition}</Badge>
                 </div>
-                <div className="flex gap-3 items-center">
+                <div className="flex gap-3">
                   <EditBook id={book.id} />
-                  <div
-                    className="w-10 bg-black rounded-full p-2"
-                    onClick={() => deleteBook(book.id)}
-                  >
-                    <Trash className="text-white " strokeWidth={1} />
+                  <div onClick={() => deleteBook(book.id)}>
+                    <Trash />
                   </div>
                 </div>
               </div>
