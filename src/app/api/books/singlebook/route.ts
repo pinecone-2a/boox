@@ -68,24 +68,21 @@ export async function PATCH(req: NextRequest) {
       return NextResponse.json({ message: "NO_ID_PROVIDED" }, { status: 400 });
     }
     await prisma.book.update({
-        where: {
-          id
-        },
-        data: { status: "PASSIVE" },
+      where: {
+        id,
+      },
+      data: { status: "PASSIVE" },
     });
     await prisma.swipe.updateMany({
       where: {
-        bookId:id
+        bookId: id,
       },
       data: { status: "PASSIVE" },
     });
     await prisma.match.updateMany({
       where: {
-          status: "PENDING",
-          OR: [
-            { like1: { bookId: id } },
-            { like2: { bookId: id } }
-          ],
+        status: "PENDING",
+        OR: [{ like1: { bookId: id } }, { like2: { bookId: id } }],
       },
       data: { status: "REJECTED" },
     });
