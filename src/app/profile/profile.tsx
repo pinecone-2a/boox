@@ -23,6 +23,7 @@ import { Button } from "@/components/ui/button";
 export default function Profile() {
   const [data, setData] = useState<Book[]>([]);
   const user = useUser();
+  const [open, setOpen] = useState(false);
 
   async function getFetchData() {
     fetch("/api/books")
@@ -33,11 +34,16 @@ export default function Profile() {
     getFetchData();
   }, []);
   console.log(data);
+
   const deleteBook = async (id: string) => {
     await fetch(`/api/books/singlebook?id=${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
     });
+  };
+  const handleDelete = (bookId: string) => {
+    deleteBook(bookId);
+    setOpen(false);
   };
   return (
     <div className="w-full max-w-md mx-auto p-4 pb-18">
@@ -72,7 +78,7 @@ export default function Profile() {
                 </div>
                 <div className="flex gap-3">
                   <EditBook id={book.id} />
-                  <Dialog>
+                  <Dialog open={open} onOpenChange={setOpen}>
                     <DialogTrigger>
                       <div className="size-10 bg-black rounded-full flex items-center justify-center">
                         <Trash className="text-white" strokeWidth={1} />
@@ -90,15 +96,18 @@ export default function Profile() {
                         </DialogDescription>
                       </DialogHeader>
                       <div className="flex justify-end gap-4 mt-4">
-                        <Button variant="outline">Cancel</Button>
-                        <DialogClose>
-                          <Button
-                            className="bg-red-600 hover:bg-red-700 text-white"
-                            onClick={() => deleteBook(book.id)}
-                          >
-                            Yes, Delete
-                          </Button>
-                        </DialogClose>
+                        <Button
+                          onClick={() => setOpen(false)}
+                          variant="outline"
+                        >
+                          Cancel
+                        </Button>
+                        <Button
+                          className="bg-red-600 hover:bg-red-700 text-white"
+                          onClick={() => handleDelete(book.id)}
+                        >
+                          Yes, Delete
+                        </Button>
                       </div>
                     </DialogContent>
                   </Dialog>
