@@ -60,10 +60,13 @@ export default function Profile() {
                   <p className="text-sm text-gray-500 mb-1">{book.author}</p>
                   <Badge className="">{book.condition}</Badge>
                 </div>
-                <div className="flex gap-3">
+                <div className="flex gap-3 items-center">
                   <EditBook id={book.id} />
-                  <div onClick={() => deleteBook(book.id)}>
-                    <Trash />
+                  <div
+                    className="w-10 bg-black rounded-full p-2"
+                    onClick={() => deleteBook(book.id)}
+                  >
+                    <Trash className="text-white " strokeWidth={1} />
                   </div>
                 </div>
               </div>
