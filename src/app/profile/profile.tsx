@@ -25,7 +25,7 @@ export default function Profile() {
   console.log(data);
   const deleteBook = async (id: string) => {
     await fetch(`/api/books/singlebook?id=${id}`, {
-      method: "DELETE",
+      method: "PATCH",
       headers: { "Content-Type": "application/json" },
     });
   };
