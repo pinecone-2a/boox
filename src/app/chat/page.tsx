@@ -97,11 +97,10 @@ function MachedBooksSection({
       );
     };
     return (
-      <div className="h-full w-full mb-17">
-        <Carousel orientation="vertical" className="h-full pt-4 bg-secondary shadow-md w-full ">
-          <CarouselContent>
+      <div className="h-full w-full pb-19"> 
+        <div className="h-full pt-4 bg-secondary shadow-md w-full flex flex-col overflow-y-scroll">
             {loading ? (
-              <CarouselItem className="basis-1/5  p-4 flex justify-start items-center w-full">
+              <div className="basis-1/5  p-4 flex justify-start items-center w-full">
                 <div className="border-2 cursor-pointer p-3 min-w-70 w-full rounded-lg bg-background mb-5 flex">
                   <div className="relative flex">
                     <Skeleton className="w-[64px] h-[99px] bg-zinc-300" />
@@ -113,11 +112,10 @@ function MachedBooksSection({
                     </div>
                   </div>
                 </div>
-                
-              </CarouselItem>
+              </div>
             ) : null}
             {matchList.map((match: Match, index: number) => (
-              <CarouselItem
+              <div
                 key={index}
                 className="basis-1/5  p-4 flex justify-start items-center w-full"
                 onClick={()=>setSelectedMatch(match)}
@@ -160,10 +158,9 @@ function MachedBooksSection({
                     </div>
                   )}
                 </div>
-              </CarouselItem>
+              </div>
             ))}
-          </CarouselContent>
-        </Carousel>
+        </div>
       </div>
     );
   }

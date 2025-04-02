@@ -134,7 +134,7 @@ function BookSection({
           {bookList.map((book: Book, index: number) => (
             <CarouselItem
               key={index}
-              className="basis-1/5 p-2 flex justify-center  hover:cursor-grab active:cursor-grabbing "
+              className="basis-1/5 p-2 flex justify-center  hover:cursor-grab active:cursor-grabbing sm:basis-1/6 md:basis-1/7 lg:basis-1/8 xl:basis-1/9"
             >
               <img
                 src={book.cover}
@@ -185,7 +185,7 @@ function MachedBooksSection({
           {matchList.map((match: Match, index: number) => (
             <CarouselItem
               key={index}
-              className="basis-1/5  p-2 flex justify-center hover:cursor-grab active:cursor-grabbing "
+              className="basis-1/5  p-2 flex justify-center hover:cursor-grab active:cursor-grabbing xs:basis-1/4 sm:basis-1/6 md:basis-1/7 lg:basis-1/8 xl:basis-1/9"
             >
               <div onClick={() => handleClick(index)}>
                 {flippedIndexes[index] ? (
