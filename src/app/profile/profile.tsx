@@ -8,7 +8,6 @@ import { useUser } from "@clerk/nextjs";
 import { Book } from "@prisma/client";
 
 export default function Profile() {
-
   const [data, setData] = useState<Book[]>([]);
   const user = useUser();
 
