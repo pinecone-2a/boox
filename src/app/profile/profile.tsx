@@ -9,6 +9,16 @@ import { Book } from "@prisma/client";
 import { Badge } from "@/components/ui/badge";
 import { Delete, DeleteIcon, Edit, Trash } from "lucide-react";
 import { EditBook } from "./editBook";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 export default function Profile() {
   const [data, setData] = useState<Book[]>([]);
@@ -62,9 +72,36 @@ export default function Profile() {
                 </div>
                 <div className="flex gap-3">
                   <EditBook id={book.id} />
-                  <div onClick={() => deleteBook(book.id)}>
-                    <Trash />
-                  </div>
+                  <Dialog>
+                    <DialogTrigger>
+                      <div className="size-10 bg-black rounded-full flex items-center justify-center">
+                        <Trash className="text-white" strokeWidth={1} />
+                      </div>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle className="text-lg font-semibold">
+                          Are you sure?
+                        </DialogTitle>
+                        <DialogDescription className="text-gray-600">
+                          This action cannot be undone. This will permanently
+                          delete your books and remove your data from our
+                          servers.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="flex justify-end gap-4 mt-4">
+                        <Button variant="outline">Cancel</Button>
+                        <DialogClose>
+                          <Button
+                            className="bg-red-600 hover:bg-red-700 text-white"
+                            onClick={() => deleteBook(book.id)}
+                          >
+                            Yes, Delete
+                          </Button>
+                        </DialogClose>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 </div>
               </div>
             </Card>
