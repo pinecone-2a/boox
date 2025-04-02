@@ -80,7 +80,7 @@ export function Chat({ matchId, sender, receiver, senderProfile }:
                   <Button variant={'outline'}onClick={toggleDropdown} size={'icon'}><EllipsisVertical/></Button>
                   {isOpen && (
                     <ul className="absolute right-0 mt-4 w-40 bg-white shadow-lg border rounded z-100 overflow-hidden">
-                      <li className="p-2 hover:bg-gray-200 cursor-pointer text-green-500  flex gap-2" onClick={()=>{openModal('ACCEPTED')}}><CircleCheck/>ACCEPT</li>
+                      <li className="p-2 hover:bg-gray-200 cursor-pointer text-green-500  flex gap-2" onClick={()=>{openModal('ACCEPTED')}}><CircleCheck/>FINISH</li>
                       <li className="p-2 hover:bg-gray-200 cursor-pointer text-red-500  flex gap-2" onClick={()=>{openModal('REJECTED')}}><CircleX/>REJECT </li>
                     </ul>
                   )}
