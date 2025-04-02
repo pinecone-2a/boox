@@ -118,8 +118,8 @@ export function Chat({ matchId, sender, receiver, senderProfile }:
 
 
 const Modal = ({ isOpen, onClose,userId, reviewerId,matchId,status }:{isOpen:boolean,onClose:()=>void,userId:string,reviewerId:string,matchId:string,status:string}) => {
-  if (!isOpen) return null;
   const [isAlertOpen, setIsAlertOpen] = useState(true);
+  if (!isOpen) return null;
   async function changeMatchStatus({matchId,status}:{matchId:string,status:string}){
     await fetch("/api/match", {
         method: "PATCH",

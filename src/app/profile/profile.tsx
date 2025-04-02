@@ -6,6 +6,9 @@ import { AddNewBook } from "./addBook";
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import { Book } from "@prisma/client";
+import { Badge } from "@/components/ui/badge";
+import { Delete, DeleteIcon, Edit, Trash } from "lucide-react";
+import { EditBook } from "./editBook";
 
 export default function Profile() {
   const [data, setData] = useState<Book[]>([]);
@@ -19,6 +22,13 @@ export default function Profile() {
   useEffect(() => {
     getFetchData();
   }, []);
+  console.log(data);
+  const deleteBook = async (id: string) => {
+    await fetch(`/api/books/singlebook?id=${id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+  };
   return (
     <div className="w-full max-w-md mx-auto p-4 pb-18">
       <Card className="p-6 text-center">
@@ -47,8 +57,14 @@ export default function Profile() {
                 />
                 <div className="flex-1">
                   <h4 className="font-bold">{book.title}</h4>
-                  <p className="text-sm text-gray-500">{book.author}</p>
-                  <div className="relative w-full bg-gray-200 rounded-full h-2.5 mt-2"></div>
+                  <p className="text-sm text-gray-500 mb-1">{book.author}</p>
+                  <Badge className="">{book.condition}</Badge>
+                </div>
+                <div className="flex gap-3">
+                  <EditBook id={book.id} />
+                  <div onClick={() => deleteBook(book.id)}>
+                    <Trash />
+                  </div>
                 </div>
               </div>
             </Card>
