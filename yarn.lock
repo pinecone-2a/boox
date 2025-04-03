@@ -72,11 +72,6 @@
   dependencies:
     csstype "3.1.3"
 
-"@esbuild/darwin-arm64@0.25.1":
-  version "0.25.1"
-  resolved "https://registry.npmjs.org/@esbuild/darwin-arm64/-/darwin-arm64-0.25.1.tgz"
-  integrity sha512-5hEZKPf+nQjYoSr/elb62U19/l1mZDdqidGfmFutVUjjUZrOazAtwK+Kr+3y0C/oeJfLlxo9fXb1w7L+P7E4FQ==
-
 "@eslint-community/eslint-utils@^4.2.0", "@eslint-community/eslint-utils@^4.4.0":
   version "4.5.1"
   resolved "https://registry.npmjs.org/@eslint-community/eslint-utils/-/eslint-utils-4.5.1.tgz"
@@ -203,45 +198,19 @@
   resolved "https://registry.npmjs.org/@humanwhocodes/retry/-/retry-0.4.2.tgz"
   integrity sha512-xeO57FpIu4p1Ri3Jq/EXq4ClRm86dVF2z/+kvFnyqVYRavTZmaFaUBbWCOuuTh0o/g7DSsk6kc2vrS4Vl5oPOQ==
 
-<<<<<<< HEAD
-"@img/sharp-darwin-arm64@0.33.5":
-  version "0.33.5"
-  resolved "https://registry.npmjs.org/@img/sharp-darwin-arm64/-/sharp-darwin-arm64-0.33.5.tgz"
-  integrity sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==
-  optionalDependencies:
-    "@img/sharp-libvips-darwin-arm64" "1.0.4"
-
-"@img/sharp-libvips-darwin-arm64@1.0.4":
-  version "1.0.4"
-  resolved "https://registry.npmjs.org/@img/sharp-libvips-darwin-arm64/-/sharp-libvips-darwin-arm64-1.0.4.tgz"
-  integrity sha512-XblONe153h0O2zuFfTAbQYAX2JhYmDHeWikp1LM9Hul9gVPjFY427k6dFEcOL72O01QxQsWi761svJ/ev9xEDg==
-
-"@next/env@15.2.4":
-  version "15.2.4"
-  resolved "https://registry.npmjs.org/@next/env/-/env-15.2.4.tgz"
-  integrity sha512-+SFtMgoiYP3WoSswuNmxJOCwi06TdWE733D+WPjpXIe4LXGULwEaofiiAy6kbS0+XjM5xF5n3lKuBwN2SnqD9g==
-=======
 "@img/sharp-win32-x64@0.33.5":
   version "0.33.5"
 
 "@next/env@15.2.1":
   version "15.2.1"
->>>>>>> main
 
 "@next/eslint-plugin-next@15.2.1":
   version "15.2.1"
   dependencies:
     fast-glob "3.3.1"
 
-<<<<<<< HEAD
-"@next/swc-darwin-arm64@15.2.4":
-  version "15.2.4"
-  resolved "https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-15.2.4.tgz"
-  integrity sha512-1AnMfs655ipJEDC/FHkSr0r3lXBgpqKo4K1kiwfUf3iE68rDFXZ1TtHdMvf7D0hMItgDZ7Vuq3JgNMbt/+3bYw==
-=======
 "@next/swc-win32-x64-msvc@15.2.1":
   version "15.2.1"
->>>>>>> main
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -286,11 +255,6 @@
 
 "@prisma/extension-accelerate@^1.2.2":
   version "1.3.0"
-<<<<<<< HEAD
-  resolved "https://registry.npmjs.org/@prisma/extension-accelerate/-/extension-accelerate-1.3.0.tgz"
-  integrity sha512-W41D+kWejVJvMFEh45oYIU0VY+lIE3hh5vyHLHxgpyOfF+EHzSr8EIPT9kPRJg1FTYR7WGutXi64nyaNFUJ06A==
-=======
->>>>>>> main
 
 "@prisma/fetch-engine@6.5.0":
   version "6.5.0"
@@ -456,11 +420,6 @@
 
 "@rushstack/eslint-patch@^1.10.3":
   version "1.11.0"
-<<<<<<< HEAD
-  resolved "https://registry.npmjs.org/@rushstack/eslint-patch/-/eslint-patch-1.11.0.tgz"
-  integrity sha512-zxnHvoMQVqewTJr/W4pKjF0bMGiKJv1WX7bSrkl46Hg0QjESbzBROWK0Wg4RphzSOS5Jiy7eFimmM3UgMrMZbQ==
-=======
->>>>>>> main
 
 "@shadcn/ui@^0.0.4":
   version "0.0.4"
@@ -487,44 +446,11 @@
 
 "@tailwindcss/node@4.0.17":
   version "4.0.17"
-<<<<<<< HEAD
-  resolved "https://registry.npmjs.org/@tailwindcss/node/-/node-4.0.17.tgz"
-  integrity sha512-LIdNwcqyY7578VpofXyqjH6f+3fP4nrz7FBLki5HpzqjYfXdF2m/eW18ZfoKePtDGg90Bvvfpov9d2gy5XVCbg==
-=======
->>>>>>> main
   dependencies:
     enhanced-resolve "^5.18.1"
     jiti "^2.4.2"
     tailwindcss "4.0.17"
 
-<<<<<<< HEAD
-"@tailwindcss/oxide-darwin-arm64@4.0.17":
-  version "4.0.17"
-  resolved "https://registry.npmjs.org/@tailwindcss/oxide-darwin-arm64/-/oxide-darwin-arm64-4.0.17.tgz"
-  integrity sha512-e1uayxFQCCDuzTk9s8q7MC5jFN42IY7nzcr5n0Mw/AcUHwD6JaBkXnATkD924ZsHyPDvddnusIEvkgLd2CiREg==
-
-"@tailwindcss/oxide@^4.0.14", "@tailwindcss/oxide@4.0.17":
-  version "4.0.17"
-  resolved "https://registry.npmjs.org/@tailwindcss/oxide/-/oxide-4.0.17.tgz"
-  integrity sha512-B4OaUIRD2uVrULpAD1Yksx2+wNarQr2rQh65nXqaqbLY1jCd8fO+3KLh/+TH4Hzh2NTHQvgxVbPdUDOtLk7vAw==
-  optionalDependencies:
-    "@tailwindcss/oxide-android-arm64" "4.0.17"
-    "@tailwindcss/oxide-darwin-arm64" "4.0.17"
-    "@tailwindcss/oxide-darwin-x64" "4.0.17"
-    "@tailwindcss/oxide-freebsd-x64" "4.0.17"
-    "@tailwindcss/oxide-linux-arm-gnueabihf" "4.0.17"
-    "@tailwindcss/oxide-linux-arm64-gnu" "4.0.17"
-    "@tailwindcss/oxide-linux-arm64-musl" "4.0.17"
-    "@tailwindcss/oxide-linux-x64-gnu" "4.0.17"
-    "@tailwindcss/oxide-linux-x64-musl" "4.0.17"
-    "@tailwindcss/oxide-win32-arm64-msvc" "4.0.17"
-    "@tailwindcss/oxide-win32-x64-msvc" "4.0.17"
-
-"@tailwindcss/postcss@^4.0.17":
-  version "4.0.17"
-  resolved "https://registry.npmjs.org/@tailwindcss/postcss/-/postcss-4.0.17.tgz"
-  integrity sha512-qeJbRTB5FMZXmuJF+eePd235EGY6IyJZF0Bh0YM6uMcCI4L9Z7dy+lPuLAhxOJzxnajsbjPoDAKOuAqZRtf1PQ==
-=======
 "@tailwindcss/oxide-win32-x64-msvc@4.0.17":
   version "4.0.17"
 
@@ -545,7 +471,6 @@
 
 "@tailwindcss/postcss@^4.0.17":
   version "4.0.17"
->>>>>>> main
   dependencies:
     "@alloc/quick-lru" "^5.2.0"
     "@tailwindcss/node" "4.0.17"
@@ -621,8 +546,7 @@
 "@types/estree@^1.0.6":
   version "1.0.7"
 <<<<<<< HEAD
-  resolved "https://registry.npmjs.org/@types/estree/-/estree-1.0.7.tgz"
-  integrity sha512-w28IoSUCJpidD/TGviZwwMJckNESJZXFu7NBZ5YJ4mEUnNraUn9Pm8HSZm/jDF1pDWYKspWE7oVphigUPRakIQ==
+=======
 
 "@types/express-serve-static-core@^5.0.0":
   version "5.0.6"
@@ -647,7 +571,6 @@
   version "2.0.4"
   resolved "https://registry.npmjs.org/@types/http-errors/-/http-errors-2.0.4.tgz"
   integrity sha512-D0CFMMtydbJAegzOyHjtiKPLlvnm3iTZyZRSZoLq2mRhDdmLfIWOCYPfQJ4cu2erKghU++QvjcUjp/5h7hESpA==
-=======
 >>>>>>> main
 
 "@types/express-serve-static-core@^5.0.0":
@@ -692,6 +615,12 @@
     form-data "^4.0.0"
 
 <<<<<<< HEAD
+"@types/node@*", "@types/node@^20.17.28", "@types/node@>=10.0.0":
+=======
+<<<<<<< HEAD
+"@types/node@*", "@types/node@^20.17.28", "@types/node@>=10.0.0":
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 "@types/node@*", "@types/node@^20.17.28", "@types/node@>=10.0.0":
   version "20.17.28"
@@ -702,8 +631,9 @@
 =======
 "@types/node@*", "@types/node@^20.17.28", "@types/node@>=10.0.0":
 >>>>>>> main
-  version "20.17.29"
 >>>>>>> main
+>>>>>>> main
+  version "20.17.29"
   dependencies:
     undici-types "~6.19.2"
 
@@ -723,15 +653,8 @@
 "@types/react-dom@*", "@types/react-dom@^19":
   version "19.0.4"
 
-<<<<<<< HEAD
-"@types/react@*", "@types/react@^19", "@types/react@^19.0.0":
-  version "19.0.12"
-  resolved "https://registry.npmjs.org/@types/react/-/react-19.0.12.tgz"
-  integrity sha512-V6Ar115dBDrjbtXSrS+/Oruobc+qVbbUxDFC1RSbRqLt5SYvxxyIDrSC85RWml54g+jfNeEMZhEj7wW07ONQhA==
-=======
 "@types/react@*", "@types/react@^19.0.0", "@types/react@^19.0.12":
   version "19.0.12"
->>>>>>> main
   dependencies:
     csstype "^3.0.2"
 
@@ -765,17 +688,6 @@
     socket.io "*"
 
 "@typescript-eslint/eslint-plugin@^5.4.2 || ^6.0.0 || ^7.0.0 || ^8.0.0":
-<<<<<<< HEAD
-  version "8.28.0"
-  resolved "https://registry.npmjs.org/@typescript-eslint/eslint-plugin/-/eslint-plugin-8.28.0.tgz"
-  integrity sha512-lvFK3TCGAHsItNdWZ/1FkvpzCxTHUVuFrdnOGLMa0GGCFIbCgQWVk3CzCGdA7kM3qGVc+dfW9tr0Z/sHnGDFyg==
-  dependencies:
-    "@eslint-community/regexpp" "^4.10.0"
-    "@typescript-eslint/scope-manager" "8.28.0"
-    "@typescript-eslint/type-utils" "8.28.0"
-    "@typescript-eslint/utils" "8.28.0"
-    "@typescript-eslint/visitor-keys" "8.28.0"
-=======
   version "8.29.0"
   dependencies:
     "@eslint-community/regexpp" "^4.10.0"
@@ -783,55 +695,12 @@
     "@typescript-eslint/type-utils" "8.29.0"
     "@typescript-eslint/utils" "8.29.0"
     "@typescript-eslint/visitor-keys" "8.29.0"
->>>>>>> main
     graphemer "^1.4.0"
     ignore "^5.3.1"
     natural-compare "^1.4.0"
     ts-api-utils "^2.0.1"
 
 "@typescript-eslint/parser@^5.4.2 || ^6.0.0 || ^7.0.0 || ^8.0.0", "@typescript-eslint/parser@^8.0.0 || ^8.0.0-alpha.0":
-<<<<<<< HEAD
-  version "8.28.0"
-  resolved "https://registry.npmjs.org/@typescript-eslint/parser/-/parser-8.28.0.tgz"
-  integrity sha512-LPcw1yHD3ToaDEoljFEfQ9j2xShY367h7FZ1sq5NJT9I3yj4LHer1Xd1yRSOdYy9BpsrxU7R+eoDokChYM53lQ==
-  dependencies:
-    "@typescript-eslint/scope-manager" "8.28.0"
-    "@typescript-eslint/types" "8.28.0"
-    "@typescript-eslint/typescript-estree" "8.28.0"
-    "@typescript-eslint/visitor-keys" "8.28.0"
-    debug "^4.3.4"
-
-"@typescript-eslint/scope-manager@8.28.0":
-  version "8.28.0"
-  resolved "https://registry.npmjs.org/@typescript-eslint/scope-manager/-/scope-manager-8.28.0.tgz"
-  integrity sha512-u2oITX3BJwzWCapoZ/pXw6BCOl8rJP4Ij/3wPoGvY8XwvXflOzd1kLrDUUUAIEdJSFh+ASwdTHqtan9xSg8buw==
-  dependencies:
-    "@typescript-eslint/types" "8.28.0"
-    "@typescript-eslint/visitor-keys" "8.28.0"
-
-"@typescript-eslint/type-utils@8.28.0":
-  version "8.28.0"
-  resolved "https://registry.npmjs.org/@typescript-eslint/type-utils/-/type-utils-8.28.0.tgz"
-  integrity sha512-oRoXu2v0Rsy/VoOGhtWrOKDiIehvI+YNrDk5Oqj40Mwm0Yt01FC/Q7nFqg088d3yAsR1ZcZFVfPCTTFCe/KPwg==
-  dependencies:
-    "@typescript-eslint/typescript-estree" "8.28.0"
-    "@typescript-eslint/utils" "8.28.0"
-    debug "^4.3.4"
-    ts-api-utils "^2.0.1"
-
-"@typescript-eslint/types@8.28.0":
-  version "8.28.0"
-  resolved "https://registry.npmjs.org/@typescript-eslint/types/-/types-8.28.0.tgz"
-  integrity sha512-bn4WS1bkKEjx7HqiwG2JNB3YJdC1q6Ue7GyGlwPHyt0TnVq6TtD/hiOdTZt71sq0s7UzqBFXD8t8o2e63tXgwA==
-
-"@typescript-eslint/typescript-estree@8.28.0":
-  version "8.28.0"
-  resolved "https://registry.npmjs.org/@typescript-eslint/typescript-estree/-/typescript-estree-8.28.0.tgz"
-  integrity sha512-H74nHEeBGeklctAVUvmDkxB1mk+PAZ9FiOMPFncdqeRBXxk1lWSYraHw8V12b7aa6Sg9HOBNbGdSHobBPuQSuA==
-  dependencies:
-    "@typescript-eslint/types" "8.28.0"
-    "@typescript-eslint/visitor-keys" "8.28.0"
-=======
   version "8.29.0"
   dependencies:
     "@typescript-eslint/scope-manager" "8.29.0"
@@ -862,7 +731,6 @@
   dependencies:
     "@typescript-eslint/types" "8.29.0"
     "@typescript-eslint/visitor-keys" "8.29.0"
->>>>>>> main
     debug "^4.3.4"
     fast-glob "^3.3.2"
     is-glob "^4.0.3"
@@ -870,30 +738,6 @@
     semver "^7.6.0"
     ts-api-utils "^2.0.1"
 
-<<<<<<< HEAD
-"@typescript-eslint/utils@8.28.0":
-  version "8.28.0"
-  resolved "https://registry.npmjs.org/@typescript-eslint/utils/-/utils-8.28.0.tgz"
-  integrity sha512-OELa9hbTYciYITqgurT1u/SzpQVtDLmQMFzy/N8pQE+tefOyCWT79jHsav294aTqV1q1u+VzqDGbuujvRYaeSQ==
-  dependencies:
-    "@eslint-community/eslint-utils" "^4.4.0"
-    "@typescript-eslint/scope-manager" "8.28.0"
-    "@typescript-eslint/types" "8.28.0"
-    "@typescript-eslint/typescript-estree" "8.28.0"
-
-"@typescript-eslint/visitor-keys@8.28.0":
-  version "8.28.0"
-  resolved "https://registry.npmjs.org/@typescript-eslint/visitor-keys/-/visitor-keys-8.28.0.tgz"
-  integrity sha512-hbn8SZ8w4u2pRwgQ1GlUrPKE+t2XvcCW5tTRF7j6SMYIuYG37XuzIW44JCZPa36evi0Oy2SnM664BlIaAuQcvg==
-  dependencies:
-    "@typescript-eslint/types" "8.28.0"
-    eslint-visitor-keys "^4.2.0"
-
-"@unrs/resolver-binding-darwin-arm64@1.3.2":
-  version "1.3.2"
-  resolved "https://registry.npmjs.org/@unrs/resolver-binding-darwin-arm64/-/resolver-binding-darwin-arm64-1.3.2.tgz"
-  integrity sha512-ddnlXgRi0Fog5+7U5Q1qY62wl95Q1lB4tXQX1UIA9YHmRCHN2twaQW0/4tDVGCvTVEU3xEayU7VemEr7GcBYUw==
-=======
 "@typescript-eslint/utils@8.29.0":
   version "8.29.0"
   dependencies:
@@ -910,7 +754,6 @@
 
 "@unrs/resolver-binding-win32-x64-msvc@1.3.3":
   version "1.3.3"
->>>>>>> main
 
 abort-controller@^3.0.0:
   version "3.0.0"
@@ -941,11 +784,6 @@ acorn-walk@^7.0.0:
 
 acorn@^8.14.0:
   version "8.14.1"
-
-acorn@^8.14.0:
-  version "8.14.1"
-  resolved "https://registry.npmjs.org/acorn/-/acorn-8.14.1.tgz"
-  integrity sha512-OvQ/2pUDKmgfCg++xsTX1wGxfTaszcHVcTctW4UJB4hibJx2HXxxO5UmVgyjMa+ZDsiaf5wWLXYpRWMmBI0QHg==
 
 ajv@^6.12.4:
   version "6.12.6"
@@ -1019,11 +857,6 @@ array.prototype.findlast@^1.2.5:
 
 array.prototype.findlastindex@^1.2.5:
   version "1.2.6"
-<<<<<<< HEAD
-  resolved "https://registry.npmjs.org/array.prototype.findlastindex/-/array.prototype.findlastindex-1.2.6.tgz"
-  integrity sha512-F/TKATkzseUExPlfvmwQKGITM3DGTK+vkAsCZoDc5daVygbJBnjEUCbgkAvVFsgfXfX4YIqZ/27G3k3tdXrTxQ==
-=======
->>>>>>> main
   dependencies:
     call-bind "^1.0.8"
     call-bound "^1.0.4"
@@ -1211,11 +1044,6 @@ camelcase-css@^2.0.1:
 
 caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001579, caniuse-lite@^1.0.30001688, caniuse-lite@^1.0.30001702:
   version "1.0.30001707"
-<<<<<<< HEAD
-  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001707.tgz"
-  integrity sha512-3qtRjw/HQSMlDWf+X79N206fepf4SOOU6SQLMaq/0KkZLmSjPxAkBOQQ+FxbHKfHmYLZFfdWsO3KA90ceHPSnw==
-=======
->>>>>>> main
 
 chalk@^2.4.1:
   version "2.4.2"
@@ -1232,11 +1060,6 @@ chalk@^4.0.0:
 
 chalk@^4.1.2:
   version "4.1.2"
-<<<<<<< HEAD
-  resolved "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz"
-  integrity sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==
-=======
->>>>>>> main
   dependencies:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
@@ -1335,9 +1158,15 @@ cookie-signature@1.0.6:
 cookie@^1.0.2, cookie@1.0.2:
   version "1.0.2"
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
   resolved "https://registry.npmjs.org/cookie/-/cookie-1.0.2.tgz"
   integrity sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==
 =======
+>>>>>>> main
+>>>>>>> main
 >>>>>>> main
 
 cookie@~0.7.2:
@@ -1347,6 +1176,10 @@ cookie@0.7.1:
   version "0.7.1"
 
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 cookie@1.0.2:
@@ -1354,6 +1187,8 @@ cookie@1.0.2:
 
 >>>>>>> main
 =======
+>>>>>>> main
+>>>>>>> main
 >>>>>>> main
 cors@~2.8.5:
   version "2.8.5"
@@ -1524,13 +1359,7 @@ ee-first@1.1.1:
   version "1.1.1"
 
 electron-to-chromium@^1.5.73:
-<<<<<<< HEAD
-  version "1.5.128"
-  resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.5.128.tgz"
-  integrity sha512-bo1A4HH/NS522Ws0QNFIzyPcyUUNV/yyy70Ho1xqfGYzPUme2F/xr4tlEOuM6/A538U1vDA7a4XfCd1CKRegKQ==
-=======
   version "1.5.129"
->>>>>>> main
 
 embla-carousel-react@^8.5.2:
   version "8.5.2"
@@ -1764,11 +1593,6 @@ eslint-import-resolver-node@^0.3.6, eslint-import-resolver-node@^0.3.9:
 
 eslint-import-resolver-typescript@^3.5.2:
   version "3.10.0"
-<<<<<<< HEAD
-  resolved "https://registry.npmjs.org/eslint-import-resolver-typescript/-/eslint-import-resolver-typescript-3.10.0.tgz"
-  integrity sha512-aV3/dVsT0/H9BtpNwbaqvl+0xGMRGzncLyhm793NFGvbwGGvzyAykqWZ8oZlZuGwuHkwJjhWJkG1cM3ynvd2pQ==
-=======
->>>>>>> main
   dependencies:
     "@nolyfill/is-core-module" "1.0.39"
     debug "^4.4.0"
@@ -1864,11 +1688,6 @@ eslint-visitor-keys@^4.2.0:
 
 eslint@*, "eslint@^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8 || ^9", "eslint@^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9", "eslint@^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7", "eslint@^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0", "eslint@^6.0.0 || ^7.0.0 || >=8.0.0", "eslint@^7.23.0 || ^8.0.0 || ^9.0.0", "eslint@^8.57.0 || ^9.0.0", eslint@^9:
   version "9.23.0"
-<<<<<<< HEAD
-  resolved "https://registry.npmjs.org/eslint/-/eslint-9.23.0.tgz"
-  integrity sha512-jV7AbNoFPAY1EkFYpLq5bslU9NLNO8xnEeQXwErNibVryjk67wHVmddTBilc5srIttJDBrB0eMHKZBFbSIABCw==
-=======
->>>>>>> main
   dependencies:
     "@eslint-community/eslint-utils" "^4.2.0"
     "@eslint-community/regexpp" "^4.12.1"
@@ -1986,9 +1805,6 @@ express@^4.21.2:
 fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
   version "3.1.3"
 
-<<<<<<< HEAD
-fast-glob@^3.2.7, fast-glob@^3.3.2:
-=======
 fast-glob@^3.2.7, fast-glob@3.3.1:
   version "3.3.1"
   dependencies:
@@ -1999,7 +1815,6 @@ fast-glob@^3.2.7, fast-glob@3.3.1:
     micromatch "^4.0.4"
 
 fast-glob@^3.3.2:
->>>>>>> main
   version "3.3.3"
   dependencies:
     "@nodelib/fs.stat" "^2.0.2"
@@ -2007,17 +1822,6 @@ fast-glob@^3.3.2:
     glob-parent "^5.1.2"
     merge2 "^1.3.0"
     micromatch "^4.0.8"
-
-fast-glob@3.3.1:
-  version "3.3.1"
-  resolved "https://registry.npmjs.org/fast-glob/-/fast-glob-3.3.1.tgz"
-  integrity sha512-kNFPyjhh5cKjrUltxs+wFx+ZkbRaxxmZ+X0ZU31SOsxCEtP9VPgtq2teZw1DebupL5GmDaNQ6yKMMVcM41iqDg==
-  dependencies:
-    "@nodelib/fs.stat" "^2.0.2"
-    "@nodelib/fs.walk" "^1.2.3"
-    glob-parent "^5.1.2"
-    merge2 "^1.3.0"
-    micromatch "^4.0.4"
 
 fast-json-stable-stringify@^2.0.0:
   version "2.1.0"
@@ -2101,11 +1905,6 @@ fraction.js@^4.3.7:
 
 framer-motion@^12.5.0:
   version "12.6.2"
-<<<<<<< HEAD
-  resolved "https://registry.npmjs.org/framer-motion/-/framer-motion-12.6.2.tgz"
-  integrity sha512-7LgPRlPs5aG8UxeZiMCMZz8firC53+2+9TnWV22tuSi38D3IFRxHRUqOREKckAkt6ztX+Dn6weLcatQilJTMcg==
-=======
->>>>>>> main
   dependencies:
     motion-dom "^12.6.1"
     motion-utils "^12.5.0"
@@ -2197,11 +1996,6 @@ glob-parent@^6.0.1, glob-parent@^6.0.2:
 
 glob-parent@~5.1.2:
   version "5.1.2"
-<<<<<<< HEAD
-  resolved "https://registry.npmjs.org/glob-parent/-/glob-parent-5.1.2.tgz"
-  integrity sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==
-=======
->>>>>>> main
   dependencies:
     is-glob "^4.0.1"
 
@@ -2377,11 +2171,6 @@ is-boolean-object@^1.2.1:
 
 is-bun-module@^2.0.0:
   version "2.0.0"
-<<<<<<< HEAD
-  resolved "https://registry.npmjs.org/is-bun-module/-/is-bun-module-2.0.0.tgz"
-  integrity sha512-gNCGbnnnnFAUGKeZ9PdbyeGYJqewpmc2aKHUEMO5nQPWU9lOmv7jcmQIv+qHD8fXW6W7qfuCwX4rY9LNRjXrkQ==
-=======
->>>>>>> main
   dependencies:
     semver "^7.7.1"
 
@@ -2590,22 +2379,11 @@ levn@^0.4.1:
     prelude-ls "^1.2.1"
     type-check "~0.4.0"
 
-<<<<<<< HEAD
-lightningcss-darwin-arm64@1.29.2:
-=======
 lightningcss-win32-x64-msvc@1.29.2:
   version "1.29.2"
 
 lightningcss@1.29.2:
->>>>>>> main
   version "1.29.2"
-  resolved "https://registry.npmjs.org/lightningcss-darwin-arm64/-/lightningcss-darwin-arm64-1.29.2.tgz"
-  integrity sha512-cK/eMabSViKn/PG8U/a7aCorpeKLMlK0bQeNHmdb7qUnBkNPnL+oV5DjJUo0kqWsJUapZsM4jCfYItbqBDvlcA==
-
-lightningcss@1.29.2:
-  version "1.29.2"
-  resolved "https://registry.npmjs.org/lightningcss/-/lightningcss-1.29.2.tgz"
-  integrity sha512-6b6gd/RUXKaw5keVdSEtqFVdzWnU5jMxTUjA2bVcMNPLwSQ08Sv/UodBVtETLCn7k4S1Ibxwh7k68IwLZPgKaA==
   dependencies:
     detect-libc "^2.0.3"
   optionalDependencies:
@@ -2721,11 +2499,6 @@ modern-normalize@^1.1.0:
 
 motion-dom@^12.6.1:
   version "12.6.1"
-<<<<<<< HEAD
-  resolved "https://registry.npmjs.org/motion-dom/-/motion-dom-12.6.1.tgz"
-  integrity sha512-8XVsriTUEVOepoIDgE/LDGdg7qaKXWdt+wQA/8z0p8YzJDLYL8gbimZ3YkCLlj7bB2i/4UBD/g+VO7y9ZY0zHQ==
-=======
->>>>>>> main
   dependencies:
     motion-utils "^12.5.0"
 
@@ -2740,11 +2513,6 @@ ms@2.0.0:
 
 nanoid@^3.3.6, nanoid@^3.3.8:
   version "3.3.11"
-<<<<<<< HEAD
-  resolved "https://registry.npmjs.org/nanoid/-/nanoid-3.3.11.tgz"
-  integrity sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==
-=======
->>>>>>> main
 
 natural-compare@^1.4.0:
   version "1.4.0"
@@ -2752,6 +2520,12 @@ natural-compare@^1.4.0:
 negotiator@0.6.3:
   version "0.6.3"
 
+<<<<<<< HEAD
+"next@^13.5.4 || ^14.0.3 || ^15.0.0", next@^15.2.1:
+=======
+<<<<<<< HEAD
+"next@^13.5.4 || ^14.0.3 || ^15.0.0", next@^15.2.1:
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
 "next@^13.5.4 || ^14.0.3 || ^15.0.0", next@^15.2.1:
@@ -2763,10 +2537,11 @@ negotiator@0.6.3:
 =======
 "next@^13.5.4 || ^14.0.3 || ^15.0.0", next@^15.2.1:
 >>>>>>> main
-  version "15.2.1"
 >>>>>>> main
+>>>>>>> main
+  version "15.2.1"
   dependencies:
-    "@next/env" "15.2.4"
+    "@next/env" "15.2.1"
     "@swc/counter" "0.1.3"
     "@swc/helpers" "0.5.15"
     busboy "1.6.0"
@@ -2774,14 +2549,14 @@ negotiator@0.6.3:
     postcss "8.4.31"
     styled-jsx "5.1.6"
   optionalDependencies:
-    "@next/swc-darwin-arm64" "15.2.4"
-    "@next/swc-darwin-x64" "15.2.4"
-    "@next/swc-linux-arm64-gnu" "15.2.4"
-    "@next/swc-linux-arm64-musl" "15.2.4"
-    "@next/swc-linux-x64-gnu" "15.2.4"
-    "@next/swc-linux-x64-musl" "15.2.4"
-    "@next/swc-win32-arm64-msvc" "15.2.4"
-    "@next/swc-win32-x64-msvc" "15.2.4"
+    "@next/swc-darwin-arm64" "15.2.1"
+    "@next/swc-darwin-x64" "15.2.1"
+    "@next/swc-linux-arm64-gnu" "15.2.1"
+    "@next/swc-linux-arm64-musl" "15.2.1"
+    "@next/swc-linux-x64-gnu" "15.2.1"
+    "@next/swc-linux-x64-musl" "15.2.1"
+    "@next/swc-win32-arm64-msvc" "15.2.1"
+    "@next/swc-win32-x64-msvc" "15.2.1"
     sharp "^0.33.5"
 
 no-case@^3.0.4:
@@ -2851,11 +2626,6 @@ object.assign@^4.1.4, object.assign@^4.1.7:
 
 object.entries@^1.1.8:
   version "1.1.9"
-<<<<<<< HEAD
-  resolved "https://registry.npmjs.org/object.entries/-/object.entries-1.1.9.tgz"
-  integrity sha512-8u/hfXFRBD1O0hPUjioLhoWFHRmt6tKA4/vZPyckBr18l1KE9uHrFaFaUi8MDRTpi4uak2goyPTSNJLXX2k2Hw==
-=======
->>>>>>> main
   dependencies:
     call-bind "^1.0.8"
     call-bound "^1.0.4"
@@ -3056,11 +2826,6 @@ postcss@^7.0.18:
 
 postcss@^8.1.0, postcss@^8.3.5, postcss@^8.4.41, postcss@^8.5.3, postcss@>=8.0.9:
   version "8.5.3"
-<<<<<<< HEAD
-  resolved "https://registry.npmjs.org/postcss/-/postcss-8.5.3.tgz"
-  integrity sha512-dle9A3yYxlBSrt8Fu+IpjGT8SY8hN0mlaA6GY8t0P5PjIOZemULz/E2Bnm/2dcUOena75OTNkHI76uZBNUUq3A==
-=======
->>>>>>> main
   dependencies:
     nanoid "^3.3.8"
     picocolors "^1.1.1"
@@ -3495,11 +3260,6 @@ source-map@^0.6.1:
 
 stable-hash@^0.0.5:
   version "0.0.5"
-<<<<<<< HEAD
-  resolved "https://registry.npmjs.org/stable-hash/-/stable-hash-0.0.5.tgz"
-  integrity sha512-+L3ccpzibovGXFK+Ap/f8LOS0ahMrHTf3xu7mMLSpEGU0EO9ucaysSylKo9eRDFNhWve/y275iPmIZ4z39a9iA==
-=======
->>>>>>> main
 
 statuses@2.0.1:
   version "2.0.1"
@@ -3610,11 +3370,6 @@ supports-preserve-symlinks-flag@^1.0.0:
 
 swiper@^11.2.5:
   version "11.2.6"
-<<<<<<< HEAD
-  resolved "https://registry.npmjs.org/swiper/-/swiper-11.2.6.tgz"
-  integrity sha512-8aXpYKtjy3DjcbzZfz+/OX/GhcU5h+looA6PbAzHMZT6ESSycSp9nAjPCenczgJyslV+rUGse64LMGpWE3PX9Q==
-=======
->>>>>>> main
 
 swr@^2.2.0:
   version "2.3.3"
@@ -3629,6 +3384,14 @@ tailwindcss-animate@^1.0.7:
   version "1.0.7"
 
 <<<<<<< HEAD
+tailwindcss@^4.0.17, "tailwindcss@>=3.0.0 || insiders", tailwindcss@4.0.17:
+  version "4.0.17"
+=======
+<<<<<<< HEAD
+tailwindcss@^4.0.17, "tailwindcss@>=3.0.0 || insiders", tailwindcss@4.0.17:
+  version "4.0.17"
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 tailwindcss@^4.0.17, "tailwindcss@>=3.0.0 || insiders", tailwindcss@4.0.17:
   version "4.0.17"
@@ -3640,6 +3403,8 @@ tailwindcss@^4.0.14, "tailwindcss@>=3.0.0 || insiders", tailwindcss@4.0.17:
 tailwindcss@^4.0.17, "tailwindcss@>=3.0.0 || insiders", tailwindcss@4.0.17:
 >>>>>>> main
   version "4.0.17"
+>>>>>>> main
+>>>>>>> main
 >>>>>>> main
 
 tapable@^2.2.0:
@@ -3667,11 +3432,6 @@ tr46@~0.0.3:
 
 ts-api-utils@^2.0.1:
   version "2.1.0"
-<<<<<<< HEAD
-  resolved "https://registry.npmjs.org/ts-api-utils/-/ts-api-utils-2.1.0.tgz"
-  integrity sha512-CUgTZL1irw8u29bzrOD/nH85jqyc74D6SshFgujOIA7osm2Rz7dYH77agkx7H4FBNxDq7Cjf+IjaX/8zwFW+ZQ==
-=======
->>>>>>> main
 
 tsconfig-paths@^3.15.0:
   version "3.15.0"
@@ -3708,11 +3468,6 @@ type-check@^0.4.0, type-check@~0.4.0:
 
 type-fest@^4.15.0:
   version "4.38.0"
-<<<<<<< HEAD
-  resolved "https://registry.npmjs.org/type-fest/-/type-fest-4.38.0.tgz"
-  integrity sha512-2dBz5D5ycHIoliLYLi0Q2V7KRaDlH0uWIvmk7TYlAg5slqwiPv1ezJdZm1QEM0xgk29oYWMCbIG7E6gHpvChlg==
-=======
->>>>>>> main
 
 type-is@~1.6.18:
   version "1.6.18"
@@ -3795,27 +3550,6 @@ unrs-resolver@^1.3.2:
     "@unrs/resolver-binding-win32-arm64-msvc" "1.3.3"
     "@unrs/resolver-binding-win32-ia32-msvc" "1.3.3"
     "@unrs/resolver-binding-win32-x64-msvc" "1.3.3"
-
-unrs-resolver@^1.3.2:
-  version "1.3.2"
-  resolved "https://registry.npmjs.org/unrs-resolver/-/unrs-resolver-1.3.2.tgz"
-  integrity sha512-ZKQBC351Ubw0PY8xWhneIfb6dygTQeUHtCcNGd0QB618zabD/WbFMYdRyJ7xeVT+6G82K5v/oyZO0QSHFtbIuw==
-  optionalDependencies:
-    "@unrs/resolver-binding-darwin-arm64" "1.3.2"
-    "@unrs/resolver-binding-darwin-x64" "1.3.2"
-    "@unrs/resolver-binding-freebsd-x64" "1.3.2"
-    "@unrs/resolver-binding-linux-arm-gnueabihf" "1.3.2"
-    "@unrs/resolver-binding-linux-arm-musleabihf" "1.3.2"
-    "@unrs/resolver-binding-linux-arm64-gnu" "1.3.2"
-    "@unrs/resolver-binding-linux-arm64-musl" "1.3.2"
-    "@unrs/resolver-binding-linux-ppc64-gnu" "1.3.2"
-    "@unrs/resolver-binding-linux-s390x-gnu" "1.3.2"
-    "@unrs/resolver-binding-linux-x64-gnu" "1.3.2"
-    "@unrs/resolver-binding-linux-x64-musl" "1.3.2"
-    "@unrs/resolver-binding-wasm32-wasi" "1.3.2"
-    "@unrs/resolver-binding-win32-arm64-msvc" "1.3.2"
-    "@unrs/resolver-binding-win32-ia32-msvc" "1.3.2"
-    "@unrs/resolver-binding-win32-x64-msvc" "1.3.2"
 
 update-browserslist-db@^1.1.1:
   version "1.1.3"
