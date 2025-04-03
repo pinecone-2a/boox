@@ -30,34 +30,34 @@ export const Hero = () => {
   useGSAP(() => {
     gsap.from(".hero-title", {
       opacity: 0,
-      y: 30, // Reduced from 50 for mobile
-      duration: 0.8, // Slightly faster
+      y: 30,
+      duration: 0.8,
       ease: "power3.out",
     });
     gsap.from(".hero-text", {
       opacity: 0,
       y: 20, // Reduced from 30
       duration: 0.8,
-      delay: 0.2, // Slightly faster
+      delay: 0.2,
       ease: "power3.out",
     });
     gsap.from(".hero-img", {
       opacity: 0,
       scale: 0.95,
       duration: 0.8,
-      delay: 0.4, // Slightly faster
+      delay: 0.4,
       ease: "back.out(1.7)",
     });
 
     gsap.utils.toArray<HTMLElement>(".book-section").forEach((section, i) => {
       gsap.from(section, {
         opacity: 0,
-        y: 30, // Reduced from 50
-        duration: 0.6, // Faster for mobile
-        delay: i * 0.05, // Tighter spacing
+        y: 30,
+        duration: 0.6,
+        delay: i * 0.05,
         scrollTrigger: {
           trigger: section,
-          start: "top 90%", // Trigger earlier on mobile
+          start: "top 90%",
           toggleActions: "play none none reverse",
         },
       });
@@ -134,7 +134,6 @@ export const Hero = () => {
           View All
         </motion.a>
       </div>
-
       <div className="bg-gray-900 text-white py-8 sm:py-12 mt-8 sm:mt-12">
         <div className="max-w-3xl mx-auto text-center px-4">
           <p className="text-base sm:text-lg font-medium italic">
