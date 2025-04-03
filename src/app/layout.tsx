@@ -65,7 +65,6 @@ export default function RootLayout({
                 <UserButton />
               </SignedIn>
             </div>
-            
           </header>
           {children}
         </body>

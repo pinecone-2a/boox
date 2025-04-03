@@ -3,11 +3,6 @@ import { Dispatch, useEffect, useState } from "react";
 import { Match as PrismaMatch, Book, User } from "@prisma/client";
 import { useUser } from "@clerk/nextjs";
 import { Bar } from "../profile/bar";
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-  } from "@/components/ui/carousel";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Chat } from "./chat";
 import {
@@ -97,7 +92,7 @@ function MachedBooksSection({
       );
     };
     return (
-      <div className="h-full w-full pb-19"> 
+      <div className="h-full w-full pb-12"> 
         <div className="h-full pt-4 bg-secondary shadow-md w-full flex flex-col overflow-y-scroll">
             {loading ? (
               <div className="basis-1/5  p-4 flex justify-start items-center w-full">
