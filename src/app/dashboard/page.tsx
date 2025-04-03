@@ -14,11 +14,11 @@ import { SignedIn } from "@clerk/nextjs";
 import SignupHandler from "../_components/signup";
 import { Bar } from "../profile/bar";
 
-type MatchWithDetails = Match & {
+export type MatchWithDetails = Match & {
   like1: Swipe & { book: Book; user: User };
   like2: Swipe & { book: Book; user: User };
 };
-type Match = {
+export type Match = {
   book1: Book;
   book2: Book;
 };
@@ -35,7 +35,7 @@ export default function BookLists() {
         const response = await fetch(`/api/suggestion-books`);
         const data = await response.json();
         setBooks(data);
-      } catch (err) {}
+      } catch (err) { }
     }
     fetchBooks();
   }, []);
@@ -55,8 +55,7 @@ export default function BookLists() {
       setMatches([...matches, ...extractedBooks]);
     } catch (err) {
     } finally {
-      setLoadingLike(false);
-      setLoadingLike(false);
+      setLoadingMatch(false);
     }
   }
 
@@ -67,7 +66,7 @@ export default function BookLists() {
       setLikedBooks(data);
     } catch (err) {
     } finally {
-      setLoadingMatch(false);
+      setLoadingLike(false);
     }
   }
   useEffect(() => {
@@ -132,15 +131,10 @@ function BookSection({
               <Skeleton className="w-[64px] h-[99px] bg-zinc-300" />
             </CarouselItem>
           ) : null}
-          {loading ? (
-            <CarouselItem className="basis-1/5 p-2 flex justify-center">
-              <Skeleton className="w-[64px] h-[99px] bg-zinc-300" />
-            </CarouselItem>
-          ) : null}
           {bookList.map((book: Book, index: number) => (
             <CarouselItem
               key={index}
-              className="basis-1/5 p-2 flex justify-center"
+              className="basis-1/5 p-2 flex justify-center  hover:cursor-grab active:cursor-grabbing sm:basis-1/6 md:basis-1/7 lg:basis-1/8 xl:basis-1/9"
             >
               <img
                 src={book.cover}
@@ -191,7 +185,7 @@ function MachedBooksSection({
           {matchList.map((match: Match, index: number) => (
             <CarouselItem
               key={index}
-              className="basis-1/5  p-2 flex justify-center"
+              className="basis-1/5  p-2 flex justify-center hover:cursor-grab active:cursor-grabbing xs:basis-1/4 sm:basis-1/6 md:basis-1/7 lg:basis-1/8 xl:basis-1/9"
             >
               <div onClick={() => handleClick(index)}>
                 {flippedIndexes[index] ? (
@@ -221,11 +215,16 @@ function MachedBooksSection({
                     />
                   </div>
                 )}
+
+
               </div>
             </CarouselItem>
           ))}
+
         </CarouselContent>
+
       </Carousel>
     </div>
   );
 }
+

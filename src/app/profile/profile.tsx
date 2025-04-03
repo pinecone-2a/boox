@@ -60,12 +60,12 @@ export default function Profile() {
                   <h4 className="font-bold">{book.title}</h4>
                   <p className="text-sm text-gray-500">{book.author}</p>
                   <div className="relative w-full bg-gray-200 rounded-full h-2.5 mt-2"></div>
-                </div>
+                </div><Editbutton />
               </div>
 
             </Card>
           ))}
-          <Editbutton />
+
           <div className="bg-card text-card-foreground flex-col gap-6 rounded-xl border shadow-sm flex items-center p-4 space-x-4">
             <AddNewBook />
           </div>
