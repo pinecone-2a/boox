@@ -11,8 +11,8 @@ export function Bar() {
   const navItems = [
     { id: "/dashboard", label: "Swipe", icon: BookOpenCheck },
     { id: "/likedBooks", label: "Liked", icon: Heart},
-    { id: "/profile", label: "User", icon: User},
     { id: "/chat", label: "Chat", icon: MessageCircleHeart },
+    { id: "/profile", label: "User", icon: User},
   ];
 
   return (
