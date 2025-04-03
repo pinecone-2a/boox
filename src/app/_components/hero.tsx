@@ -43,7 +43,7 @@ export const Hero = () => {
     });
     gsap.from(".hero-img", {
       opacity: 0,
-      scale: 0.9,
+      scale: 0.95,
       duration: 1,
       delay: 0.6,
       ease: "back.out(1.7)",
@@ -82,7 +82,7 @@ export const Hero = () => {
         </motion.a>
         <div className="hero-img flex justify-center mt-8">
           <img
-            className="w-80 h-56 rounded-lg shadow-lg"
+            className="w-96 h-64 rounded-lg shadow-lg object-cover"
             src="book.jpeg"
             alt="Stack of books"
           />
@@ -97,27 +97,34 @@ export const Hero = () => {
           Available for Exchange
         </h2>
       </div>
-      <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6 px-6 md:px-12">
-        {data.map((book, index) => (
-          <motion.div
-            key={index}
-            whileHover={{ scale: 1.05 }}
-            className="relative bg-white rounded-lg shadow-md p-4 book-section transition"
-          >
-            <img
-              className="w-full h-48 object-cover rounded-lg"
-              src={book.cover}
-              alt={book.title}
-            />
-            <div className="absolute top-2 left-2">
-              <Badge>{book.condition}</Badge>
-            </div>
-            <div className="mt-3 text-center">
-              <p className="text-gray-800 font-semibold">{book.title}</p>
-            </div>
-          </motion.div>
-        ))}
+
+      <div className="flex justify-center">
+        <div className="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 px-6 md:px-12 max-w-7xl">
+          {data.map((book, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.03 }}
+              className="relative bg-white border border-gray-200 rounded-lg shadow-md p-4 book-section transition flex flex-col items-center hover:ring-1 hover:ring-yellow-400 overflow-hidden"
+            >
+              <img
+                className="w-[160px] h-[240px] object-cover rounded-lg shadow-md transition"
+                src={book.cover}
+                alt={book.title}
+                loading="lazy"
+              />
+              <div className="absolute top-2 left-2">
+                <Badge>{book.condition}</Badge>
+              </div>
+              <div className="mt-3 text-center">
+                <p className="text-gray-800 text-lg font-semibold truncate w-40">
+                  {book.title}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
+
       <div className="flex justify-center mt-12">
         <motion.a
           href="/header"
