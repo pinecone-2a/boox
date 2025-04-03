@@ -1,6 +1,6 @@
 "use client";
 
-import { BookCheck, BookHeart, BookOpen, BookUser, Home, MessageCircleHeart } from "lucide-react";
+import { BookCheck, BookHeart, BookOpen, BookOpenCheck, BookUser, Heart, Home, MessageCircleHeart, User } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 
@@ -9,10 +9,10 @@ export function Bar() {
   const pathname = usePathname(); // Get the current route
 
   const navItems = [
-    { id: "/dashboard", label: "", icon: BookCheck },
-    { id: "/likedBooks", label: "", icon: BookHeart},
-    { id: "/profile", label: "", icon: BookUser},
-    { id: "/chat", label: "", icon: MessageCircleHeart },
+    { id: "/dashboard", label: "Swipe", icon: BookOpenCheck },
+    { id: "/likedBooks", label: "Liked", icon: Heart},
+    { id: "/profile", label: "User", icon: User},
+    { id: "/chat", label: "Chat", icon: MessageCircleHeart },
   ];
 
   return (

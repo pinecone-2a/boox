@@ -88,7 +88,7 @@ export function BookCard({
 
   return (
     <motion.div
-      className="h-96 w-72 hover:cursor-grab active:cursor-grabbing absolute flex items-center justify-center bg-secondary rounded-lg"
+      className="h-74 aspect-3/4 sm:h-96 xl:h-120 hover:cursor-grab active:cursor-grabbing absolute flex items-center justify-center bg-secondary rounded-lg"
       style={{
         gridRow: 1,
         gridColumn: 1,
@@ -112,11 +112,11 @@ export function BookCard({
         Nope
       </motion.div>
       <motion.img
-        className="h-96 w-72 object-cover rounded-lg"
+        className="h-74 aspect-3/4 sm:h-96 xl:h-120 object-cover rounded-lg"
         style={{ opacity }}
         src={book.cover}
       />
-      <div className="p-5 pb-10 absolute w-full h-full flex flex-col justify-end items-start bg-gradient-to-b from-tranperand to-zinc-900 to-90% text-white rounded-lg">
+      <div className="p-5 pb-10 absolute w-full h-full flex flex-col justify-end items-start bg-gradient-to-b from-tranperand to-zinc-900 to text-white rounded-lg">
         <Badge
           className="rounded-full pl-3 pr-3 font-bold text-sm h-fit w-fit absolute top-5 right-5"
           variant="secondary"
@@ -150,7 +150,7 @@ export function BookCard({
             }
           }, 2);
         }}
-        className="absolute -bottom-7 text-7xl left-15 rounded-full w-15 h-15 bg-white flex justify-center items-center shadow"
+        className="absolute -bottom-7 text-7xl left-7 sm:left-15 rounded-full w-15 h-15 bg-white flex justify-center items-center shadow"
       >
         <X strokeWidth={5} color="#fe4f66" size={32} />
       </button>
@@ -165,7 +165,7 @@ export function BookCard({
             }
           }, 2);
         }}
-        className="absolute -bottom-7 right-15 rounded-full w-15 h-15 bg-white flex justify-center items-center shadow"
+        className="absolute -bottom-7 right-7 sm:right-15 rounded-full w-15 h-15 bg-white flex justify-center items-center shadow"
       >
         <Heart strokeWidth={4} color="#00ce90" size={32} />
       </button>
