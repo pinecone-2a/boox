@@ -92,7 +92,7 @@ function MachedBooksSection({
       );
     };
     return (
-      <div className="h-full w-full pb-12"> 
+      <div className="h-full w-full pb-19"> 
         <div className="h-full pt-4 bg-secondary shadow-md w-full flex flex-col overflow-y-scroll">
             {loading ? (
               <div className="basis-1/5  p-4 flex justify-start items-center w-full">

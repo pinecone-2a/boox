@@ -123,7 +123,7 @@ function BookSection({
         );
       };
       return (
-        <div className="h-[75%] w-full pb-12"> 
+        <div className="h-[75%] w-full pb-19"> 
           <h2 className="text-2xl font-bold pl-10">Match</h2>
           <div className="h-full p-4 shadow-md w-full flex flex-col overflow-y-scroll">
               {loading ? (
