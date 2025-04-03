@@ -545,6 +545,8 @@
 
 "@types/estree@^1.0.6":
   version "1.0.7"
+<<<<<<< HEAD
+=======
 
 "@types/express-serve-static-core@^5.0.0":
   version "5.0.6"
@@ -569,6 +571,7 @@
   version "2.0.4"
   resolved "https://registry.npmjs.org/@types/http-errors/-/http-errors-2.0.4.tgz"
   integrity sha512-D0CFMMtydbJAegzOyHjtiKPLlvnm3iTZyZRSZoLq2mRhDdmLfIWOCYPfQJ4cu2erKghU++QvjcUjp/5h7hESpA==
+>>>>>>> main
 
 "@types/express-serve-static-core@^5.0.0":
   version "5.0.6"
@@ -615,6 +618,9 @@
 "@types/node@*", "@types/node@^20.17.28", "@types/node@>=10.0.0":
 =======
 <<<<<<< HEAD
+"@types/node@*", "@types/node@^20.17.28", "@types/node@>=10.0.0":
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 "@types/node@*", "@types/node@^20.17.28", "@types/node@>=10.0.0":
   version "20.17.28"
@@ -624,6 +630,7 @@
 "@types/node@*", "@types/node@^20", "@types/node@>=10.0.0":
 =======
 "@types/node@*", "@types/node@^20.17.28", "@types/node@>=10.0.0":
+>>>>>>> main
 >>>>>>> main
 >>>>>>> main
   version "20.17.29"
@@ -1153,9 +1160,12 @@ cookie@^1.0.2, cookie@1.0.2:
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
   resolved "https://registry.npmjs.org/cookie/-/cookie-1.0.2.tgz"
   integrity sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==
 =======
+>>>>>>> main
 >>>>>>> main
 >>>>>>> main
 
@@ -1168,6 +1178,8 @@ cookie@0.7.1:
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 cookie@1.0.2:
@@ -1175,6 +1187,7 @@ cookie@1.0.2:
 
 >>>>>>> main
 =======
+>>>>>>> main
 >>>>>>> main
 >>>>>>> main
 cors@~2.8.5:
@@ -2511,6 +2524,9 @@ negotiator@0.6.3:
 "next@^13.5.4 || ^14.0.3 || ^15.0.0", next@^15.2.1:
 =======
 <<<<<<< HEAD
+"next@^13.5.4 || ^14.0.3 || ^15.0.0", next@^15.2.1:
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 "next@^13.5.4 || ^14.0.3 || ^15.0.0", next@^15.2.1:
   version "15.2.4"
@@ -2520,6 +2536,7 @@ negotiator@0.6.3:
 "next@^13.5.4 || ^14.0.3 || ^15.0.0", next@15.2.1:
 =======
 "next@^13.5.4 || ^14.0.3 || ^15.0.0", next@^15.2.1:
+>>>>>>> main
 >>>>>>> main
 >>>>>>> main
   version "15.2.1"
@@ -3371,6 +3388,10 @@ tailwindcss@^4.0.17, "tailwindcss@>=3.0.0 || insiders", tailwindcss@4.0.17:
   version "4.0.17"
 =======
 <<<<<<< HEAD
+tailwindcss@^4.0.17, "tailwindcss@>=3.0.0 || insiders", tailwindcss@4.0.17:
+  version "4.0.17"
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 tailwindcss@^4.0.17, "tailwindcss@>=3.0.0 || insiders", tailwindcss@4.0.17:
   version "4.0.17"
@@ -3382,6 +3403,7 @@ tailwindcss@^4.0.14, "tailwindcss@>=3.0.0 || insiders", tailwindcss@4.0.17:
 tailwindcss@^4.0.17, "tailwindcss@>=3.0.0 || insiders", tailwindcss@4.0.17:
 >>>>>>> main
   version "4.0.17"
+>>>>>>> main
 >>>>>>> main
 >>>>>>> main
 

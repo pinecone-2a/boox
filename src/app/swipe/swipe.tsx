@@ -7,14 +7,10 @@ import { Badge } from "@/components/ui/badge";
 
 export function BookCard({
   book,
-  setBooks,
-  fetchLikedBooks,
-  fetchMatches,
+  setBooks
 }: {
   book: Book;
   setBooks: Dispatch<SetStateAction<Book[]>>;
-  fetchLikedBooks: () => void;
-  fetchMatches: () => void;
 }) {
   const x = useMotionValue(0);
   const opacity = useTransform(x, [-150, 0, 150], [0, 1, 0]);
@@ -68,9 +64,9 @@ export function BookCard({
     } finally {
       if (like) {
         if (status === 201) {
-          fetchMatches();
+          // fetchMatches();
         } else {
-          fetchLikedBooks();
+          // fetchLikedBooks();
         }
       }
     }
