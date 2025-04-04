@@ -11,7 +11,14 @@ import { SignedIn } from "@clerk/nextjs";
 import SignupHandler from "../_components/signup";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Match as PrismaMatch, Book, User } from "@prisma/client";
-
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 interface Match extends PrismaMatch {
   like1: { book: Book; user: User };
   like2: { book: Book; user: User };
@@ -75,11 +82,9 @@ function BookSection({
   }) {
     return (
       <div className="h-[25%] flex flex-col justify-center">
-        <SignedIn>
-          <SignupHandler />
-        </SignedIn>
+        
         <h2 className="text-2xl font-bold pl-10">{sectionName}</h2>
-        <Carousel className="w-full h-[115px] ">
+<Carousel className="w-full h-[115px] ">
           <CarouselContent>
             {loading ? (
               <CarouselItem className="basis-1/5 p-2 flex justify-center">
@@ -91,11 +96,24 @@ function BookSection({
                 key={index}
                 className="basis-1/5 p-2 flex justify-center  hover:cursor-grab active:cursor-grabbing sm:basis-1/6 md:basis-1/7 lg:basis-1/8 xl:basis-1/9"
               >
-                <img
+             
+                                      <Dialog>
+  <DialogTrigger>
+  <img
                   src={book.cover}
                   alt={`${sectionName} book ${index + 1}`}
-                  className="w-[64px] h-[99px] object-cover rounded-xl shadow-lg ml-2"
+                  className="w-[64px] h-[99px] object-cover rounded-lg shadow-lg ml-2"
                 />
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Liked Book</DialogTitle>
+      <DialogDescription>
+      </DialogDescription>
+    </DialogHeader>
+    <img src={book.cover} alt="" />
+  </DialogContent>
+</Dialog>
               </CarouselItem>
             ))}
           </CarouselContent>
