@@ -127,7 +127,7 @@ export const Hero = () => {
 
       <div className="flex justify-center mt-8 sm:mt-12">
         <motion.a
-          href="/header"
+          href="/dashboard"
           className="inline-block bg-yellow-600 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-md text-base sm:text-lg font-semibold transition hover:bg-yellow-500 hover:shadow-md"
           whileHover={{ scale: 1.05 }}
         >
