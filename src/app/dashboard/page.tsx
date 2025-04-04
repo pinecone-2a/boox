@@ -9,6 +9,8 @@ import { Bar } from "../profile/bar";
 import LoadingSkeleton from "../loading";
 import { SignedIn } from "@clerk/nextjs";
 import SignupHandler from "../_components/signup";
+import { SignedIn } from "@clerk/nextjs";
+import SignupHandler from "../_components/signup";
 
 export type MatchWithDetails = Match & {
   like1: Swipe & { book: Book; user: User };
@@ -36,14 +38,11 @@ export default function BookLists() {
   }, []);
 
   return (
-    <div className="w-full h-[75%] bg-background flex justify-center items-center box-border">
-      <SignedIn>
-        <SignupHandler />
-      </SignedIn>
+    <div className="w-full h-full bg-background flex justify-center items-center pb-10 box-border">
       {isLoading ? (
-        <Skeleton className="absolute h-96 aspect-3/4 sm:h-96 xl:h-120 bg-zinc-300" />
+        <Skeleton className="absolute h-74 aspect-3/4 sm:h-96 xl:h-120 bg-zinc-300" />
       ) : (
-        <div className="absolute h-96 aspect-3/4 sm:h-96 xl:h-120 bg-zinc-300 rounded-md flex justify-center items-center">
+        <div className="absolute h-74 aspect-3/4 sm:h-96 xl:h-120 bg-zinc-300 rounded-md flex justify-center items-center">
           No more books left to swipe!
         </div>
       )}
