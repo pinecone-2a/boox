@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 
 export function BookCard({
   book,
-  setBooks
+  setBooks,
 }: {
   book: Book;
   setBooks: Dispatch<SetStateAction<Book[]>>;
