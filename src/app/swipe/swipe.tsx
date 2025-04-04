@@ -88,7 +88,7 @@ export function BookCard({
 
   return (
     <motion.div
-      className="h-74 aspect-3/4 sm:h-96 xl:h-120 hover:cursor-grab active:cursor-grabbing absolute flex items-center justify-center bg-secondary rounded-lg"
+      className="h-96 aspect-3/4 sm:h-96 xl:h-120 hover:cursor-grab active:cursor-grabbing absolute flex items-center justify-center bg-secondary rounded-lg"
       style={{
         gridRow: 1,
         gridColumn: 1,
@@ -112,7 +112,7 @@ export function BookCard({
         Nope
       </motion.div>
       <motion.img
-        className="h-74 aspect-3/4 sm:h-96 xl:h-120 object-cover rounded-lg"
+        className="h-96 aspect-3/4 sm:h-96 xl:h-120 object-cover rounded-lg"
         style={{ opacity }}
         src={book.cover}
       />

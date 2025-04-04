@@ -19,7 +19,7 @@ export type Match = {
   book2: Book;
 };
 export default function BookLists() {
-  const [isLoading,setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [books, setBooks] = useState<Book[]>([]);
   useEffect(() => {
     async function fetchBooks() {
@@ -27,36 +27,33 @@ export default function BookLists() {
         const response = await fetch(`/api/suggestion-books`);
         const data = await response.json();
         setBooks(data);
-      } catch (err) {}
-      finally{
-        setIsLoading(false)
+      } catch (err) {
+      } finally {
+        setIsLoading(false);
       }
     }
     fetchBooks();
   }, []);
 
   return (
-    <div className="w-full h-full bg-background flex justify-center items-center pb-10 box-border">
-        <SignedIn>
-          <SignupHandler />
-        </SignedIn>
-        {isLoading?
-          <Skeleton className="absolute h-74 aspect-3/4 sm:h-96 xl:h-120 bg-zinc-300" />:
-          <div className="absolute h-74 aspect-3/4 sm:h-96 xl:h-120 bg-zinc-300 rounded-md flex justify-center items-center">No more books left to swipe!</div>
-        }
-        
-        {books.length > 0 &&
-          books
-            .map((book) => {
-              return (
-                <BookCard
-                  key={book.id}
-                  book={book}
-                  setBooks={setBooks}
-                />
-              );
-            })
-            .reverse()}
+    <div className="w-full h-[75%] bg-background flex justify-center items-center box-border">
+      <SignedIn>
+        <SignupHandler />
+      </SignedIn>
+      {isLoading ? (
+        <Skeleton className="absolute h-96 aspect-3/4 sm:h-96 xl:h-120 bg-zinc-300" />
+      ) : (
+        <div className="absolute h-96 aspect-3/4 sm:h-96 xl:h-120 bg-zinc-300 rounded-md flex justify-center items-center">
+          No more books left to swipe!
+        </div>
+      )}
+
+      {books.length > 0 &&
+        books
+          .map((book) => {
+            return <BookCard key={book.id} book={book} setBooks={setBooks} />;
+          })
+          .reverse()}
       <div className="h-20">
         <Bar />
       </div>
