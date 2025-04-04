@@ -7,14 +7,10 @@ import { Badge } from "@/components/ui/badge";
 
 export function BookCard({
   book,
-  setBooks,
-  fetchLikedBooks,
-  fetchMatches,
+  setBooks
 }: {
   book: Book;
   setBooks: Dispatch<SetStateAction<Book[]>>;
-  fetchLikedBooks: () => void;
-  fetchMatches: () => void;
 }) {
   const x = useMotionValue(0);
   const opacity = useTransform(x, [-150, 0, 150], [0, 1, 0]);
@@ -68,9 +64,9 @@ export function BookCard({
     } finally {
       if (like) {
         if (status === 201) {
-          fetchMatches();
+          // fetchMatches();
         } else {
-          fetchLikedBooks();
+          // fetchLikedBooks();
         }
       }
     }
@@ -154,7 +150,7 @@ export function BookCard({
             }
           }, 2);
         }}
-        className="absolute -bottom-7 text-7xl left-15 rounded-full w-15 h-15 bg-white flex justify-center items-center"
+        className="absolute -bottom-7 text-7xl left-15 rounded-full w-15 h-15 bg-white flex justify-center items-center shadow"
       >
         <X strokeWidth={5} color="#fe4f66" size={32} />
       </button>
@@ -169,7 +165,7 @@ export function BookCard({
             }
           }, 2);
         }}
-        className="absolute -bottom-7 right-15 rounded-full w-15 h-15 bg-white flex justify-center items-center"
+        className="absolute -bottom-7 right-15 rounded-full w-15 h-15 bg-white flex justify-center items-center shadow"
       >
         <Heart strokeWidth={4} color="#00ce90" size={32} />
       </button>

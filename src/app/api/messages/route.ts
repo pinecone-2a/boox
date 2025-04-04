@@ -26,7 +26,6 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
     try {
         const { matchId, senderId, receiverId, text } = await req.json();
-        console.log({ matchId, senderId, receiverId, text });
 
         if (!matchId || !senderId || !receiverId || !text) {
             return NextResponse.json({ error: "Missing fields" }, { status: 400 });
