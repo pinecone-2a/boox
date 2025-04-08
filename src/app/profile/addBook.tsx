@@ -14,7 +14,6 @@ import { Plus, Image } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import type { Book } from "../types/types";
-import { Edit } from "lucide-react";
 
 const Condition = ["NEW", "LIKE_NEW", "GOOD", "FAIR", "POOR"];
 const Genre = [
@@ -64,16 +63,15 @@ export const AddNewBook = () => {
     return data.secure_url;
   };
 
-  const handleFileUpload = async (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       const imageUrl = await uploadImageToCloudinary(file);
-      setBook((prevBook) => ({ ...prevBook, image: imageUrl }));
+      setBook((prevBook) => ({ ...prevBook, cover: imageUrl }));
     }
   };
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       setBook((prevBook) => ({
@@ -82,14 +80,18 @@ export const AddNewBook = () => {
       }));
       setLocalCover(file);
     }
-  }
-  const addNewBook = async (formData: FormData) => {
-    const title = (formData.get("name") as string) || "";
-    const author = (formData.get("author") as string) || "";
-    const genre = (formData.get("genre") as string) || "";
-    const description = (formData.get("description") as string) || "";
-    const condition = (formData.get("condition") as string) || "";
+  };
+
+  const addNewBook = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault(); // Prevent form default behavior
+
+    const title = (event.target as HTMLFormElement).name.valueOf();
+    const author = (event.target as HTMLFormElement).author.value;
+    const genre = (event.target as HTMLFormElement).genre.value;
+    const description = (event.target as HTMLFormElement).description.value;
+    const condition = (event.target as HTMLFormElement).condition.value;
     const cover = localcover ? await uploadImageToCloudinary(localcover) : "";
+
     const bookData: Book = {
       id: "",
       title,
@@ -98,21 +100,26 @@ export const AddNewBook = () => {
       description,
       condition,
       cover,
-      ownerId: user?.id,
+      ownerId: user?.id || "",
       owner: undefined,
     };
 
-    const data = await fetch("api/books", {
+    const response = await fetch("api/books", {
+      method: "POST",
       headers: {
-        Accept: "application/json",
         "Content-Type": "application/json",
       },
-      method: "POST",
       body: JSON.stringify(bookData),
     });
-    const newItem = await data.json();
-    window.location.reload();
+
+    if (response.ok) {
+      window.location.reload(); // Reload the page after successful submission
+    } else {
+      // Handle errors if needed
+      console.error("Failed to add book.");
+    }
   };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -124,7 +131,9 @@ export const AddNewBook = () => {
         <DialogHeader className="pb-4 grid gap-4">
           <DialogTitle>Add new Book</DialogTitle>
         </DialogHeader>
-        <form action={addNewBook}>
+
+        {/* The Form */}
+        <form onSubmit={addNewBook}>
           <div className="flex gap-6 mb-4">
             <div className="grid w-full max-w-sm items-center gap-1.5">
               <Label htmlFor="bookName">Book name</Label>
@@ -133,6 +142,7 @@ export const AddNewBook = () => {
                 name="name"
                 type="text"
                 placeholder="Book name"
+                required
               />
             </div>
             <div className="grid w-full max-w-sm items-center gap-1.5">
@@ -142,6 +152,7 @@ export const AddNewBook = () => {
                 name="author"
                 type="text"
                 placeholder="Author names"
+                required
               />
             </div>
           </div>
@@ -153,6 +164,7 @@ export const AddNewBook = () => {
                 id="genre"
                 name="genre"
                 className="border rounded-md py-2 px-1"
+                required
               >
                 <option value="">Select</option>
                 {Genre.map((g) => (
@@ -168,6 +180,7 @@ export const AddNewBook = () => {
                 id="condition"
                 name="condition"
                 className="border rounded-md py-2 px-1"
+                required
               >
                 <option value="">Select</option>
                 {Condition.map((c) => (
@@ -189,6 +202,7 @@ export const AddNewBook = () => {
               rows={4}
               className="border rounded-md py-2 px-4 text-sm font-normal"
               placeholder="Description of the book"
+              required
             ></textarea>
           </div>
 
@@ -223,9 +237,7 @@ export const AddNewBook = () => {
           </div>
 
           <DialogFooter className="pt-6">
-            <DialogClose asChild>
-              <Button type="submit">Add Book</Button>
-            </DialogClose>
+            <Button type="submit">Add Book</Button>
           </DialogFooter>
         </form>
       </DialogContent>

@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import { Book } from "@prisma/client";
 import { Badge } from "@/components/ui/badge";
-import { Delete, DeleteIcon, Edit, Trash } from "lucide-react";
 import { EditBook } from "./editBook";
 import {
   Dialog,
@@ -19,32 +18,45 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { Trash } from "lucide-react";
 
 export default function Profile() {
   const [data, setData] = useState<Book[]>([]);
-  const user = useUser();
   const [open, setOpen] = useState(false);
+  const [bookToDelete, setBookToDelete] = useState<string | null>(null); // Track the book to delete
+  const user = useUser();
 
   async function getFetchData() {
     fetch("/api/books")
       .then((res) => res.json())
       .then((data) => setData(data));
   }
+
   useEffect(() => {
     getFetchData();
   }, []);
-  console.log(data);
 
   const deleteBook = async (id: string) => {
     await fetch(`/api/books/singlebook?id=${id}`, {
-      method: "PATCH",
+      method: "DELETE", // Changed to DELETE for proper deletion
       headers: { "Content-Type": "application/json" },
     });
+    getFetchData(); // Refresh the data after deletion
   };
-  const handleDelete = (bookId: string) => {
-    deleteBook(bookId);
-    setOpen(false);
+
+  const handleDeleteClick = (bookId: string) => {
+    setBookToDelete(bookId);
+    setOpen(true); // Open dialog when delete button is clicked
   };
+
+  const handleDelete = () => {
+    if (bookToDelete) {
+      deleteBook(bookToDelete);
+      setOpen(false); // Close dialog after delete
+      setBookToDelete(null); // Reset the state
+    }
+  };
+
   return (
     <div className="w-full max-w-md mx-auto p-4 pb-18">
       <Card className="p-6 text-center">
@@ -63,8 +75,8 @@ export default function Profile() {
       <div className="mt-6 pb-4">
         <h3 className="text-lg font-semibold">Your Books</h3>
         <div className="mt-4 space-y-4">
-          {data.map((book: Book, index: number) => (
-            <Card key={index} className="flex items-center p-4">
+          {data.map((book: Book) => (
+            <Card key={book.id} className="flex items-center p-4">
               <div className="flex items-center space-x-4 w-full">
                 <img
                   src={book.cover}
@@ -74,13 +86,16 @@ export default function Profile() {
                 <div className="flex-1">
                   <h4 className="font-bold">{book.title}</h4>
                   <p className="text-sm text-gray-500 mb-1">{book.author}</p>
-                  <Badge className="">{book.condition}</Badge>
+                  <Badge>{book.condition}</Badge>
                 </div>
                 <div className="flex gap-3">
                   <EditBook id={book.id} />
                   <Dialog open={open} onOpenChange={setOpen}>
                     <DialogTrigger>
-                      <div className="size-10 bg-black rounded-full flex items-center justify-center">
+                      <div
+                        className="size-10 bg-black rounded-full flex items-center justify-center"
+                        onClick={() => handleDeleteClick(book.id)} // Open dialog for the selected book
+                      >
                         <Trash className="text-white" strokeWidth={1} />
                       </div>
                     </DialogTrigger>
@@ -91,7 +106,7 @@ export default function Profile() {
                         </DialogTitle>
                         <DialogDescription className="text-gray-600">
                           This action cannot be undone. This will permanently
-                          delete your books and remove your data from our
+                          delete your book and remove your data from our
                           servers.
                         </DialogDescription>
                       </DialogHeader>
@@ -104,7 +119,7 @@ export default function Profile() {
                         </Button>
                         <Button
                           className="bg-red-600 hover:bg-red-700 text-white"
-                          onClick={() => handleDelete(book.id)}
+                          onClick={handleDelete} // Delete the book
                         >
                           Yes, Delete
                         </Button>

@@ -44,7 +44,7 @@ export const EditBook = ({ id }: { id: string }) => {
     }
     fetchBook();
   }, [id]);
-  console.log(book);
+
   const uploadImageToCloudinary = async (file: File) => {
     const formData = new FormData();
     formData.append("file", file);
@@ -69,22 +69,23 @@ export const EditBook = ({ id }: { id: string }) => {
     }
   };
 
-  const editBook = async (formData: FormData) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     if (!book) return;
 
     let coverUrl = book.cover;
     if (localCover) {
       coverUrl = await uploadImageToCloudinary(localCover);
     }
-    console.log(coverUrl);
-    console.log(uploadImageToCloudinary);
+
     const updatedBook = {
       id,
-      title: formData.get("title") as string,
-      author: formData.get("author") as string,
-      genre: formData.get("genre") as string,
-      description: formData.get("description") as string,
-      condition: formData.get("condition") as string,
+      title: (e.target as HTMLFormElement).title.valueOf,
+      author: (e.target as HTMLFormElement).author.value,
+      genre: (e.target as HTMLFormElement).genre.value,
+      description: (e.target as HTMLFormElement).description.value,
+      condition: (e.target as HTMLFormElement).condition.value,
       cover: coverUrl,
     };
 
@@ -93,6 +94,8 @@ export const EditBook = ({ id }: { id: string }) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedBook),
     });
+
+    // Close the dialog after saving
     window.location.reload();
   };
 
@@ -109,7 +112,9 @@ export const EditBook = ({ id }: { id: string }) => {
         <DialogHeader className="pb-4 grid gap-4">
           <DialogTitle>Edit Book</DialogTitle>
         </DialogHeader>
-        <form action={editBook}>
+
+        {/* Form handling with onSubmit */}
+        <form onSubmit={handleSubmit}>
           <div className="flex gap-6 mb-4">
             <div className="grid w-full max-w-sm items-center gap-1.5">
               <Label htmlFor="title">Book Name</Label>
@@ -118,6 +123,7 @@ export const EditBook = ({ id }: { id: string }) => {
                 name="title"
                 defaultValue={book.title}
                 type="text"
+                required
               />
             </div>
             <div className="grid w-full max-w-sm items-center gap-1.5">
@@ -127,6 +133,7 @@ export const EditBook = ({ id }: { id: string }) => {
                 name="author"
                 defaultValue={book.author}
                 type="text"
+                required
               />
             </div>
           </div>
@@ -139,6 +146,7 @@ export const EditBook = ({ id }: { id: string }) => {
                 name="genre"
                 className="border rounded-md py-2 px-1"
                 defaultValue={book.genre}
+                required
               >
                 {Genre.map((g) => (
                   <option key={g} value={g}>
@@ -154,6 +162,7 @@ export const EditBook = ({ id }: { id: string }) => {
                 name="condition"
                 className="border rounded-md py-2 px-1"
                 defaultValue={book.condition}
+                required
               >
                 {Condition.map((c) => (
                   <option key={c} value={c}>
@@ -172,6 +181,7 @@ export const EditBook = ({ id }: { id: string }) => {
               rows={4}
               className="border rounded-md py-2 px-4 text-sm font-normal"
               defaultValue={book.description}
+              required
             ></textarea>
           </div>
 
@@ -200,15 +210,13 @@ export const EditBook = ({ id }: { id: string }) => {
               id="image"
               name="image"
               type="file"
-              className=""
+              className="hidden"
               onChange={handleChange}
             />
           </div>
 
           <DialogFooter className="pt-6">
-            <DialogClose asChild>
-              <Button type="submit">Save Changes</Button>
-            </DialogClose>
+            <Button type="submit">Save Changes</Button>
           </DialogFooter>
         </form>
       </DialogContent>
