@@ -72,7 +72,10 @@ export default function BookLists() {
 
       {/* Display Books */}
       {!isLoading && books.length > 0 && (
-        <div className="w-full flex flex-col items-center">
+        <div className="w-full flex flex-col items-center justify-center">
+          <div className="w-full flex justify-center items-center">
+
+          </div>
           {books
             .map((book) => {
               return <BookCard key={book.id} book={book} setBooks={setBooks} />;
