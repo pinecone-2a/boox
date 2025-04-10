@@ -34,7 +34,6 @@ export default function BookLists() {
     }
     fetchBooks();
   }, []);
-
   return (
     <div className="w-full h-full bg-background flex justify-center items-center pb-10 box-border">
       <SignedIn>
