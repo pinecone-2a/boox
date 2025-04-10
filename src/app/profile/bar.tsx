@@ -1,6 +1,16 @@
 "use client";
 
-import { BookCheck, BookHeart, BookOpen, BookOpenCheck, BookUser, Heart, Home, MessageCircleHeart, User } from "lucide-react";
+import {
+  BookCheck,
+  BookHeart,
+  BookOpen,
+  BookOpenCheck,
+  BookUser,
+  Heart,
+  Home,
+  MessageCircleHeart,
+  User,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 
@@ -10,16 +20,15 @@ export function Bar() {
 
   const navItems = [
     { id: "/dashboard", label: "Swipe", icon: BookOpenCheck },
-    { id: "/likedBooks", label: "Liked", icon: Heart},
+    { id: "/liked-books", label: "Liked", icon: Heart },
     { id: "/chat", label: "Chat", icon: MessageCircleHeart },
-    { id: "/profile", label: "User", icon: User},
+    { id: "/profile", label: "My Books", icon: User },
   ];
 
   return (
     <div className="fixed bottom-0 left-0 w-full bg-black flex justify-around items-center py-2">
       {navItems.map((item) => {
         const isActive = pathname === item.id;
-
         return (
           <button
             key={item.id}
