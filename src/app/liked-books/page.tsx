@@ -23,8 +23,12 @@ interface Match extends PrismaMatch {
   like2: { book: Book; user: User };
 }
 
+interface BookWithOwner extends Book {
+  owner: User;
+}
+
 export default function Liked() {
-  const [likedBooks, setLikedBooks] = useState<Book[]>([]);
+  const [likedBooks, setLikedBooks] = useState<BookWithOwner[]>([]);
   const [matches, setMatches] = useState<Match[]>([]);
   const [loadingLike, setLoadingLike] = useState(true);
   const [loadingMatch, setLoadingMatch] = useState(true);
@@ -70,7 +74,7 @@ function BookSection({
   loading,
 }: {
   sectionName: string;
-  bookList: Book[];
+  bookList: BookWithOwner[];
   loading: boolean;
 }) {
   return (
@@ -83,7 +87,9 @@ function BookSection({
               <Skeleton className="w-[64px] h-[99px] bg-zinc-300" />
             </CarouselItem>
           ) : (
-            bookList.map((book) => <BookCard key={book.id} book={book} />)
+            bookList.map((book: BookWithOwner) => (
+              <BookCard key={book.id} book={book} />
+            ))
           )}
         </CarouselContent>
       </Carousel>
@@ -91,9 +97,8 @@ function BookSection({
   );
 }
 
-function BookCard({ book }: { book: Book }) {
+function BookCard({ book }: { book: BookWithOwner }) {
   const [profileUrl, setProfileUrl] = useState("/profile.jpg");
-
   const fetchUserImage = async () => {
     try {
       const res = await fetch(`/api/user?userId=${book.owner?.clerkId}`);
