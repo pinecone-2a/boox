@@ -186,6 +186,12 @@ export function Chat({
           name="text"
           placeholder="Type your message here."
           className="w-full h-full bg-secondary text-secondary-foreground rounded-lg p-4 resize-none"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+              e.preventDefault();
+              e.currentTarget.form?.requestSubmit();
+            }
+          }}
         />
         <Button type="submit" className="h-full">
           Send

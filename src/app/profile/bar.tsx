@@ -26,7 +26,7 @@ export function Bar() {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-black flex justify-around items-center py-2">
+    <div className="fixed bottom-0 left-0 w-full bg-background shadow-[0_5px_35px_rgba(0,0,0,0.25)] flex justify-around items-center py-2">
       {navItems.map((item) => {
         const isActive = pathname === item.id;
         return (
@@ -34,11 +34,11 @@ export function Bar() {
             key={item.id}
             onClick={() => router.push(item.id)}
             className={`relative flex flex-col items-center px-3 py-2 transition-all ${
-              isActive ? "text-white" : "text-gray-400"
+              isActive ? "text-white" : "text-black"
             }`}
           >
             {isActive && (
-              <div className="absolute -top-4 w-26 h-20 bg-indigo-600 rounded-2xl transition-all duration-300"></div>
+              <div className="absolute -top-4 w-26 h-20 bg-black rounded-2xl transition-all duration-300"></div>
             )}
             <item.icon className="w-6 h-6 relative" />
             <span className="text-xs relative mt-1">{item.label}</span>
