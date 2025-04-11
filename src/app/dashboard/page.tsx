@@ -40,7 +40,7 @@ export default function BookLists() {
         <SignupHandler />
       </SignedIn>
       {isLoading ? (
-        <Skeleton className="absolute h-74 aspect-3/4 sm:h-96 xl:h-120 bg-zinc-300" />
+        <Skeleton className="absolute h-96 aspect-3/4 sm:h-96 xl:h-120 bg-zinc-300" />
       ) : (
         <div className="absolute h-74 aspect-3/4 sm:h-96 xl:h-120 bg-zinc-300 rounded-md flex justify-center items-center">
           No more books left to swipe!

@@ -83,7 +83,7 @@ function BookSection({
       <Carousel className="w-full">
         <CarouselContent>
           {loading ? (
-            <CarouselItem className="basis-1/5 p-2 flex justify-center">
+            <CarouselItem className="basis-1/4 p-2 flex justify-center">
               <Skeleton className="w-[64px] h-[99px] bg-zinc-300" />
             </CarouselItem>
           ) : (
@@ -110,7 +110,7 @@ function BookCard({ book }: { book: BookWithOwner }) {
   };
 
   return (
-    <CarouselItem className="basis-1/5 p-2 flex justify-center relative">
+    <CarouselItem className="basis-1/4 p-2 flex justify-center relative">
       <Dialog>
         <DialogTrigger onClick={fetchUserImage}>
           <img

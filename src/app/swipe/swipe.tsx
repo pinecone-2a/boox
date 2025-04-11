@@ -150,7 +150,7 @@ export function BookCard({
             }
           }, 2);
         }}
-        className="absolute -bottom-7 text-7xl left-7 sm:left-15 rounded-full w-15 h-15 bg-white flex justify-center items-center shadow"
+        className="absolute -bottom-7 text-7xl left-12 rounded-full w-15 h-15 bg-white flex justify-center items-center shadow"
       >
         <X strokeWidth={5} color="#fe4f66" size={32} />
       </button>
@@ -165,7 +165,7 @@ export function BookCard({
             }
           }, 2);
         }}
-        className="absolute -bottom-7 right-7 sm:right-15 rounded-full w-15 h-15 bg-white flex justify-center items-center shadow"
+        className="absolute -bottom-7 right-12  rounded-full w-15 h-15 bg-white flex justify-center items-center shadow"
       >
         <Heart strokeWidth={4} color="#00ce90" size={32} />
       </button>
