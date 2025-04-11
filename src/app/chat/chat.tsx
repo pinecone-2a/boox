@@ -5,7 +5,10 @@ import { Button } from "@/components/ui/button";
 import { User } from "@prisma/client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useEffect, useState, useRef } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useEffect, useState, useRef } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { EllipsisVertical, CircleX, CircleCheck } from "lucide-react";
 import { EllipsisVertical, CircleX, CircleCheck } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -29,7 +32,32 @@ export function Chat({
     visible: boolean;
     status: string;
   }>({ visible: false, status: "" });
+export function Chat({
+  matchId,
+  sender,
+  receiver,
+  senderProfile,
+}: {
+  matchId: string;
+  sender: User;
+  receiver: User;
+  senderProfile: string;
+}) {
+  const [receiverProfile, setReceiverProfile] = useState("");
+  const { messages, loading } = useChat(matchId);
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  const [isReviewModal, setIsReviewModal] = useState<{
+    visible: boolean;
+    status: string;
+  }>({ visible: false, status: "" });
 
+  const openModal = (status: string) =>
+    setIsReviewModal({ visible: true, status });
+  const closeModal = (status: string) =>
+    setIsReviewModal({ visible: false, status });
+
+  const toggleDropdown = () => setIsOpen(!isOpen);
   const openModal = (status: string) =>
     setIsReviewModal({ visible: true, status });
   const closeModal = (status: string) =>
@@ -216,8 +244,30 @@ const Modal = ({
   matchId: string;
   status: string;
 }) => {
+const Modal = ({
+  isOpen,
+  onClose,
+  userId,
+  reviewerId,
+  matchId,
+  status,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  userId: string;
+  reviewerId: string;
+  matchId: string;
+  status: string;
+}) => {
   const [isAlertOpen, setIsAlertOpen] = useState(true);
   if (!isOpen) return null;
+  async function changeMatchStatus({
+    matchId,
+    status,
+  }: {
+    matchId: string;
+    status: string;
+  }) {
   async function changeMatchStatus({
     matchId,
     status,
@@ -229,8 +279,12 @@ const Modal = ({
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ matchId, status }),
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ matchId, status }),
     });
   }
+  async function submitReview(form: FormData) {
   async function submitReview(form: FormData) {
     const rating = Number(form.get("rating")) || 0;
     const reviewText = form.get("review");
@@ -248,6 +302,21 @@ const Modal = ({
   }
   return (
     <div className="fixed inset-0 bg-black/50 bg-opacity-50 flex justify-center items-center z-100">
+      {isAlertOpen ? (
+        <div className="bg-white p-6 rounded-lg shadow-lg w-96 text-black">
+          <h2 className="text-xl mb-4 font-bold">{status}</h2>
+          <p>Are you sure you want to give this rating?</p>
+          <div className="flex justify-end gap-2">
+            <Button onClick={onClose}>cancel</Button>
+            <Button
+              onClick={() => {
+                changeMatchStatus({ matchId, status });
+                setIsAlertOpen(false);
+              }}
+            >
+              continue
+            </Button>
+          </div>
       {isAlertOpen ? (
         <div className="bg-white p-6 rounded-lg shadow-lg w-96 text-black">
           <h2 className="text-xl mb-4 font-bold">{status}</h2>
@@ -298,7 +367,42 @@ const Modal = ({
               <Button type="submit">submit</Button>
             </div>
           </form>
+      ) : (
+        <div className="bg-white p-6 rounded-lg shadow-lg w-96 text-black">
+          <h2 className="text-xl mb-4 font-bold">Review</h2>
+          <p>
+            Rate your interaction and provide any feedback you think is helpful.
+          </p>
+          <form action={submitReview} className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="name" className="text-right">
+                Rating
+              </Label>
+              <Input
+                className="col-span-3"
+                type="number"
+                name="rating"
+                min="1"
+                max="5"
+                placeholder="Give a rating from 1 to 5"
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="name" className="text-right">
+                Review
+              </Label>
+              <Textarea
+                name="review"
+                className="col-span-3"
+                placeholder="Write your review here..."
+              />
+            </div>
+            <div className="flex justify-end">
+              <Button type="submit">submit</Button>
+            </div>
+          </form>
         </div>
+      )}
       )}
     </div>
   );
